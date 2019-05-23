@@ -1,0 +1,297 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-08-31 22:17:14",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/7438645/versions/0",
+        "accountId": "1164259306",
+        "containerId": "7438645",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/7438645",
+            "accountId": "1164259306",
+            "containerId": "7438645",
+            "name": "Wistia Recipe",
+            "publicId": "GTM-MPQSSVM",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1503958235952",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/7438645/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "tagId": "2",
+                "name": "GA - Event - Video Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "{{dlv - eventCategory}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - eventAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{dlv - eventLabel}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1503958300049",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "tagId": "1",
+                "name": "cHTML - Wistia Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-wistia-tracking\">\n;(function(document, window, config) {\n\n  'use strict';\n\n  config = cleanConfig(config);\n\n  var _wq = window._wq = window._wq || [];\n  var handle = getHandler(config.syntax);\n  var f, s;\n\n  _wq.push({\n    id: '_all',\n    onReady: listenTo\n  });\n\n  if (isUndefined_(window.Wistia)) {\n\n    f = document.getElementsByTagName('script')[0];\n    s = document.createElement('script');\n    s.src = '//fast.wistia.net/assets/external/E-v1.js';\n    s.async = true;\n\n    f.parentNode.insertBefore(s, f);\n\n  }\n\n  function listenTo(video) {\n\n    var percentages = config._track.percentages;\n    var eventNameDict = {\n\t\t\t'Played video': 'play',\n\t\t\t'Paused video': 'pause',\n\t\t\t'100%': 'end'\n\t\t};\n    var cache = {};\n\n    forEach_(['Played video', '100%'], function(key) {\n\n      if (config.events[key]) {\n\n        video.bind(eventNameDict[key], function() {\n\n          handle(key, video);\n\n        });\n\n      }\n\n    });\n\n    if (config.events.Pause) {\n\n      video.bind('pause', function() {\n\n        if (video.percentWatched() !== 1) handle('Paused video', video);\n\n      });\n\n    }\n\n    if (percentages) {\n\n      video.bind('secondchange', function(s) {\n\n        var percentage = video.percentWatched();\n        var key;\n\n        for (key in percentages) {\n\n          if (percentage >= percentages[key] && !cache[key]) {\n\n            cache[key] = true;\n            handle(key, video);\n\n          }\n\n        }\n\n      });\n\n    }\n\n  }\n\n  function cleanConfig(config) {\n\n    config = extend_({}, {\n      events: {\n        'Played video': true,\n        'Paused video': true,\n        '100%': true\n      },\n      percentages: {\n        each: [],\n        every: []\n      }\n    }, config);\n\n    var key;\n    var vals;\n\n    forEach_(['each', 'every'], function(setting) {\n\n      var vals = config.percentages[setting];\n\n      if (!isArray_(vals)) vals = [vals];\n\n      if (vals) config.percentages[setting] = map_(vals, Number);\n\n    });\n\n    var points = [].concat(config.percentages.each);\n\n    if (config.percentages.every) {\n\n      forEach_(config.percentages.every, function(val) {\n\n        var n = 100 / val;\n        var every = [];\n        var i;\n\n        for (i = 1; i < n; i++) every.push(val * i);\n\n        points = points.concat(filter_(every, function(val) {\n\n          return val > 0.0 && val < 100.0;\n\n        }));\n\n      });\n\n    }\n\n    var percentages = reduce_(points, function(prev, curr) {\n\n      prev[curr + '%'] = curr / 100.0;\n      return prev;\n\n    }, {});\n\n    config._track = {\n      percentages: percentages\n    };\n\n    return config;\n\n  }\n\n  function getHandler(syntax) {\n\n\t\tsyntax = syntax || {};\n\n\t\tvar gtmGlobal = syntax.name || 'dataLayer';\n    var uaGlobal = syntax.name || window.GoogleAnalyticsObject || 'ga';\n    var clGlobal = '_gaq';\n\t\tvar dataLayer;\n\n    var handlers = {\n      'gtm': function(state, video) {\n\n\n        dataLayer.push({\n          event: 'video',\n          eventCategory: 'Wistia',\n          eventAction: state,\n          eventLabel: video.name()\n        });\n\n      },\n      'cl': function(state, video) {\n\n        window[clGlobal].push(['_trackEvent', 'Videos', state, video.name()]);\n\n      },\n      'ua': function(state, video) {\n\n        window[uaGlobal]('send', 'event', 'Videos', state, video.name());\n\n      }\n    };\n\n\t\tswitch(syntax.type) {\n\n\t\t\tcase 'gtm':\n\n\t\t\t\tdataLayer = window[gtmGlobal] = window[gtmGlobal] || [];\n\t\t\t\tbreak;\n\n\t\t\tcase 'ua':\n\n\t\t\t\twindow[uaGlobal] = window[uaGlobal] || function() {\n\n\t\t\t\t\t(window[uaGlobal].q = window[uaGlobal].q || []).push(arguments);\n\n\t\t\t\t};\n\t\t\t\twindow[uaGlobal].l = +new Date();\n\t\t\t\tbreak;\n\n\t\t\tcase 'cl':\n\n\t\t\t\twindow[clGlobal] = window[clGlobal] || [];\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\n\t\t\t\tif (!isUndefined_(window[gtmGlobal])) {\n\n\t\t\t\t\tsyntax.type = 'gtm';\n\t\t\t\t\tdataLayer = window[gtmGlobal] = window[gtmGlobal] || [];\n\n\t\t\t\t} else if (uaGlobal&& !isUndefined_(window[uaGlobal])) {\n\n\t\t\t\t\tsyntax.type = 'ua';\n\n\t\t\t\t} else if (!isUndefined_(window[clGlobal]) && !isUndefined_(window[clGlobal].push)) {\n\n\t\t\t\t\tsyntax.type = 'cl';\n\n\t\t\t\t}\n\t\t\t\tbreak;\n\t\t}\n\n    return handlers[syntax.type];\n\n  }\n\n  function extend_() {\n\n    var args = [].slice.call(arguments);\n    var dst = args.shift();\n    var src;\n    var key;\n    var i;\n\n    for (i = 0; i < args.length; i++) {\n\n      src = args[i];\n\n      for (key in src) {\n\n        dst[key] = src[key];\n\n      }\n\n    }\n\n    return dst;\n\n  }\n\n  function isArray_(o) {\n\n    if (Array.isArray_) return Array.isArray_(o);\n\n    return Object.prototype.toString.call(o) === '[object Array]';\n\n  }\n\n  function forEach_(arr, fn) {\n\n    if (Array.prototype.forEach_) return arr.forEach.call(arr, fn);\n\n    var i;\n\n    for (i = 0; i < arr.length; i++) {\n\n      fn.call(window, arr[i], i, arr);\n\n    }\n\n  }\n\n  function map_(arr, fn) {\n\n    if (Array.prototype.map_) return arr.map.call(arr, fn);\n\n    var newArr = [];\n\n    forEach_(arr, function(el, ind, arr) {\n\n      newArr.push(fn.call(window, el, ind, arr));\n\n    });\n\n    return newArr;\n\n  }\n\n\n  function filter_(arr, fn) {\n\n    if (Array.prototype.filter) return arr.filter.call(arr, fn);\n\n    var newArr = [];\n\n    forEach_(arr, function(el, ind, arr) {\n\n      if (fn.call(window, el, ind, arr)) newArr.push(el);\n\n    });\n\n    return newArr;\n\n  }\n\n  function reduce_(arr, fn, init) {\n\n    if (Array.prototype.reduce) return arr.reduce.call(arr, fn, init);\n\n    var result = init;\n    var el;\n    var i;\n\n    for (i = 0; i < arr.length; i++) {\n\n      el = arr[i];\n      result = fn.call(window, result, el, arr, i);\n\n    }\n\n    return result;\n\n  }\n\n  function isUndefined_(thing) {\n\n    return typeof thing === 'undefined';\n\n  }\n\n})(document, window, {\n  'events': {\n    'Played video': true,\n    'Paused video': true,\n    '100%': true\n  },\n  'percentages': {\n    'every': 25,\n    'each': [25, 75]\n  }\n});\n/*\n * Configuration Details\n *\n * @property events object\n * Defines which events emitted by YouTube API\n * will be turned into Google Analytics or GTM events\n *\n * @property percentages object\n * Object with configurations for percentage viewed events\n *\n *   @property each Array|Number|String\n *   Fires an event once each percentage ahs been reached\n *\n *   @property every Array|Number|String\n *   Fires an event for every n% viewed\n *\n * @property syntax object\n * Object with configurations for syntax\n *\n *   @property type ('gtm'|'cl'|'ua')\n *   Forces script to use GTM ('gtm'), Universal Analytics ('ul'), or\n *   Classic Analytics ('cl'); defaults to auto-detection\n *\n *   @property name string\n *   THIS IS USUALLY UNNECESSARY! Optionally instantiate command queue for syntax\n *   in question. Useful if the tracking library and tracked events can fire\n *   before GTM or Google Analytics can be loaded. Be careful with this setting\n *   if you're new to GA/GTM. GTM or Universal Analytics Only!\n */\n/*\n * v1.0.1\n * Created by the Google Analytics consultants at http://www.lunametrics.com\n * Written by @notdanwilkerson\n * Documentation: https://github.com/lunametrics/wistia-google-analytics/\n * Licensed under the MIT License\n */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1504217821611",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "triggerId": "6",
+                "name": "Custom - Video Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "video"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1503958265214"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "triggerId": "8",
+                "name": "Pageview - Wistia Player is Present",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom Javascript - Is Wistia Present}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1503958235952"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "variableId": "5",
+                "name": "Custom Javascript - Is Wistia Present",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "// Return \"true\" if there is at least one Wistia video player on the page\nfunction () {\n   for (var e = document.getElementsByTagName('video'), x = e.length; x--;)\n   if (/wistia.com/.test(e[x].src)){\n      return true;\n   }\n   return false;\n}\n"
+                    }
+                ],
+                "fingerprint": "1503958217518"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "variableId": "2",
+                "name": "dlv - eventAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventAction"
+                    }
+                ],
+                "fingerprint": "1503958265214"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "variableId": "1",
+                "name": "dlv - eventCategory",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventCategory"
+                    }
+                ],
+                "fingerprint": "1503958265214"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "variableId": "3",
+                "name": "dlv - eventLabel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventLabel"
+                    }
+                ],
+                "fingerprint": "1503957673223"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7438645",
+                "type": "DEBUG_MODE",
+                "name": "Debug Mode"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/7438645/versions/0?apiLink=version"
+    }
+}

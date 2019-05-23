@@ -1,0 +1,276 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-08-31 22:09:46",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6428213/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6428213",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6428213",
+            "accountId": "1164259306",
+            "containerId": "6428213",
+            "name": "Vidyard Recipe",
+            "publicId": "GTM-NKWJQML",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1503955234732",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6428213/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "tagId": "1",
+                "name": "GA - Event - Video Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "{{dlv - eventCategory}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - eventAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{dlv - eventLabel}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1503955251119",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "tagId": "2",
+                "name": "cHTML - Vidyard Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type='text/javascript' src=\"//play.vidyard.com/v0/api.js\"></script>\n<script type='text/javascript' src=\"//play.vidyard.com/v1/progress-events.js\"></script>\n<script type='text/javascript'>\n  VidyardProgressEvents(function (result){\n    if (result.event==1) {\n      dataLayer.push({\n          event: 'video',\n          eventCategory: 'Vidyard',\n          eventAction: \"Played video\",\n          eventLabel: result.player.metadata.chapters_attributes[result.chapter].video_attributes.name\n      });\n    } else {\n      dataLayer.push({\n          event: 'video',\n          eventCategory: 'Vidyard',\n          eventAction: result.event + \"%\",\n          eventLabel: result.player.metadata.chapters_attributes[result.chapter].video_attributes.name\n      });\n    }   \n  }, [1,25,50,75,100]);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1504217335973",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "triggerId": "5",
+                "name": "Custom - Video Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "video"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1503954486656"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "triggerId": "6",
+                "name": "Pageview - Vidyard Player Is Present",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom Javascript - Is Vidyard Present}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1503954366450"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "variableId": "1",
+                "name": "Custom Javascript - Is Vidyard Present",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "// Return \"true\" if there is at least one Vidyard video on the page\nfunction () {\n   var patt = /play.vidyard.com/g;\n   for (var e = document.getElementsByTagName('script'), x = e.length; x--;)\n   if (patt.test(e[x].src)){\n      return true;\n   }\n   return false;\n   }"
+                    }
+                ],
+                "fingerprint": "1488230365201"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "variableId": "2",
+                "name": "dlv - eventAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventAction"
+                    }
+                ],
+                "fingerprint": "1488229978760"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "variableId": "3",
+                "name": "dlv - eventCategory",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventCategory"
+                    }
+                ],
+                "fingerprint": "1488229978761"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "variableId": "4",
+                "name": "dlv - eventLabel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventLabel"
+                    }
+                ],
+                "fingerprint": "1488229978761"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428213",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6428213/versions/0?apiLink=version"
+    }
+}

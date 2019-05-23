@@ -1,0 +1,197 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-26 21:41:52",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6597744/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6597744",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6597744",
+            "accountId": "1164259306",
+            "containerId": "6597744",
+            "name": "Harlem Shake Konami Code",
+            "publicId": "GTM-WP4MV5F",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1490564230240",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6597744/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "tagId": "1",
+                "name": "GA Event - Konami Code Initiated",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Konami Code Initiated"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Page Path}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_PROPERTY_ID}}"
+                    }
+                ],
+                "fingerprint": "1490564505094",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "tagId": "2",
+                "name": "cHTML - Harlem Shake Konami Code",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  javascript: (function () {\n    function c() {\n        var e = document.createElement(\"link\");\n        e.setAttribute(\"type\", \"text/css\");\n        e.setAttribute(\"rel\", \"stylesheet\");\n        e.setAttribute(\"href\", f);\n        e.setAttribute(\"class\", l);\n        document.body.appendChild(e)\n    }\n    function h() {\n        var e = document.getElementsByClassName(l);\n        for (var t = 0; t < e.length; t++) {\n            document.body.removeChild(e[t])\n        }\n    }\n    function p() {\n        var e = document.createElement(\"div\");\n        e.setAttribute(\"class\", a);\n        document.body.appendChild(e);\n        setTimeout(function () {\n            document.body.removeChild(e)\n        }, 100)\n    }\n    function d(e) {\n        return {\n            height: e.offsetHeight,\n            width: e.offsetWidth\n        }\n    }\n    function v(i) {\n        var s = d(i);\n        return s.height > e && s.height < n && s.width > t && s.width < r\n    }\n    function m(e) {\n        var t = e;\n        var n = 0;\n        while ( !! t) {\n            n += t.offsetTop;\n            t = t.offsetParent\n        }\n        return n\n    }\n    function g() {\n        var e = document.documentElement;\n        if ( !! window.innerWidth) {\n            return window.innerHeight\n        } else if (e && !isNaN(e.clientHeight)) {\n            return e.clientHeight\n        }\n        return 0\n    }\n    function y() {\n        if (window.pageYOffset) {\n            return window.pageYOffset\n        }\n        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)\n    }\n    function E(e) {\n        var t = m(e);\n        return t >= w && t <= b + w\n    }\n    function S() {\n        var e = document.createElement(\"audio\");\n        e.setAttribute(\"class\", l);\n        e.src = i;\n        e.loop = false;\n        e.addEventListener(\"canplay\", function () {\n            setTimeout(function () {\n                x(k)\n            }, 500);\n            setTimeout(function () {\n                N();\n                p();\n                for (var e = 0; e < O.length; e++) {\n                    T(O[e])\n                }\n            }, 15500)\n        }, true);\n        e.addEventListener(\"ended\", function () {\n            N();\n            h()\n        }, true);\n        e.innerHTML = \" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>\";\n        document.body.appendChild(e);\n        e.play()\n    }\n    function x(e) {\n        e.className += \" \" + s + \" \" + o\n    }\n    function T(e) {\n        e.className += \" \" + s + \" \" + u[Math.floor(Math.random() * u.length)]\n    }\n    function N() {\n        var e = document.getElementsByClassName(s);\n        var t = new RegExp(\"\\\\b\" + s + \"\\\\b\");\n        for (var n = 0; n < e.length;) {\n            e[n].className = e[n].className.replace(t, \"\")\n        }\n    }\n    var e = 30;\n    var t = 30;\n    var n = 350;\n    var r = 350;\n    var i = \"//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3\";\n    var s = \"mw-harlem_shake_me\";\n    var o = \"im_first\";\n    var u = [\"im_drunk\", \"im_baked\", \"im_trippin\", \"im_blown\"];\n    var a = \"mw-strobe_light\";\n    var f = \"//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css\";\n    var l = \"mw_added_css\";\n    var b = g();\n    var w = y();\n    var C = document.getElementsByTagName(\"*\");\n    var k = null;\n    for (var L = 0; L < C.length; L++) {\n        var A = C[L];\n        if (v(A)) {\n            if (E(A)) {\n                k = A;\n                break\n            }\n        }\n    }\n    if (A === null) {\n        console.warn(\"Could not find a node of the right size. Please try a different page.\");\n        return\n    }\n    c();\n    S();\n    var O = [];\n    for (var L = 0; L < C.length; L++) {\n        var A = C[L];\n        if (v(A)) {\n            O.push(A)\n        }\n    }\n})()\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490564225203",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "tagId": "3",
+                "name": "cHTML - Konami Code Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  var els, i, len, title;\n  var konamiCode = '38,38,40,40,37,39,37,39,66,65';\n  var keyPresses = [];\n  var checkKonami = function(e) {\n    keyPresses.push(e.keyCode);\n    if (keyPresses.slice(keyPresses.length-10).join() === konamiCode) {\n      runKonami();\n    }\n  };\n  var runKonami = function() {\n    window.dataLayer = window.dataLayer || [];\n     window.dataLayer.push({\n     event: 'konamiCodeInitiated'\n \t}); \n  };\n  document.addEventListener('keyup', checkKonami);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490564172657",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "triggerId": "5",
+                "name": "Custom - konamiCodeInitiated",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "konamiCodeInitiated"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1490564172654"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6597744",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6597744/versions/0?apiLink=version"
+    }
+}

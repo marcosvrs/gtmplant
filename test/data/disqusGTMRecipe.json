@@ -1,0 +1,181 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-04-09 20:35:49",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6709764/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6709764",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6709764",
+            "accountId": "1164259306",
+            "containerId": "6709764",
+            "name": "Disqus recipe",
+            "publicId": "GTM-P8LDBNB",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1491769878456",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6709764/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "tagId": "2",
+                "name": "GA Event - DISQUS Comment",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Disqus comment"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Page URL}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1491770131756",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "tagId": "1",
+                "name": "cHTML - DISQUS Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  var disqus_config = function () {\n    this.page.url = '{{Page URL}}'; // Replace PAGE_URL with your page's canonical URL variable\n    this.page.identifier = '{{YOUR_UNIQUE_DISQUS_ID}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable\n    this.callbacks.onNewComment = [function() {\n      window.dataLayer = window.dataLayer || [];\n      window.dataLayer.push({\n      'event': 'disqus_comment'\n });\n    }];\n  };\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1491770076279",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "triggerId": "6",
+                "name": "Custom - disqus_comment",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "disqus_comment"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1491769708757"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "triggerId": "5",
+                "name": "Pageview - DOM Ready",
+                "type": "DOM_READY",
+                "fingerprint": "1491769667032"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6709764",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6709764/versions/0?apiLink=version"
+    }
+}

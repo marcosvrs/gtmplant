@@ -1,0 +1,197 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-29 19:32:50",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6595663/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6595663",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6595663",
+            "accountId": "1164259306",
+            "containerId": "6595663",
+            "name": "Doge Konami Code Recipe",
+            "publicId": "GTM-MN4ZQ4X",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1490529816985",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6595663/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "tagId": "3",
+                "name": "GA Event - Konami Code Initiated",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Konami Code Initiated"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Page Path}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_PROPERTY_ID}}"
+                    }
+                ],
+                "fingerprint": "1490529899981",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "tagId": "2",
+                "name": "cHTML - Doge Konami Code",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n\n!function(t){function n(t){return Math.floor(Math.random()*t)}function o(o){var e=t.innerWidth-200,r=t.innerHeight-26;d.textContent=o,d.style.left=n(e)+\"px\",d.style.top=n(r)+\"px\",d.style.color=s[n(s.length)]}function e(){a=!0,c=setInterval(function(){r===l-1?r=0:r++,o(i[r])},1500)}var r=0,l=0,i=null,c=null,a=!1,d=document.createElement(\"div\"),s=[\"#FF0000\",\"#00FF00\",\"#0000FF\"],u=function(t){return\"object\"!=typeof t||void 0===t.length?console.error(\"Wow. Words is not array. Much Error.\"):t.length<1?console.error(\"Much dumb. Very fail. No words in array. Wow\"):(l=t.length,i=t,d.style.position=\"fixed\",d.style.fontSize=\"40px\",d.style.fontFamily='\"Comic Sans MS\"',d.style.zIndex=10000001,document.body.appendChild(d),void e())};u.prototype.stop=function(){a&&(a=!1,clearInterval(c))},t.Doge=u}(window);\n\nvar doge = new Doge([\n\t'wow', \n\t'very nice', \n\t'so konami', \n\t'very funny', \n\t'coolness lvl 9000', \n\t'amazed',\n  \t'doge very much', \n\t'doge likes it',\n  \t'very trendy'\n]);\n  \n      var imgs = document.getElementsByTagName(\"img\");for(var i=0, l=imgs.length;i<l;i++){\n  \timgs[i].src = \"https://i.imgflip.com/dvems.jpg\";\n\n  \t\tif (imgs[i].hasAttribute(\"srcset\")) {\n  \t  imgs[i].srcset = \"https://i.imgflip.com/dvems.jpg\";\n  \t}\n  }\n  \n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490815962662",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "tagId": "1",
+                "name": "cHTML - Konami Code Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  var els, i, len, title;\n  var konamiCode = '38,38,40,40,37,39,37,39,66,65';\n  var keyPresses = [];\n  var checkKonami = function(e) {\n    keyPresses.push(e.keyCode);\n    if (keyPresses.slice(keyPresses.length-10).join() === konamiCode) {\n      runKonami();\n    }\n  };\n  var runKonami = function() {\n    window.dataLayer = window.dataLayer || [];\n     window.dataLayer.push({\n     event: 'konamiCodeInitiated'\n \t}); \n  };\n  document.addEventListener('keyup', checkKonami);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490529127061",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "triggerId": "6",
+                "name": "Custom - konamiCodeInitiated",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "konamiCodeInitiated"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1490529176713"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6595663",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6595663/versions/0?apiLink=version"
+    }
+}

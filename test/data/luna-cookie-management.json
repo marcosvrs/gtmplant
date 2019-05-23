@@ -1,0 +1,175 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-05-01 18:55:11",
+    "containerVersion": {
+        "path": "accounts/263956808/containers/2187365/versions/0",
+        "accountId": "263956808",
+        "containerId": "2187365",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/263956808/containers/2187365",
+            "accountId": "263956808",
+            "containerId": "2187365",
+            "name": "Cookie Management",
+            "publicId": "GTM-PTP3SL",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1502388567613",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/263956808/containers/2187365/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "tagId": "3",
+                "name": "CU - Cookie Remover - LunaMetrics Plugin",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-cookie-remover\">\n  /*\n   * Cookie Remover\n   * Script for remving cookies within GTM using Custom HTML Tags\n   *\n   * Instructions:\n   * To remove a cookie, create a Custom HTML Tag that pushes data about\n   * the cookie into the dataLayer.\n   *\n   * <script>\n   * dataLayer.push({\n   *   'event': 'removeCookie',\n   *   'attributes': {\n   *     'cookieName': 'myCookie',       // Required.\n   *     'cookiePath': '/',              // Opt. Defaults to '/'. Must match stored cookie.\n   *     'cookieDomain': 'example.com',  // Opt. Defaults to hostname of page. Must match stored cookie.\n   *   }\n   * });\n   * <\\/script>\n   *\n   * If the cookie doesn't appear to be removed, check the path and hostname of the\n   * stored cookie, as these values must match in order to successfully remove it.\n   */\n  (function(document) {\n\n\tvar attributes = {{DLV - attributes - v1}};\n    var cookieName    = attributes.cookieName;  // Name of the cookie; preferred syntax is all lowercase, with no spaces\n    var cookieDomain  = attributes.cookieDomain;  // Hostname cookie is stored on\n    var cookiePath    = attributes.cookiePath; // Path cookie is stored at.\n        \n    if(typeof cookieName !== 'undefined') {\n       \n        document.cookie = cookieName + '=; Expires=Thu, 01 Jan 1970 00:00:01 GMT'\n                        + (cookieDomain ? '; Domain=' + cookieDomain : '') \n                        + (cookiePath ? '; Path=' + cookiePath : '');\n        \n    }\n    \n  })(document);\n  /*\n   * v1.0.0\n   * Created by the Google Analytics consultants at http://www.lunametrics.com\n   * Written by @notdanwilkerson\n   * Licensed under the MIT License\n   */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1502388955498",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "parentFolderId": "7",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "tagId": "4",
+                "name": "CU - Cookie Setter - LunaMetrics Plugin",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-cookie-setter\">\n  /*\n   * Cookie Setter\n   * Script for setting cookies within GTM using Custom HTML Tags\n   *\n   * NOTE: STORED VALUES ARE URI-ENCODED - when retrieving w/ a 1st-party\n   * cookie Variable, you MUST check the \"URI-decode\" checkbox.\n   *\n   * Instructions:\n   * To set a cookie, create a Custom HTML Tag that pushes data about\n   * the cookie into the dataLayer.\n   *\n   * <script>\n   * dataLayer.push({\n   *   'event': 'setCookie',\n   *   'attributes': {\n   *     'cookieName': 'myCookie',        // Required.\n   *     'cookieValue': '12345',          // Required.\n   *     'cookiePath': '/',               // Opt. Defaults to '/'.\n   *     'cookieDomain': 'example.com',  // Opt. Defaults to hostname of page\n   *     'cookieExpires': 30              // Opt. Set in days. Default is after browser closes.\n   *   }\n   * });\n   * <\\/script>\n   *\n   * For 99% of uses cases, cookiePath should be '/', and cookieDomain should be\n   * 'domainname.tld', e.g. for 'shop.example.com' you would use 'example.com'.\n   * If you need the cookie to expire in less than a day, provide a fraction\n   * or division for cookieExpires, e.g. a 30 minute expiration would be: 1 / 48\n   */\n  (function(document) {\n\n    var attributes = {{DLV - attributes - v1}};\n    var cookieName    = attributes.cookieName;  // Name of the cookie; preferred syntax is all lowercase, with no spaces\n    var cookieValue   = encodeURIComponent(attributes.cookieValue);  // The value stored with the cookie. Is automatically encoded. Check 'Decode cookie value' when using with 1st Party Cookie Variable\n    var cookieExpires = parseFloat(attributes.cookieExpires);  // Expiration length in terms of days. Defaults to expiring when the browser closes. Can accept a fraction for > 1 day time periods, e.g. 1/48 (30 minutes)\n    var cookieDomain  = attributes.cookieDomain;  // Hostname to store the cookie on. Defaults to browser handling.\n    var cookiePath    = attributes.cookiePath || '/'; // Path to store cookie at. Defaults to '/'.\n        \n    var expirationDate = '';\n\n    if(!isNaN(cookieExpires) && cookieExpires !== 0) {\n\n      expirationDate = \"; Expires=\" + new Date(+new Date() + 1000 * 60 * 60 * 24 * cookieExpires).toGMTString();\n\n    }\n\n    if(typeof cookieName !== 'undefined' && typeof cookieValue !== 'undefined') {\n\n      document.cookie = cookieName + '=' +\n                        encodeURIComponent(cookieValue) +\n                        expirationDate +\n                        (cookieDomain ? '; Domain=' + cookieDomain : '') +\n                        (cookiePath ? '; Path=' + cookiePath  : '');\n\n    }\n    \n  })(document);\n  /*\n   * v1.0.1\n   * Created by the Google Analytics consultants at http://www.lunametrics.com\n   * Written by @notdanwilkerson\n   * Licensed under the MIT License\n   */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1525200895592",
+                "firingTriggerId": [
+                    "9"
+                ],
+                "parentFolderId": "7",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "triggerId": "8",
+                "name": "Event - Remove Cookie",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "removeCookie"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238847344",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "triggerId": "9",
+                "name": "Event - Set Cookie",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "setCookie"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238847344",
+                "parentFolderId": "7"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "variableId": "11",
+                "name": "DLV - attributes - v1",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "1"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes"
+                    }
+                ],
+                "fingerprint": "1502395470131",
+                "parentFolderId": "7"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "folderId": "7",
+                "name": "LunaMetrics Cookie Management Plugin",
+                "fingerprint": "1462238847343"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187365",
+                "type": "CONTAINER_ID",
+                "name": "Container ID"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/263956808/containers/2187365/versions/0?apiLink=version"
+    }
+}

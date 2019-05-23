@@ -1,0 +1,190 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-09-15 06:16:08",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/7522953/versions/0",
+        "accountId": "1164259306",
+        "containerId": "7522953",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/7522953",
+            "accountId": "1164259306",
+            "containerId": "7522953",
+            "name": "Youtube Recipe 2017",
+            "publicId": "GTM-MGVMNCS",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1505288145903",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/7522953/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "tagId": "1",
+                "name": "GA - Event - Video Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "{{Video Provider}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Custom Javascript - Get Video Action}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{Video Title}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1505397602086",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "triggerId": "5",
+                "name": "Youtube - Video Interaction",
+                "type": "YOU_TUBE_VIDEO",
+                "fingerprint": "1505287890837",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "progressThresholdsPercent",
+                        "value": "25, 50, 75, 100"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "captureComplete",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "captureStart",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fixMissingApi",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "radioButtonGroup1",
+                        "value": "PERCENTAGE"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "capturePause",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "captureProgress",
+                        "value": "true"
+                    }
+                ]
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "variableId": "5",
+                "name": "Custom Javascript - Get Video Action",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  var status = {{Video Status}};\n  switch (status) {\n    case 'start':\n      return 'Started video';\n    case 'pause':\n      return 'Paused video';\n    case 'buffering':\n      return 'Buffering video';\n    case 'progress':\n      return {{Video Percent}} + '%';\n    case 'complete':\n      return 'Finished video';\n  }\n}"
+                    }
+                ],
+                "fingerprint": "1505287902009"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "type": "VIDEO_PROVIDER",
+                "name": "Video Provider"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "type": "VIDEO_TITLE",
+                "name": "Video Title"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "type": "VIDEO_PERCENT",
+                "name": "Video Percent"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7522953",
+                "type": "VIDEO_STATUS",
+                "name": "Video Status"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/7522953/versions/0?apiLink=version"
+    }
+}

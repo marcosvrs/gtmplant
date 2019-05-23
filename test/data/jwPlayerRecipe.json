@@ -1,0 +1,305 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-08-28 21:33:00",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6439059/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6439059",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6439059",
+            "accountId": "1164259306",
+            "containerId": "6439059",
+            "name": "JW Player Recipe",
+            "publicId": "GTM-MNV9LBN",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1503861188444",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6439059/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "tagId": "2",
+                "name": "GA - Event - Video Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "{{dlv - eventCategory}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - eventAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{dlv - eventLabel}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1503955967055",
+                "firingTriggerId": [
+                    "7"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "tagId": "1",
+                "name": "cHTML - JW Player Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n//TODO: Anyone using this script will likely want to extend. This is a guide to get started\n\n(function(dataLayer){\n  var i = 0;\n  //array of percentages at which progress notifications are pushed to the dataLayer\n  var markers = [10,25,50,75,90]; //adjust these values if you want different progress reports\n  var playersMarkers = [];\n\n  function findObjectIndexById(haystack, key, needle) {\n    for (var i = 0; i < haystack.length; i++) {\n      if (haystack[i][key] == needle) {\n        return i;\n      }\n    }\n    return null;\n  }\n  //Function call to push to dataLayer, passing in current scope of this, \n  // the eventType value and the eventInteraction value for the DL push\n  function eventToDataLayer (thisObject, eventType, eventInteraction) {\n    var eventName;\n    if (thisObject.getPlaylistItem().title) {\n      eventName = thisObject.getPlaylistItem().title;\n    } else {\n      eventName = 'not set';\n    }\n  \n    dataLayer.push({\n      event: \"video\", \n      eventCategory: \"JW Player\",\n      eventAction: eventType,\n      eventLabel: eventName\n    });\n  }\n\n//loops through all JWPlayers on the page\n  while (window.jwplayer(i).id) {\n    var player = window.jwplayer(i++);\n\n    //Pushes an object of player.id and progress markers to the array playersMarkers\n    playersMarkers.push({\n      'id': player.id,\n      'markers': []\n    });\n    \n \n    player.on('setupError',\n      function(e) {\n        eventToDataLayer (this, 'Video error', e.message); \n      }\n    );\n\n    player.on('play',\n          function(e){\n            var playResume ;\n            if (this.getPosition() < 2) {\n              playResume = 'Played video';\n            } else {\n              playResume = 'Resumed video';\n            }\n            eventToDataLayer (this, 'Played video', playResume);\n          }\n        );\n\n    player.on('pause',\n      function(e){\n        eventToDataLayer (this, 'Paused video', 'Paused video');\n      }\n    );\n\n    player.on('complete',\n      function(e){\n        eventToDataLayer (this, '100%', '100%');\n      }\n    );\n\n    player.on('time',\n      function(e){\n        var percentPlayed = Math.floor(e.position*100/e.duration);\n        var playerMarkerIndex = findObjectIndexById(playersMarkers,'id',this.id); \n        if(markers.indexOf(percentPlayed)>-1 && playersMarkers[playerMarkerIndex].markers.indexOf(percentPlayed)==-1)\n          {\n          playersMarkers[playerMarkerIndex].markers.push(percentPlayed);\n          eventToDataLayer (this, percentPlayed + '%', percentPlayed + '%');\n        }\n      }\n      );\n\n    player.on('error',\n      function(e){\n        eventToDataLayer (this, 'Video error', e.message); \n      }\n    );\n    \n  }\n})(window.dataLayer = window.dataLayer || []);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1503955426097",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "triggerId": "7",
+                "name": "Custom - Video Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "video"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1503861871078"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "triggerId": "5",
+                "name": "Pageview - JW Player is Present",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Javascript - jwplayer}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "undefined"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "negate",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1503861309654"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "variableId": "1",
+                "name": "Javascript - jwplayer",
+                "type": "j",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "jwplayer"
+                    }
+                ],
+                "fingerprint": "1488387101710"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "variableId": "6",
+                "name": "dlv - eventAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventAction"
+                    }
+                ],
+                "fingerprint": "1503861167604"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "variableId": "5",
+                "name": "dlv - eventCategory",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventCategory"
+                    }
+                ],
+                "fingerprint": "1503861150208"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "variableId": "7",
+                "name": "dlv - eventLabel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventLabel"
+                    }
+                ],
+                "fingerprint": "1503861188445"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6439059",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6439059/versions/0?apiLink=version"
+    }
+}

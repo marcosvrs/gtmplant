@@ -1,0 +1,251 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-12-04 08:16:31",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/7452306/versions/0",
+        "accountId": "1164259306",
+        "containerId": "7452306",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/7452306",
+            "accountId": "1164259306",
+            "containerId": "7452306",
+            "name": "HTML5 Video Recipe",
+            "publicId": "GTM-NX96483",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1504037862571",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/7452306/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "tagId": "2",
+                "name": "GA - Event - Video Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "{{dlv - eventCategory}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - eventAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{dlv - eventLabel}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1512375354405",
+                "firingTriggerId": [
+                    "7"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "tagId": "1",
+                "name": "cHTML - HTML5 Video Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n// Let's wrap everything inside a function so variables are not defined as globals \n(function() {\n    // This is gonna our percent buckets ( 25%-75% ) \n    var divisor = 25;\n    // We're going to save our players status on this object. \n    var videos_status = {};\n    // This is the funcion that is gonna handle the event sent by the player listeners \n    function eventHandler(e) {\n        switch (e.type) {\n            // This event type is sent everytime the player updated it's current time, \n            // We're using for the % of the video played. \n        case 'timeupdate':\n            // Let's set the save the current player's video time in our status object \n            videos_status[e.target.id].current = Math.round(e.target.currentTime);\n            // We just want to send the percent events once \n            var pct = Math.floor(100 * videos_status[e.target.id].current / e.target.duration);\n            for (var j in videos_status[e.target.id]._progress_markers) {\n                if (pct >= j && j > videos_status[e.target.id].greatest_marker) {\n                    videos_status[e.target.id].greatest_marker = j;\n                }\n            }\n            // current bucket hasn't been already sent to GA?, let's push it to GTM\n            if (videos_status[e.target.id].greatest_marker && !videos_status[e.target.id]._progress_markers[videos_status[e.target.id].greatest_marker]) {\n                videos_status[e.target.id]._progress_markers[videos_status[e.target.id].greatest_marker] = true;\n                dataLayer.push({\n                    'event': 'video',\n                    'eventCategory': 'HTML5 Video',\n                    'eventAction': videos_status[e.target.id].greatest_marker + '%',\n                    // We are using sanitizing the current video src string, and getting just the video name part\n                    'eventLabel': decodeURIComponent(e.target.currentSrc.split('/')[e.target.currentSrc.split('/').length - 1])\n                });\n            }\n            break;\n            // This event is fired when user's click on the play button\n        case 'play':\n            dataLayer.push({\n                'event': 'video',\n                'eventCategory': 'HTML5 Video',\n                'eventAction': 'Played video',\n                'eventLabel': decodeURIComponent(e.target.currentSrc.split('/')[e.target.currentSrc.split('/').length - 1])\n            });\n            break;\n            // This event is fied when user's click on the pause button\n        case 'pause':\n            dataLayer.push({\n                'event': 'video',\n                'eventCategory': 'HTML5 Video',\n                'eventAction': 'Paused video',\n                'eventLabel': decodeURIComponent(e.target.currentSrc.split('/')[e.target.currentSrc.split('/').length - 1]),\n                'eventValue': videos_status[e.target.id].current\n            });\n            break;\n            // If the user ends playing the video, an Finish video will be pushed ( This equals to % played = 100 )  \n        case 'ended':\n            dataLayer.push({\n                'event': 'video',\n                'eventCategory': 'HTML5 Video',\n                'eventAction': '100%',\n                'eventLabel': decodeURIComponent(e.target.currentSrc.split('/')[e.target.currentSrc.split('/').length - 1])\n            });\n            break;\n        default:\n            break;\n        }\n    }\n    // We need to configure the listeners\n    // Let's grab all the the \"video\" objects on the current page     \n    var videos = document.getElementsByTagName('video');\n    for (var i = 0; i < videos.length; i++) {\n        // In order to have some id to reference in our status object, we are adding an id to the video objects\n        // that don't have an id attribute. \n        var videoTagId;\n        if (!videos[i].getAttribute('id')) {\n            // Generate a random alphanumeric string to use is as the id\n            videoTagId = 'html5_video_' + Math.random().toString(36).slice(2);\n            videos[i].setAttribute('id', videoTagId);\n        }// Current video has alredy a id attribute, then let's use it <img draggable=\"false\" class=\"emoji\" alt=\"?\" src=\"https://s.w.org/images/core/emoji/2/svg/1f642.svg\">\n        else {\n            videoTagId = videos[i].getAttribute('id');\n        }\n        // Video Status Object declaration  \n        videos_status[videoTagId] = {};\n        // We'll save the highest percent mark played by the user in the current video.\n        videos_status[videoTagId].greatest_marker = 0;\n        // Let's set the progress markers, so we can know afterwards which ones have been already sent.\n        videos_status[videoTagId]._progress_markers = {};\n        for (j = 0; j < 100; j++) {\n            videos_status[videoTagId].progress_point = divisor * Math.floor(j / divisor);\n            videos_status[videoTagId]._progress_markers[videos_status[videoTagId].progress_point] = false;\n        }\n        // On page DOM, all players currentTime is 0 \n        videos_status[videoTagId].current = 0;\n        // Now we're setting the event listeners. \n        videos[i].addEventListener(\"play\", eventHandler, false);\n        videos[i].addEventListener(\"pause\", eventHandler, false);\n        videos[i].addEventListener(\"ended\", eventHandler, false);\n        videos[i].addEventListener(\"timeupdate\", eventHandler, false);\n        videos[i].addEventListener(\"ended\", eventHandler, false);\n    }\n})();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1512375124649",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "triggerId": "7",
+                "name": "Custom - Video Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "video"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1504037813470"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "triggerId": "5",
+                "name": "Pageview - HTML5 Video Player is Present",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom Javascript - Is HTML5 Video Present}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1504037652383"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "variableId": "1",
+                "name": "Custom Javascript - Is HTML5 Video Present",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function () {\nvar video = document.getElementsByTagName('video').length;\n\tif (video > 0) {\n      return true;\n    }\n\telse {\n      return false;\n    }\n}"
+                    }
+                ],
+                "fingerprint": "1504037599610"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "variableId": "3",
+                "name": "dlv - eventAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventAction"
+                    }
+                ],
+                "fingerprint": "1504037782838"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "variableId": "2",
+                "name": "dlv - eventCategory",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventCategory"
+                    }
+                ],
+                "fingerprint": "1504037767579"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "variableId": "4",
+                "name": "dlv - eventLabel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventLabel"
+                    }
+                ],
+                "fingerprint": "1504037794502"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7452306",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/7452306/versions/0?apiLink=version"
+    }
+}

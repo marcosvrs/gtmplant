@@ -1,0 +1,330 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-12-10 11:13:13",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6428221/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6428221",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6428221",
+            "accountId": "1164259306",
+            "containerId": "6428221",
+            "name": "Pinterest Recipe",
+            "publicId": "GTM-5W7BMQ4",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1512903994303",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6428221/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "tagId": "1",
+                "name": "GA - Social - Social Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_SOCIAL"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialAction",
+                        "value": "{{dlv - socialAction}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialActionTarget",
+                        "value": "{{dlv - socialTarget}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialNetwork",
+                        "value": "{{dlv - socialNetwork}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1512904283487",
+                "firingTriggerId": [
+                    "7"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "tagId": "2",
+                "name": "cHTML - Pinterest Follow to Data Layer",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  dataLayer.push({\n              'event': 'socialInteraction', \n              'socialNetwork': 'Pinterest', \n              'socialAction': 'Follow', \n              'socialTarget': window.location.href \n          });\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1488232564828",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "tagId": "3",
+                "name": "cHTML - Pinterest Save to Data Layer",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  dataLayer.push({\n              'event': 'socialInteraction', \n              'socialNetwork': 'Pinterest', \n              'socialAction': 'Save', \n              'socialTarget': window.location.href \n          });\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1512904301960",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "triggerId": "5",
+                "name": "Click - Pinterest Follow Button",
+                "type": "CLICK",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Classes}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "PIN_(.*)_button_follow"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1488232564825"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "triggerId": "6",
+                "name": "Click - Pinterest Save Button",
+                "type": "CLICK",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Classes}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "PIN_(.*)_button_pin"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1512904314856"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "triggerId": "7",
+                "name": "Custom - Social Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "socialInteraction"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1488232564826"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "variableId": "1",
+                "name": "dlv - socialAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialAction"
+                    }
+                ],
+                "fingerprint": "1488232564826"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "variableId": "2",
+                "name": "dlv - socialNetwork",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialNetwork"
+                    }
+                ],
+                "fingerprint": "1488232564826"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "variableId": "3",
+                "name": "dlv - socialTarget",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialTarget"
+                    }
+                ],
+                "fingerprint": "1488232564826"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6428221",
+                "type": "CLICK_CLASSES",
+                "name": "Click Classes"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6428221/versions/0?apiLink=version"
+    }
+}

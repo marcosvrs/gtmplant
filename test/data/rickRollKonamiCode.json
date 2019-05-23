@@ -1,0 +1,197 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-29 19:35:07",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6596927/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6596927",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6596927",
+            "accountId": "1164259306",
+            "containerId": "6596927",
+            "name": "Rick Roll GTM Recipe",
+            "publicId": "GTM-NLXC43B",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1490561255401",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6596927/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "tagId": "1",
+                "name": "GA Event - Konami Code Initiated",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Konami Code Initiated"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Page Path}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1490562773749",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "tagId": "3",
+                "name": "cHTML - Konami Code Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  var els, i, len, title;\n  var konamiCode = '38,38,40,40,37,39,37,39,66,65';\n  var keyPresses = [];\n  var checkKonami = function(e) {\n    keyPresses.push(e.keyCode);\n    if (keyPresses.slice(keyPresses.length-10).join() === konamiCode) {\n      runKonami();\n    }\n  };\n  var runKonami = function() {\n    window.dataLayer = window.dataLayer || [];\n     window.dataLayer.push({\n     event: 'konamiCodeInitiated'\n \t}); \n  };\n  document.addEventListener('keyup', checkKonami);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490562415283",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "tagId": "2",
+                "name": "cHTML - Rick Roll Konami Code",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar audio = new Audio(\"https://www.dropbox.com/s/80ozalto7b3fju2/donotdelete-rickroll.mp3?dl=1\"); audio.play();\n!function(t){function n(t){return Math.floor(Math.random()*t)}function o(o){var e=t.innerWidth-200,r=t.innerHeight-26;d.textContent=o,d.style.left=n(e)+\"px\",d.style.top=n(r)+\"px\",d.style.color=s[n(s.length)]}function e(){a=!0,c=setInterval(function(){r===l-1?r=0:r++,o(i[r])},1000)}var r=0,l=0,i=null,c=null,a=!1,d=document.createElement(\"div\"),s=[\"#FF0000\",\"#00FF00\",\"#0000FF\"],u=function(t){return\"object\"!=typeof t||void 0===t.length?console.error(\"Looks like Rick left you, after all\"):t.length<1?console.error(\"Rick gave up on you\"):(l=t.length,i=t,d.style.position=\"fixed\",d.style.fontSize=\"40px\",d.style.fontFamily='\"Comic Sans MS\"',d.style.zIndex=10000001,document.body.appendChild(d),void e())};u.prototype.stop=function(){a&&(a=!1,clearInterval(c))},t.rickroll=u}(window);\n\nvar rickroll = new rickroll([\n\t'Never Gonna Give You Up',\n\t'Never Gonna Let You Down'\n]);\n  \n  var imgs = document.getElementsByTagName(\"img\");for(var i=0, l=imgs.length;i<l;i++){\n  \timgs[i].src = \"https://media.giphy.com/media/Vuw9m5wXviFIQ/giphy.gif\";\n\n  \t\tif (imgs[i].hasAttribute(\"srcset\")) {\n  \t  imgs[i].srcset = \"https://media.giphy.com/media/Vuw9m5wXviFIQ/giphy.gif\";\n  \t}\n  }\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490816097012",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "triggerId": "5",
+                "name": "Custom - konamiCodeInitiated",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "konamiCodeInitiated"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1490561078073"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6596927",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6596927/versions/0?apiLink=version"
+    }
+}

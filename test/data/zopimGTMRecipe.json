@@ -1,0 +1,188 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-06-24 20:06:17",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/7113206/versions/0",
+        "accountId": "1164259306",
+        "containerId": "7113206",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/7113206",
+            "accountId": "1164259306",
+            "containerId": "7113206",
+            "name": "Zopim Recipe",
+            "publicId": "GTM-52Z8B7K",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1498313661136",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/7113206/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "tagId": "2",
+                "name": "GA Event - Zopim Chat Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Zopim chat"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - zopimChatAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_PROPERTY_ID}}"
+                    }
+                ],
+                "fingerprint": "1498313661136",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "tagId": "1",
+                "name": "cHTML - Zopim Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  $zopim(function() {\n      $zopim.livechat.setOnChatStart(function() {\n        // trigger when chat starts\n        window.dataLayer.push({\n          \"event\": \"zopimChat\",\n          \"zopimChatAction\": \"zopimChatStarted\"\n        });\n    });\n    $zopim.livechat.setOnChatEnd(function() {\n        // trigger when chat closes\n        window.dataLayer.push({\n          \"event\": \"zopimChat\",\n          \"zopimChatAction\": \"zopimChatClosed\"\n        });\n    });\n  });\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1498334642512",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "triggerId": "6",
+                "name": "Custom - zopimChat",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "zopimChat"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1498313505922"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "triggerId": "5",
+                "name": "Pageview - DOM Ready",
+                "type": "DOM_READY",
+                "fingerprint": "1498313474113"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "variableId": "1",
+                "name": "dlv - zopimChatAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "zopimChatAction"
+                    }
+                ],
+                "fingerprint": "1498313519272"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7113206",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/7113206/versions/0?apiLink=version"
+    }
+}

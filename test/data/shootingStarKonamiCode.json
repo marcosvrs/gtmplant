@@ -1,0 +1,197 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-29 09:36:52",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6609323/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6609323",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6609323",
+            "accountId": "1164259306",
+            "containerId": "6609323",
+            "name": "Shooting Star Konami Code Recipe",
+            "publicId": "GTM-KX23B3F",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1490779303305",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6609323/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "tagId": "1",
+                "name": "GA Event - Konami Code Initiated",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Konami Code Initiated"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Page Path}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_PROPERTY_ID}}"
+                    }
+                ],
+                "fingerprint": "1490779863212",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "tagId": "2",
+                "name": "cHTML - Konami Code Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  var els, i, len, title;\n  var konamiCode = '38,38,40,40,37,39,37,39,66,65';\n  var keyPresses = [];\n  var checkKonami = function(e) {\n    keyPresses.push(e.keyCode);\n    if (keyPresses.slice(keyPresses.length-10).join() === konamiCode) {\n      runKonami();\n    }\n  };\n  var runKonami = function() {\n    window.dataLayer = window.dataLayer || [];\n     window.dataLayer.push({\n     event: 'konamiCodeInitiated'\n \t}); \n  };\n  document.addEventListener('keyup', checkKonami);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490647210740",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "tagId": "3",
+                "name": "cHTML - Shooting Star Konami Code",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar audio = new Audio(\"https://www.dropbox.com/s/jwuyxoy2jo5dz6d/donotdelete-shootingstar.mp3?dl=1\"); audio.play();\n!function(t){function n(t){return Math.floor(Math.random()*t)}function o(o){var e=t.innerWidth-200,r=t.innerHeight-26;d.textContent=o,d.style.left=n(e)+\"px\",d.style.top=n(r)+\"px\",d.style.color=s[n(s.length)]}function e(){a=!0,c=setInterval(function(){r===l-1?r=0:r++,o(i[r])},1000)}var r=0,l=0,i=null,c=null,a=!1,d=document.createElement(\"div\"),s=[\"#FF0000\",\"#00FF00\",\"#0000FF\"],u=function(t){return\"object\"!=typeof t||void 0===t.length?console.error(\"Error error...\"):t.length<1?console.error(\"Another error\"):(l=t.length,i=t,d.style.position=\"fixed\",d.style.fontSize=\"40px\",d.style.fontFamily='\"Comic Sans MS\"',d.style.zIndex=10000001,document.body.appendChild(d),void e())};u.prototype.stop=function(){a&&(a=!1,clearInterval(c))},t.star=u}(window);\n\nvar star = new star([\n  ''\n]);\n  \n  var imgs = document.getElementsByTagName(\"img\");for(var i=0, l=imgs.length;i<l;i++){imgs[i].src = \"https://media.giphy.com/media/xTiN0DmtpDhJUgdBNS/source.gif\";}\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1490647686902",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "triggerId": "5",
+                "name": "Custom - konamiCodeInitiated",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "konamiCodeInitiated"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1490647210738"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6609323",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6609323/versions/0?apiLink=version"
+    }
+}

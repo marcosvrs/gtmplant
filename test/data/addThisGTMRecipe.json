@@ -1,0 +1,238 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-07-29 21:46:30",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/7295936/versions/0",
+        "accountId": "1164259306",
+        "containerId": "7295936",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/7295936",
+            "accountId": "1164259306",
+            "containerId": "7295936",
+            "name": "AddThis Recipe",
+            "publicId": "GTM-MKP39P9",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1501364707221",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/7295936/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "tagId": "2",
+                "name": "GA - Social - Social Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_SOCIAL"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialAction",
+                        "value": "{{dlv - socialAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialActionTarget",
+                        "value": "{{dlv - socialTarget}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialNetwork",
+                        "value": "{{dlv - socialNetwork}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1501364751846",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "tagId": "1",
+                "name": "cHTML - AddThis Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  function addThisEventHandler(evt) {\n    switch (evt.type) {\n        case \"addthis.menu.share\":\n            window.dataLayer = window.dataLayer || [];\n\t\t\twindow.dataLayer.push({\n                'event': 'socialInteraction',\n                'socialNetwork': evt.data.service,\n                'socialAction': 'Share',\n                'socialTarget': evt.data.url\n            });\n            break;\n    }\n}\naddthis.addEventListener('addthis.menu.share', addThisEventHandler);\n</script>\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1501364503192",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "triggerId": "6",
+                "name": "Custom - socialInteraction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "socialInteraction"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1501364579215"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "triggerId": "5",
+                "name": "Pageview - DOM Ready",
+                "type": "DOM_READY",
+                "fingerprint": "1501364498963"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "variableId": "2",
+                "name": "dlv - socialAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialAction"
+                    }
+                ],
+                "fingerprint": "1501364545630"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "variableId": "1",
+                "name": "dlv - socialNetwork",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialNetwork"
+                    }
+                ],
+                "fingerprint": "1501364526423"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "variableId": "3",
+                "name": "dlv - socialTarget",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialTarget"
+                    }
+                ],
+                "fingerprint": "1501364560862"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "7295936",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/7295936/versions/0?apiLink=version"
+    }
+}

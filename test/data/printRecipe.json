@@ -1,0 +1,173 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-04 14:18:50",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6454523/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6454523",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6454523",
+            "accountId": "1164259306",
+            "containerId": "6454523",
+            "name": "Print Recipe",
+            "publicId": "GTM-PKPSRNZ",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1488635625245",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6454523/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "tagId": "2",
+                "name": "GA - Event - Print Page",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Print page"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Page Path}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1488637119708",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "tagId": "1",
+                "name": "cHTML - Print Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\">\n\n(function () {\nvar runOnce; \nvar afterPrint = function() {\n    \n    if (!runOnce) { \n        runOnce = true;\n        dataLayer.push({'event': 'printPage'}); \n    };\n};\n\nif (window.matchMedia) {\n\n    var mediaQueryList = window.matchMedia('print');\n    mediaQueryList.addListener(function(mql) {\n        if (!mql.matches) {\n            afterPrint();\n        }\n    });\n}\n\nwindow.onafterprint = afterPrint; \n\n$(document).keydown(function(allBrowsers) { \n\n    if (allBrowsers.keyCode==80 && (allBrowsers.ctrlKey || allBrowsers.metaKey)) {\n        if ($.browser.opera) {\n            afterPrint();\n        }\n    }\n});\n\n$('.printlink').click(function() {\n\n    if ($.browser.opera) { \n        afterPrint();\n    }\n    window.print(); \n});\n}());\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1488635450240",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "triggerId": "6",
+                "name": "Custom - printPage",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "printPage"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1488635537469"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6454523",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6454523/versions/0?apiLink=version"
+    }
+}

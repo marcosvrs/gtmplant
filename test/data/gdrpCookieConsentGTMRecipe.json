@@ -1,0 +1,946 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-07-20 07:24:19",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/9071728/versions/0",
+        "accountId": "1164259306",
+        "containerId": "9071728",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/9071728",
+            "accountId": "1164259306",
+            "containerId": "9071728",
+            "name": "GDPR Cookie Consent Notification Recipe",
+            "publicId": "GTM-NMCSTTW",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1532034016649",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/9071728/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "tagId": "6",
+                "name": "GA Event - Cookie Consent Data For The Record",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Cookie Consent Data"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - consentData for the record}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{ENTER GA ID or SET GA SETTINGS VARIABLE}}"
+                    }
+                ],
+                "fingerprint": "1532071448226",
+                "firingTriggerId": [
+                    "26"
+                ],
+                "blockingTriggerId": [
+                    "25"
+                ],
+                "parentFolderId": "20",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "tagId": "2",
+                "name": "cHTML - Cookie Consent",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "//Remove everything from this field and paste the script found in OneTrust's acount. \n//Prepared by Julius Fed from ANALYTICSMANIA.COM (2018)\n  {{PASTE YOUR ONETRUST COOKIE CONSENT CODE HERE}}\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1526901639725",
+                "firingTriggerId": [
+                    "18"
+                ],
+                "parentFolderId": "20",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "tagId": "5",
+                "name": "cHTML - Push To Data Layer - Consent Data For The Record",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  var timestamp = new Date().toString();\n  var userAgent = navigator.userAgent;\n\n  function check_ga() {\n    if ({{Custom JS - Performance and Analytics Tracking Allowed}} === true) {\n      if (typeof ga === 'function' && typeof ga.getAll === 'function') {\n        var clientId = ga.getAll()[0].get('clientId');\n        window.dataLayer.push({\n          'event': 'consentDataForTheRecord',\n          'consentData': \"Consent groups: \" + {{Cookie - Actual Cookie Consent}} + \"; \" + timestamp + \"; \" + clientId + \"; \" + userAgent\n        });\n      } else {\n        setTimeout(check_ga, 500);\n      }\n    } else {\n      window.dataLayer.push({\n        'event': 'consentDataForTheRecord',\n        'consentData': \"Consent groups: \" + {{Cookie - Actual Cookie Consent}} + \"; \" + timestamp + \"; clientId is unavailable; \" + userAgent\n      });\n    }\n  }\n  check_ga();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1532071448226",
+                "firingTriggerId": [
+                    "16"
+                ],
+                "parentFolderId": "20",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "tagId": "4",
+                "name": "cHTML - Push To Data Layer - Consent Updated",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  setTimeout(function(){ \n    window.dataLayer.push({\n    'event': 'optanonConsentUpdated'\n    }) \n  \n  }, 1000);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1526900901704",
+                "firingTriggerId": [
+                    "9",
+                    "17"
+                ],
+                "parentFolderId": "20",
+                "tagFiringOption": "ONCE_PER_LOAD"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "tagId": "1",
+                "name": "cHTML - Set Cookie - Actual Cookie Consent Active Groups",
+                "type": "html",
+                "notes": "Default Cookie set by Onetrust is out of date, if the user changes the consent, the cookie still remains the same. So I read the Data Layer and store the latest consent value in the cookie",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n \n var cookieName = \"actualOptanonConsent\"; \n var cookieValue = encodeURIComponent({{dlv - Active Consent Groups}});\n var expirationTime = 31536000; // One year in seconds\n expirationTime = expirationTime * 1000; // Converts expirationtime to milliseconds\n var date = new Date(); \n var dateTimeNow = date.getTime(); \n\n date.setTime(dateTimeNow + expirationTime);\n var expirationTime = date.toUTCString();\n document.cookie = cookieName+\"=\"+cookieValue+\"; expires=\"+expirationTime+\"; path=/; domain=.\" + location.hostname.replace(/^www\\./i, \"\"); \n\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1528980339765",
+                "firingTriggerId": [
+                    "16"
+                ],
+                "parentFolderId": "20",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "15",
+                "name": "Blocking - Analytics Tracking is Not Allowed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Performance and Analytics Tracking Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528178",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "14",
+                "name": "Blocking - Functional Cookies are Not Allowed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Functional Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528178",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "13",
+                "name": "Blocking - Marketing Cookies are Not Allowed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Marketing Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528178",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "25",
+                "name": "Blocking - Total Optout",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Functional Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Marketing Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Performance and Analytics Tracking Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1532071448227",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "17",
+                "name": "Click - Cookie Preference Center - Save Settings",
+                "type": "CLICK",
+                "filter": [
+                    {
+                        "type": "CSS_SELECTOR",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Element}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "div.optanon-save-settings-button a, div.optanon-save-settings-button div[class*=optanon-white-button], div.optanon-allow-all-button div[class*=optanon-white-button]"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528178",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "26",
+                "name": "Custom - Consent Data For The Record",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "consentDataForTheRecord"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1532071448227",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "9",
+                "name": "Custom - Cookie Notification Closed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "trackOptanonEvent"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{dlv - optanonAction}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Banner Accept Cookies|Banner Auto Close|Banner Close Button|Preferences Save Settings"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "ignore_case",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528177",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "16",
+                "name": "Custom - Optanon Consent Updated",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "optanonConsentUpdated"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528178",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "12",
+                "name": "Pageview - All Pages - Analytics Tracking Allowed",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Performance and Analytics Tracking Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528177",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "8",
+                "name": "Pageview - All Pages - Functional Cookies Allowed",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Functional Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528177",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "7",
+                "name": "Pageview - All Pages - Marketing Cookies Allowed",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Marketing Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528177",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "10",
+                "name": "Pageview - DOM Ready - Analytics Tracking Allowed",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Performance and Analytics Tracking Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528177",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "19",
+                "name": "Pageview - DOM Ready - Functional Cookies Allowed",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Functional Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528179",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "11",
+                "name": "Pageview - DOM Ready - Marketing Cookies Allowed",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Marketing Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1526900528177",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "18",
+                "name": "Pageview - DOM ready",
+                "type": "DOM_READY",
+                "fingerprint": "1526900528178",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "22",
+                "name": "Pageview - Window Loaded - Analytics Tracking Allowed",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Performance and Analytics Tracking Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1528621557858",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "23",
+                "name": "Pageview - Window Loaded - Functional Cookies Allowed",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Functional Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1528621569958",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "triggerId": "24",
+                "name": "Pageview - Window Loaded - Marketing Cookies Allowed",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Custom JS - Marketing Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1528621583916",
+                "parentFolderId": "20"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "5",
+                "name": "Cookie - Actual Cookie Consent",
+                "type": "k",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "decodeCookie",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "actualOptanonConsent"
+                    }
+                ],
+                "fingerprint": "1528980284548",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "3",
+                "name": "Custom JS - Functional Cookies Allowed",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  var consentFromCookie = {{Cookie - Actual Cookie Consent}};\n  var consentFromDataLayer = {{dlv - Active Consent Groups}};\n  if (consentFromDataLayer != undefined && consentFromCookie == undefined) {\n    if (consentFromDataLayer.indexOf(\",3,\") >= 0) {\n      return true // functional cookies allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer == undefined && consentFromCookie != undefined) {\n    if (consentFromCookie.indexOf(\",3,\") >= 0) {\n      return true // functional cookies allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer != undefined && consentFromCookie != undefined) {\n    if (consentFromDataLayer.indexOf(\",3,\") >= 0) {\n      return true // functional cookies allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer == undefined && consentFromCookie == undefined) {\n    return false // functional cookies not allowed\n  }\n}"
+                    }
+                ],
+                "fingerprint": "1526900528179",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "4",
+                "name": "Custom JS - Marketing Cookies Allowed",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  var consentFromCookie = {{Cookie - Actual Cookie Consent}};\n  var consentFromDataLayer = {{dlv - Active Consent Groups}};\n  if (consentFromDataLayer != undefined && consentFromCookie == undefined) {\n    if (consentFromDataLayer.indexOf(\",4,\") >= 0) {\n      return true // marketing cookies allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer == undefined && consentFromCookie != undefined) {\n    if (consentFromCookie.indexOf(\",4,\") >= 0) {\n      return true // marketing cookies allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer != undefined && consentFromCookie != undefined) {\n    if (consentFromDataLayer.indexOf(\",4,\") >= 0) {\n      return true // marketing cookies allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer == undefined && consentFromCookie == undefined) {\n    return false // marketing cookies not allowed\n  }\n}"
+                    }
+                ],
+                "fingerprint": "1526900528180",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "6",
+                "name": "Custom JS - Performance and Analytics Tracking Allowed",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  var consentFromCookie = {{Cookie - Actual Cookie Consent}};\n  var consentFromDataLayer = {{dlv - Active Consent Groups}};\n  if (consentFromDataLayer != undefined && consentFromCookie == undefined) {\n    if (consentFromDataLayer.indexOf(\",2,\") >= 0) {\n      return true // analytics allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer == undefined && consentFromCookie != undefined) {\n    if (consentFromCookie.indexOf(\",2,\") >= 0) {\n      return true // analytics allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer != undefined && consentFromCookie != undefined) {\n    if (consentFromDataLayer.indexOf(\",2,\") >= 0) {\n      return true // analytics allowed\n    } else {\n      return false\n    }\n  }\n  if (consentFromDataLayer == undefined && consentFromCookie == undefined) {\n    return false // analytics not allowed\n  }\n}"
+                    }
+                ],
+                "fingerprint": "1526900528180",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "2",
+                "name": "dlv - Active Consent Groups",
+                "type": "v",
+                "notes": "A cookie which contains IDs of consent groups. \n,1,  - strictly necessary cookies\n,2, - Analytics and Customization\n,3, - Performance & Functionality\n,4, - Targeting/marketing",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "OnetrustActiveGroups"
+                    }
+                ],
+                "fingerprint": "1526900528179",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "7",
+                "name": "dlv - consentData for the record",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "consentData"
+                    }
+                ],
+                "fingerprint": "1532071448227",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "variableId": "1",
+                "name": "dlv - optanonAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "optanonAction"
+                    }
+                ],
+                "fingerprint": "1526900528179",
+                "parentFolderId": "20"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "folderId": "20",
+                "name": "GDRP Cookie Consent Notification",
+                "fingerprint": "1526900524761"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9071728",
+                "type": "CLICK_ELEMENT",
+                "name": "Click Element"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/9071728/versions/0?apiLink=version"
+    }
+}

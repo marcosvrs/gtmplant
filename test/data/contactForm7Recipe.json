@@ -1,0 +1,109 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-06-26 21:18:24",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/9334659/versions/0",
+        "accountId": "1164259306",
+        "containerId": "9334659",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/9334659",
+            "accountId": "1164259306",
+            "containerId": "9334659",
+            "name": "Contact Form 7 Recipe",
+            "publicId": "GTM-P9NRTFK",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1530047798638",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/9334659/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "tagId": "1",
+                "name": "cHTML - Contact Form 7 Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  document.addEventListener('wpcf7mailsent', function(event) {\n    window.dataLayer = window.dataLayer || []\n    window.dataLayer.push({\n      \"event\": \"cf7submission\",\n      \"formId\": event.detail.contactFormId,\n      \"response\": event.detail.inputs\n    })\n  });\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1530047665571",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "triggerId": "5",
+                "name": "Custom - Contact Form 7 Submission",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "cf7submission"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530047798638"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "9334659",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/9334659/versions/0?apiLink=version"
+    }
+}

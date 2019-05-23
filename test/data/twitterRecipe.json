@@ -1,0 +1,253 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-02-26 19:36:08",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6423374/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6423374",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6423374",
+            "accountId": "1164259306",
+            "containerId": "6423374",
+            "name": "Twitter Recipe",
+            "publicId": "GTM-W8JBZ49",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1488136604083",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6423374/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "tagId": "1",
+                "name": "GA - Event - Social Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_SOCIAL"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialAction",
+                        "value": "{{dlv - socialAction}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialActionTarget",
+                        "value": "{{dlv - socialTarget}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "socialNetwork",
+                        "value": "{{dlv - socialNetwork}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1488136883398",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "tagId": "2",
+                "name": "cHTML - Twitter Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n\tif (typeof twttr !== 'undefined') {\n      twttr.ready(function (twttr) {\n      twttr.events.bind('tweet', tweetIntentToAnalytics);\n      twttr.events.bind('retweet', retweetIntentToAnalytics);\n      twttr.events.bind('favorite', favIntentToAnalytics);\n      twttr.events.bind('follow', followIntentToAnalytics);\n\t});\n}\nfunction clickEventToAnalytics() {\n  dataLayer.push({\n    'event': 'socialInteraction',\n    'socialNetwork': 'Twitter',\n    'socialAction': 'click',\n    'socialTarget': window.location.href\n  });\n}\nfunction tweetIntentToAnalytics() {\n  dataLayer.push({\n    'event': 'socialInteraction',\n    'socialNetwork': 'Twitter',\n    'socialAction': 'tweet',\n    'socialTarget': window.location.href\n  });\n}\nfunction retweetIntentToAnalytics() {\n  dataLayer.push({\n    'event': 'socialInteraction',\n    'socialNetwork': 'Twitter',\n    'socialAction': 'retweet',\n    'socialTarget': window.location.href\n  });\n}\nfunction favIntentToAnalytics() {\n  dataLayer.push({\n    'event': 'socialInteraction',\n    'socialNetwork': 'Twitter',\n    'socialAction': 'favorite',\n    'socialTarget': window.location.href\n  });\n}\nfunction followIntentToAnalytics() {\n  dataLayer.push({\n    'event': 'socialInteraction',\n    'socialNetwork': 'Twitter',\n    'socialAction': 'follow',\n    'socialTarget': window.location.href\n  });\n}\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1488136287675",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "triggerId": "6",
+                "name": "Custom - socialInteraction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "socialInteraction"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1488136578886"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "triggerId": "5",
+                "name": "Pageview - Window Loaded",
+                "type": "WINDOW_LOADED",
+                "fingerprint": "1488136094914"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "variableId": "3",
+                "name": "dlv - socialAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialAction"
+                    }
+                ],
+                "fingerprint": "1488136444455"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "variableId": "1",
+                "name": "dlv - socialNetwork",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialNetwork"
+                    }
+                ],
+                "fingerprint": "1488136368651"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "variableId": "2",
+                "name": "dlv - socialTarget",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "socialTarget"
+                    }
+                ],
+                "fingerprint": "1488136417671"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6423374",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6423374/versions/0?apiLink=version"
+    }
+}

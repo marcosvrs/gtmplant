@@ -1,0 +1,109 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2017-03-14 08:46:18",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/6494352/versions/0",
+        "accountId": "1164259306",
+        "containerId": "6494352",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/6494352",
+            "accountId": "1164259306",
+            "containerId": "6494352",
+            "name": "Exit Intent Recipe",
+            "publicId": "GTM-MB6HN2Q",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1489480142799",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/6494352/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "tagId": "1",
+                "name": "cHTML - Exit Intent Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar onWindow = function(event, callback) {\n    if (typeof window.addEventListener !== \"undefined\") {\n        window.addEventListener(event, callback, false);\n    } else {\n        window.attachEvent(\"on\" + event, function() {\n            callback.call(window);\n        });\n    }\n};\n\nvar onWindowLeave = function(callback) {\n\tonWindow(\"mouseout\", function(originalEvent) {\n\t    var event = originalEvent ? originalEvent : window.event,\n\t        element = event.relatedTarget || event.toElement;\n\n\t    if (!element || element.nodeName === \"HTML\") {\n\t    \tif (typeof callback === \"function\") {\n\t    \t\tcallback();\n\t    \t}\n\t    }\n\t});\n};\n\nonWindowLeave(function() {\n\tdataLayer.push({ \"event\":\"exit_intent\"});\n});\n</script>\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1489480125671",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "triggerId": "5",
+                "name": "Custom - exit_intent",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "exit_intent"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1489480142799"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "6494352",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/6494352/versions/0?apiLink=version"
+    }
+}

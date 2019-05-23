@@ -1,0 +1,246 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-04-29 19:17:56",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/8929387/versions/0",
+        "accountId": "1164259306",
+        "containerId": "8929387",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/8929387",
+            "accountId": "1164259306",
+            "containerId": "8929387",
+            "name": "Drift Recipe",
+            "publicId": "GTM-PPSQKXV",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1525029273902",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/8929387/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "tagId": "2",
+                "name": "GA Event - Drift Interaction",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "{{dlv - eventCategory}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - eventAction}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{dlv - eventLabel}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1525029389037",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "tagId": "1",
+                "name": "cHTML - Drift Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nwindow.dataLayer = window.dataLayer || []\nwindow.drift.on('ready',function(api){ \n  window.drift.on('message:sent',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'message sent', \n              'eventLabel': 'drift>message sent conversation id: ' + event.conversationId\n          });\n    } \n  })\n  \n  window.drift.on('startConversation',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'start conversation', \n              'eventLabel': 'drift>start conversation id: ' + event.conversationId\n          });\n    } \n  })\n  \n    window.drift.on('emailCapture',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'email capture', \n              'eventLabel': 'drift>email capture'\n          });\n    } \n  })\n  \n  window.drift.on('welcomeMessage:open',function(e){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'welcome message open', \n              'eventLabel': 'drift>welcome message open'\n          });\n    } \n  }) \n  \n    window.drift.on('welcomeMessage:close',function(e){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'welcome message closed', \n              'eventLabel': 'drift>welcome message closed'\n          });\n    } \n  }) \n  \n  window.drift.on('sidebarOpen',function(e){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'sidebar open', \n              'eventLabel': 'drift>sidebar open'\n          });\n    } \n  }) \n\n  window.drift.on('sidebarClose',function(e){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'sidebar close', \n              'eventLabel': 'drift>sidebar close'\n          });\n    } \n  })  \n  \n  window.drift.on('campaign:open',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'campaign open', \n              'eventLabel': 'drift>campaign open id: ' + event.campaignId\n          });\n    } \n  })\n  \n    window.drift.on('campaign:dismiss',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'campaign dismiss', \n              'eventLabel': 'drift>campaign dismiss id: ' + event.campaignId\n          });\n    } \n  })\n  \n  window.drift.on('campaign:click',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'campaign click', \n              'eventLabel': 'drift>campaign click id: ' + event.campaignId\n          });\n    } \n  })\n  \n  window.drift.on('campaign:submit',function(event){ \n    { \n\t   dataLayer.push({\n              'event': 'driftInteraction', \n              'eventCategory': 'drift', \n              'eventAction': 'campaign submit', \n              'eventLabel': 'drift>campaign submit id: ' + event.campaignId\n          });\n    } \n  })\n  \n}) \n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1525028641479",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "triggerId": "6",
+                "name": "Custom - Drift Interaction",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "driftInteraction"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1525028667007"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "triggerId": "5",
+                "name": "Pageview - DOM Ready",
+                "type": "DOM_READY",
+                "fingerprint": "1525028637296"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "variableId": "2",
+                "name": "dlv - eventAction",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventAction"
+                    }
+                ],
+                "fingerprint": "1525028785837",
+                "formatValue": {}
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "variableId": "1",
+                "name": "dlv - eventCategory",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventCategory"
+                    }
+                ],
+                "fingerprint": "1525028770359",
+                "formatValue": {}
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "variableId": "3",
+                "name": "dlv - eventLabel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "eventLabel"
+                    }
+                ],
+                "fingerprint": "1525028800910",
+                "formatValue": {}
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "8929387",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/8929387/versions/0?apiLink=version"
+    }
+}

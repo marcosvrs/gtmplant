@@ -1,0 +1,284 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-09-07 19:39:14",
+    "containerVersion": {
+        "path": "accounts/28896164/containers/7237012/versions/0",
+        "accountId": "28896164",
+        "containerId": "7237012",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/28896164/containers/7237012",
+            "accountId": "28896164",
+            "containerId": "7237012",
+            "name": "Demo Container",
+            "publicId": "GTM-WFVW3QV",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1536349059527",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/28896164/containers/7237012/workspaces?apiLink=container"
+        },
+        "trigger": [
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "triggerId": "436",
+                "name": "Pageview - Purchase",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{JS - Is Purchase}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "Purchase"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1536349059512",
+                "parentFolderId": "435"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "211",
+                "name": "DLV - ecommerce - v1",
+                "type": "v",
+                "notes": "Returns the most recent ecommerce variable that was pushed to the Data Layer. The Data Layer Version 1 setting is necessary to isolate the most recent ecommerce interaction, rather than merging together all preceding ecommerce interactions.",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "1"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "ecommerce"
+                    }
+                ],
+                "fingerprint": "1536349059510",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "213",
+                "name": "JS - Currency Code",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/* \n * Returns a string representing the currency used to\n * denominate prices in the current ecommerce touchpoint.\n * Example: \"USD\"\n * Available: All interactions with products.\n */\nfunction() {\n\n  return {{DLV - ecommerce - v1}}.currencyCode;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059513",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "214",
+                "name": "JS - Ecommerce Step Data",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the actionField and products keys of an ecommerce\n * step formatted to the Google GTM Spec.\n * This is a helper value for other variables in this recipe,\n * and not intended for direct use by tags.\n */\nfunction() {\n \n  var ecom = {{DLV - ecommerce - v1}};\n\n  return ecom.click || ecom.detail || ecom.add || \n    ecom.remove || ecom.checkout || ecom.purchase ||\n    ecom.refund;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059514",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "215",
+                "name": "JS - Ecommerce Touchpoint Name",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the name of the touchpoint for which Enhanced Ecommerce\n * data was most recently pushed to the Data Layer\n * Example: \"Product Impression\n * Availability: All interactions.\n */\nfunction() {\n \n  var ecom = {{DLV - ecommerce - v1}};\n\n  return ecom.impressions ? \"Product Impression\" :\n         ecom.click ? \"Product Click\" :\n         ecom.detail ? \"Product Detail Impression\" : \n         ecom.add ? \"Add to Cart\" :\n         ecom.remove ? \"Remove from Cart\" :\n         ecom.checkout ? \"Checkout\" :\n         ecom.purchase ? \"Purchase\" :\n         ecom.refund ? \"Refund\" : \n         /* else */ \"\";\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059515",
+                "parentFolderId": "435",
+                "formatValue": {}
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "216",
+                "name": "JS - Impressions",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the array of product impression objects in a\n * Product Impression ecommerce interaction.\n * This is a helper value for other variables in this recipe,\n * and not intended for direct use by tags.\n */\nfunction() {\n \n  return {{DLV - ecommerce - v1}}.impressions;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059516",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "212",
+                "name": "JS - Is Purchase",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns a string indicating if the current touchpoint\n * represents a purchase action.\n * Example value: \"Purchase\"\n * Available: All ecommerce touchpoints.\n */\nfunction() {\n \n  var ecom = {{DLV - ecommerce - v1}};\n\n  return ecom.purchase ? \"Purchase\" : \"Non-purchase\";\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349147373",
+                "parentFolderId": "435",
+                "formatValue": {}
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "218",
+                "name": "JS - Product SKU List",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/* \n * Returns a string which is a delimited list of the SKUs \n * of products present in the current ecommerce interaction.\n * The default delimiter is a comma character.\n * Example output: \"ABC-123,DEG-456,EFG-789\"\n */\nfunction(){\n  \n  var prods = {{JS - Touchpoint Products}} || {{JS - Impressions}};\n  var skus = [];\n  var i;\n  var sep = ','; // Update this value to change the delimiter\n\n  if (!prods) { return; }\n\n  for (i = 0; i < prods.length; i++) {\n    if (prods[i].id) { skus.push(prods[i].id); } \n  }\n\n  return skus.join(sep);\n\n}"
+                    }
+                ],
+                "fingerprint": "1536349059517",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "220",
+                "name": "JS - Purchase Revenue Total",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the total value of the purchase. \n * Uses the explicit Revenue field if present, otherwise\n * calculates based on the price and quantity of items purchased.\n * Example value: 124.35\n * Available: Only set on Purchase interactions.\n */\nfunction() {\n \n  var val = {{JS - Total Product Value}};\n  \n  try {\n\n    val = {{DLV - ecommerce - v1}}.purchase.actionField.revenue;\n  \n  } catch (squelch) {}\n\n  return val;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059519",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "221",
+                "name": "JS - Purchase Shipping Amount",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the value of shipping that was paid with a purchase.\n * Example value: 12.25\n * Available: Only set on Purchase interactions.\n */\nfunction() {\n  \n  return {{DLV - ecommerce - v1}}.purchase.actionField.shipping;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059520",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "222",
+                "name": "JS - Purchase Tax Amount",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the value of tax that was paid with a purchase.\n * Example value: 12.25\n * Available: Only set on Purchase interactions.\n */\nfunction() {\n  \n  return {{DLV - ecommerce - v1}}.purchase.actionField.tax;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059520",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "223",
+                "name": "JS - Purchase Transaction ID",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the Transaction ID that was set on a purchase.\n * Exampe: \"ABC-12345\"\n * Available: Only set on Purchase interactions.\n */\nfunction() {\n  \n  return {{DLV - ecommerce - v1}}.purchase.actionField.id;\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059521",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "219",
+                "name": "JS - Total Product Value",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){\n  /* \n   * Returns a float representing the total value of all products\n   * present in the current ecommerce touchpoint.\n   * Calculated by summing up the product of price and quantity for\n   * each product, or by summing the prices when quantity is missing.\n   * This value does NOT reflect tax, shipping, discounts, or coupons.\n   * Example value: 124.35\n   * Available: All interactions with products.\n   */\n  \n  var prods = {{JS - Touchpoint Products}} || {{JS - Impressions}};\n\n  if (!prods) { return; } \n\n  var acc = 0;\n  var amt, \n      qty,\n      i;\n\n  for (i = 0; i < prods.length; i++) {\n   \n    qty = Number(prods[i].quantity) || 1;\n    amt = Number(prods[i].price) || 0;\n    acc += qty * amt;\n    \n  }\n\n  return acc;\n\n}"
+                    }
+                ],
+                "fingerprint": "1536349059518",
+                "parentFolderId": "435"
+            },
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "variableId": "217",
+                "name": "JS - Touchpoint Products",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "/*\n * Returns the array of product objects in the most\n * recent ecommerce touchpoint.\n * This is a helper value for other variables in this recipe,\n * and not intended for direct use by tags.\n */\nfunction() {\n \n  var touchpoint = {{JS - Ecommerce Step Data}};\n  \n  if (touchpoint) { return touchpoint.products; }\n  \n}"
+                    }
+                ],
+                "fingerprint": "1536349059516",
+                "parentFolderId": "435"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "28896164",
+                "containerId": "7237012",
+                "folderId": "435",
+                "name": "LunaMetrics Helper Variables for Marketing Tags",
+                "fingerprint": "1536349059509"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/28896164/containers/7237012/versions/0?apiLink=version"
+    }
+}

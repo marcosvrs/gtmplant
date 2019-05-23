@@ -1,0 +1,180 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2019-04-09 07:49:53",
+    "containerVersion": {
+        "path": "accounts/1164259306/containers/11574188/versions/0",
+        "accountId": "1164259306",
+        "containerId": "11574188",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/1164259306/containers/11574188",
+            "accountId": "1164259306",
+            "containerId": "11574188",
+            "name": "Page Translation Recipe",
+            "publicId": "GTM-TXG488R",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1554724404388",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/1164259306/containers/11574188/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "1164259306",
+                "containerId": "11574188",
+                "tagId": "2",
+                "name": "GA Event - Page Translated",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "page translation"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{dlv - translationLanguage}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{dlv - translationService}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "1554726436504",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "11574188",
+                "tagId": "1",
+                "name": "cHTML - Page Translation Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n(function() {\n// Observe DOM mutations whether the <html> node was changed by Google Translate\nif (window.MutationObserver) {\n  var mutationObserver = new MutationObserver(function(mutations) {\n    mutations.forEach(function (mutation) {\n      var oldElementClass = mutation.oldValue;\n      var currentElementClass = mutation.target.className;\n      if (oldElementClass.indexOf('translated-') === -1 && currentElementClass.indexOf('translated-') > -1) {\n\t\tconsole.log(mutation);\n        window.dataLayer.push({\n          'event' : 'pageTranslated',\n          'translationLanguage' : mutation.target.lang || document.getElementsByTagName('html')[0].getAttribute('xml:lang'),\n          'translationService' : 'on-page google translate'\n        });\n      }\n  })\n})\n\n  var htmlNode = document.querySelector('html');\n  mutationObserver.observe(htmlNode, {\n    attributes: true,\n    attributeOldValue: true,\n    attributeFilter: ['class']\n  })\n\n}\n\n\n\n// Let's also track pageviews when the page is translated directly from translate.google.com or bing.com/translator\n// A function that can return individual query parameter (borrowed from https://davidwalsh.name/query-string-javascript)\nfunction getUrlParameter(name) {\n  name = name.replace(/[\\[]/, '\\\\[').replace(/[\\]]/, '\\\\]');\n  var regex = new RegExp('[\\\\?&]' + name + '=([^&#]*)');\n  var results = regex.exec(location.search);\n  return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));\n};\n\n// Check if the page is being translated directly from translate.google.com (viewed within the iframe)\nif (window.location.href.indexOf('translate.googleusercontent.com') > -1 ) {\n  window.dataLayer.push({\n    'event' : 'pageTranslated',\n    'translationLanguage' : getUrlParameter('tl'),\n    'translationService' : 'google translate website'\n  });\n}\n\n// Check if the page is being translated directly from bing.com/translator (viewed within the iframe)\nif (window.location.href.indexOf('translatoruser-int.com') > -1 ) {\n  window.dataLayer.push({\n    'event' : 'pageTranslated',\n    'translationLanguage' : getUrlParameter('to'),\n    'translationService' : 'bing translator website'\n  });\n}\n})();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1554796181581",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "1164259306",
+                "containerId": "11574188",
+                "triggerId": "5",
+                "name": "Custom - pageTranslated",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "pageTranslated"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1554723983213"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "1164259306",
+                "containerId": "11574188",
+                "variableId": "1",
+                "name": "dlv - translationLanguage",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "translationLanguage"
+                    }
+                ],
+                "fingerprint": "1554724002169",
+                "formatValue": {}
+            },
+            {
+                "accountId": "1164259306",
+                "containerId": "11574188",
+                "variableId": "2",
+                "name": "dlv - translationService",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "translationService"
+                    }
+                ],
+                "fingerprint": "1554724011800",
+                "formatValue": {}
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/1164259306/containers/11574188/versions/0?apiLink=version"
+    }
+}

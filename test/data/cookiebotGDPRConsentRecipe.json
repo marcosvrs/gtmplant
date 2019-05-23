@@ -1,0 +1,540 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2018-07-01 07:36:04",
+    "containerVersion": {
+        "path": "accounts/471432256/containers/9357011/versions/0",
+        "accountId": "471432256",
+        "containerId": "9357011",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/471432256/containers/9357011",
+            "accountId": "471432256",
+            "containerId": "9357011",
+            "name": "Demo 6 GDPR",
+            "publicId": "GTM-W9LTHMM",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1530429595034",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/471432256/containers/9357011/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "tagId": "1",
+                "name": "cHTML - Cookie Bot",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script id=\"Cookiebot\" src=\"https://consent.cookiebot.com/uc.js?cbid={{YOUR_COOKIEBOT_ID}}\" type=\"text/javascript\"></script>\n\n<script>\nfunction CookiebotCallback_OnAccept () {\n if ((Cookiebot.consent.preferences) && ({{Regex - Preferences Cookies Allowed}} != \"true\"))\n dataLayer.push({'event':'cookieconsent_preferences'});\n if ((Cookiebot.consent.statistics) && {{Regex - Statistics Cookies Allowed}} != \"true\")\n dataLayer.push({'event':'cookieconsent_statistics'});\n if ((Cookiebot.consent.marketing) && {{Regex - Marketing Cookies Allowed}} != \"true\")\n dataLayer.push({'event':'cookieconsent_marketing'});\n}\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1530430515118",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "7",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "triggerId": "8",
+                "name": "Blocking - Marketing Cookies Are Not Allowed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Regex - Marketing Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515119",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "triggerId": "9",
+                "name": "Blocking - Preference Cookies Are Not Allowed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Regex - Preferences Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515119",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "triggerId": "10",
+                "name": "Blocking - Statistics Cookies Are Not Allowed",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Regex - Statistics Cookies Allowed}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515119",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "triggerId": "13",
+                "name": "Custom - Visitor Gave a Consent for Marketing Cookies",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "cookieconsent_marketing"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515120",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "triggerId": "12",
+                "name": "Custom - Visitor Gave a Consent for Preferences Cookies",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "cookieconsent_preferences"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515120",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "triggerId": "11",
+                "name": "Custom - Visitor Gave a Consent for Statistics Cookies",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "cookieconsent_statistics"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515120",
+                "parentFolderId": "7"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "variableId": "1",
+                "name": "Cookie - CookieConsent",
+                "type": "k",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "decodeCookie",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "CookieConsent"
+                    }
+                ],
+                "fingerprint": "1530430515121",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "variableId": "2",
+                "name": "Regex - Marketing Cookies Allowed",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{Cookie - CookieConsent}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "marketing:true"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": ".*"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515121",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "variableId": "4",
+                "name": "Regex - Preferences Cookies Allowed",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{Cookie - CookieConsent}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "preferences:true"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": ".*"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515122",
+                "parentFolderId": "7"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "variableId": "3",
+                "name": "Regex - Statistics Cookies Allowed",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{Cookie - CookieConsent}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "statistics:true"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": ".*"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1530430515122",
+                "parentFolderId": "7"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "folderId": "7",
+                "name": "GDPR Cookie Consent",
+                "fingerprint": "1530428996143"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "471432256",
+                "containerId": "9357011",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/471432256/containers/9357011/versions/0?apiLink=version"
+    }
+}

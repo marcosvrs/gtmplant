@@ -8,7 +8,7 @@ import G from 'glob';
 import { convertToPlant } from './convertToPlant';
 
 commander
-    .version('0.0.2')
+    .version('0.0.3')
     .option('-i, --input <path>', 'Define the path of the Typescript file')
     .option('-o, --output <path>', 'Define the path of the output file. If not defined, it\'ll output on the STDOUT')
     // .option('-C, --compositions', 'Create not heritage compositions')

@@ -21,7 +21,7 @@ export function convertToPlant(gtmJSON: IGTMWorkspace): string {
         });
         gtmJSON.containerVersion.trigger.forEach((trigger: IGTMTrigger): void => {
             plantDocument.push(`object "${trigger.name}"`);
-            if (trigger.customEventFilter !== undefined && trigger.customEventFilter.some((customEventFilter: IGTMCustomEventFilter): boolean => customEventFilter.parameter.some((parameter: IGTMParameter): string => parameter.value.indexOf(variable.name) >= 0))) {
+            if (trigger.customEventFilter !== undefined && trigger.customEventFilter.some((customEventFilter: IGTMCustomEventFilter): boolean => customEventFilter.parameter.some((parameter: IGTMParameter): boolean => parameter.value.indexOf(variable.name) >= 0))) {
                 plantDocument.push(`"${variable.name}" ${USAGE_LEFT_ARROW} "${trigger.name}"`);
             }
             plantDocument.push(`object "${trigger.name}"`);

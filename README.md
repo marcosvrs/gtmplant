@@ -13,13 +13,13 @@ npm install --global gtmplant
 ### Generate image file (svg or png)
 > Internet connection is required
 ```shell
-tplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.svg
-tplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.png
+gtmplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.svg
+gtmplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.png
 ```
 
 ### Generate puml file
 ```shell
-tplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.puml
+gtmplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.puml
 ```
 
 ## Options

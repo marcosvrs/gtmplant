@@ -12,14 +12,14 @@ export class TriggerHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
         if (container.triggers.length > 0) {
             return [
-                ...this.toPlantUML(container.triggers),
+                ...this.toPlantUML(...container.triggers),
                 ...super.handle(container)
             ];
         }
         return super.handle(container);
     }
 
-    protected toPlantUML(triggers: IPlantUMLTrigger[]): string[] {
+    protected toPlantUML(...triggers: IPlantUMLTrigger[]): string[] {
         const document: string[] = [];
         triggers.forEach((trigger: IPlantUMLTrigger): void => {
             const triggerPlantUMLObjectDeclaration: string = `class "${trigger.name}" as ${trigger.id}<${trigger.type}> << (T, red) >>`;

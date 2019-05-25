@@ -10,7 +10,7 @@ export class ContainerHandler extends AbstractHandler {
         if (container.variables.length > 0) {
             return [
                 '@startuml',
-                ...this.toPlantUML([container]),
+                ...this.toPlantUML(container),
                 ...super.handle(container),
                 '@enduml'
             ];
@@ -18,7 +18,7 @@ export class ContainerHandler extends AbstractHandler {
         return super.handle(container);
     }
 
-    protected toPlantUML(container: IPlantUMLContainer[]): string[] {
+    protected toPlantUML(...container: IPlantUMLContainer[]): string[] {
         return [
             `title ${container[0].name}`,
             'legend right',

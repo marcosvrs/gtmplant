@@ -7,42 +7,76 @@ import { IGTMTrigger } from "../Interface/GTM/IGTMTrigger";
 import { IGTMVariable } from "../Interface/GTM/IGTMVariable";
 import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
 import { IPlantUMLTag } from "../Interface/IPlantUMLTag";
-import { IPlantUMLTrigger } from "../Interface/IPlantUMLTrigger";
 import { ALL_PAGES_TRIGGER, ID_PREFIX } from "../GTMPlantConfig";
 import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
+import { IDict } from "../Interface/IDict";
+import { IGTMBuiltInVariable } from "../Interface/GTM/IGTMBuiltInVariable";
 
 export class ContainerVersionFactory {
-    protected triggerPlantById: { [index: string]: IPlantUMLTrigger } = {
+    protected triggerPlantById: IDict<IPlantUMLComposite> = {
         [ALL_PAGES_TRIGGER.id]: ALL_PAGES_TRIGGER
     };
-    protected variablePlantByName: { [index: string]: IPlantUMLTrigger } = {};
+    protected variablePlantByName: IDict<IPlantUMLComposite> = {};
 
     public create(container: IGTMContainerVersion): IPlantUMLContainer {
         return {
             id: container.container.containerId,
             name: container.container.name,
             type: '',
-            variables: this.createVariables(container.variable),
+            variables: [
+                ...this.createVariables(container.variable),
+                ...this.createBuiltInVariables(container.builtInVariable)
+            ],
             triggers: this.createTriggers(container.trigger),
             tags: this.createTags(container.tag)
         };
     }
 
+    protected createBuiltInVariables(builtInVariables: IGTMBuiltInVariable[]): IPlantUMLComposite[] {
+        return builtInVariables.map((builtInVariable: IGTMBuiltInVariable): IPlantUMLComposite => {
+            const currentBuiltInVariable: IPlantUMLComposite = {
+                id: `"${builtInVariable.name}"`,
+                name: builtInVariable.name,
+                type: builtInVariable.type
+            };
+            this.variablePlantByName[builtInVariable.name] = currentBuiltInVariable;
+            return currentBuiltInVariable;
+        });
+    }
+
     protected createVariables(variables: IGTMVariable[]): IPlantUMLComposite[] {
-        return variables.map((variable: IGTMVariable): IPlantUMLComposite => {
-            const currentVariable: IPlantUMLComposite = {
+        variables.forEach((variable: IGTMVariable): void => {
+            this.variablePlantByName[variable.name] = {
                 id: ID_PREFIX.VARIABLE + variable.variableId,
                 name: variable.name,
                 type: variable.type
             };
-            this.variablePlantByName[variable.name] = currentVariable;
+        });
+
+        return variables.map((variable: IGTMVariable): IPlantUMLComposite => {
+            const currentVariable: IPlantUMLComposite = this.variablePlantByName[variable.name];
+            if (variable.parameter === undefined || variable.parameter.length === 0) {
+                return currentVariable;
+            }
+            Object.keys(this.variablePlantByName).forEach((variableName: string): void => {
+                if (variable.parameter !== undefined && variable.parameter.some(
+                    (parameter: IGTMParameter): boolean =>
+                        (parameter.value !== undefined && parameter.value.indexOf(`{{${variableName}}}`) >= 0) ||
+                        (parameter.list !== undefined && (parameter.list.some((list: IGTMList): boolean => list.map.some((map: IGTMParameter): boolean => map.value !== undefined && map.value.indexOf(`{{${variableName}}}`) >= 0))))
+                )) {
+                    if (currentVariable.variables === undefined) {
+                        currentVariable.variables = [];
+                    }
+                    currentVariable.variables.push(this.variablePlantByName[variableName]);
+                }
+            });
             return currentVariable;
         });
     }
 
     protected createTriggers(triggers: IGTMTrigger[]): IPlantUMLComposite[] {
-        const plantUMLTriggers: IPlantUMLTrigger[] = triggers.map((trigger: IGTMTrigger): IPlantUMLTrigger => {
-            const currentTrigger: IPlantUMLTrigger = {
+        const plantUMLTriggers: IPlantUMLComposite[] = triggers.map((trigger: IGTMTrigger): IPlantUMLComposite => {
+            const currentTrigger: IPlantUMLComposite = {
                 id: ID_PREFIX.TRIGGER + trigger.triggerId,
                 name: trigger.name,
                 type: trigger.type

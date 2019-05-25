@@ -6,7 +6,7 @@ export interface IGTMVariable {
     variableId: string;
     name: string;
     type: string;
-    parameter: IGTMParameter[];
-    fingerprint: string;
-    formatValue: object;
+    parameter?: IGTMParameter[];
+    fingerprint?: string;
+    formatValue?: object;
 }

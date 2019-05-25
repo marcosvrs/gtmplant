@@ -20,8 +20,9 @@ export function convertToPlant(gtmJSON: IGTMWorkspace, options: ICommandOptions 
         case { tags: false, triggers: true, variables: false, usages: true }:
             return HandlerFactory.createOnlyTriggerHandler().handle(containerPlantUML).join(os.EOL);
         case { tags: false, triggers: false, variables: true, usages: false }:
-        case { tags: false, triggers: false, variables: true, usages: true }:
             return HandlerFactory.createOnlyVariableHandler().handle(containerPlantUML).join(os.EOL);
+        case { tags: false, triggers: false, variables: true, usages: true }:
+            return HandlerFactory.createOnlyVariableWithUsageHandler().handle(containerPlantUML).join(os.EOL);
         case { tags: true, triggers: true, variables: false, usages: false }:
             return HandlerFactory.createOnlyTagAndTriggerHandler().handle(containerPlantUML).join(os.EOL);
         case { tags: true, triggers: true, variables: false, usages: true }:

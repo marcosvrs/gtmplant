@@ -6,6 +6,7 @@ import { ContainerHandler } from "../Handler/ContainerHandler";
 import { TriggerUsageHandler } from "../Handler/TriggerUsageHandler";
 import { TagVariableUsageHandler } from "../Handler/TagVariableUsageHandler";
 import { TriggerVariableUsageHandler } from "../Handler/TriggerVariableUsageHandler";
+import { VariableUsageHandler } from "../Handler/VariableUsageHandler";
 
 export namespace HandlerFactory {
     export function createOnlyTagHandler(): IHandler {
@@ -21,6 +22,11 @@ export namespace HandlerFactory {
     export function createOnlyVariableHandler(): IHandler {
         const containerHandler: IHandler = new ContainerHandler();
         containerHandler.setNext(new VariableHandler());
+        return containerHandler;
+    }
+    export function createOnlyVariableWithUsageHandler(): IHandler {
+        const containerHandler: IHandler = new ContainerHandler();
+        containerHandler.setNext(new VariableHandler()).setNext(new VariableUsageHandler());
         return containerHandler;
     }
     export function createOnlyTagAndTriggerHandler(): IHandler {
@@ -84,7 +90,8 @@ export namespace HandlerFactory {
             .setNext(new VariableHandler())
             .setNext(new TriggerUsageHandler())
             .setNext(new TriggerVariableUsageHandler())
-            .setNext(new TagVariableUsageHandler());
+            .setNext(new TagVariableUsageHandler())
+            .setNext(new VariableUsageHandler());
         return containerHandler;
     }
 }

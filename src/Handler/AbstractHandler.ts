@@ -21,5 +21,5 @@ export abstract class AbstractHandler implements IHandler {
         return [];
     }
 
-    protected abstract toPlantUML(component: IPlantUMLComposite[]): string[];
+    protected abstract toPlantUML(...component: IPlantUMLComposite[]): string[];
 }

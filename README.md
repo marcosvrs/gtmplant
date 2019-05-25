@@ -5,9 +5,21 @@ Will convert a export GTM container file to a PlantUML file.
 
 ## Usage
 
-```
+### Install
+```shell
 npm install --global gtmplant
-gtmplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.puml
+```
+
+### Generate image file (svg or png)
+> Internet connection is required
+```shell
+tplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.svg
+tplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.png
+```
+
+### Generate puml file
+```shell
+tplant --input test/data/cookiebotGDPRConsentRecipe.json --output test/data/cookiebotGDPRConsentRecipe.puml
 ```
 
 ## Options
@@ -34,9 +46,6 @@ Will output all Tags, Triggers, Variables and the usage between them.
 
 ### -T, --tags
     Convert tags
-
-### -R, --triggers
-    Convert triggers
 
 ### -R, --triggers
     Convert triggers

@@ -12,7 +12,7 @@ export class TagHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
         if (container.tags.length > 0) {
             return [
-                ...this.toPlantUML(container.tags),
+                ...this.toPlantUML(...container.tags),
                 ...super.handle(container)
             ];
         }
@@ -20,7 +20,7 @@ export class TagHandler extends AbstractHandler {
 
     }
 
-    protected toPlantUML(tags: IPlantUMLTag[]): string[] {
+    protected toPlantUML(...tags: IPlantUMLTag[]): string[] {
         const document: string[] = [];
         tags.forEach((tag: IPlantUMLTag): void => {
             const tagPlantUMLObjectDeclaration: string = `class "${tag.name}" as ${tag.id}<${tag.type}> << (T, orange) >>`;

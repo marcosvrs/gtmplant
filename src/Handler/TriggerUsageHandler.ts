@@ -12,14 +12,14 @@ export class TriggerUsageHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
         if (container.tags.length > 0) {
             return [
-                ...this.toPlantUML(container.tags),
+                ...this.toPlantUML(...container.tags),
                 ...super.handle(container)
             ];
         }
         return super.handle(container);
     }
 
-    protected toPlantUML(tags: IPlantUMLTag[]): string[] {
+    protected toPlantUML(...tags: IPlantUMLTag[]): string[] {
         const usages: string[] = [];
         tags.forEach((tag: IPlantUMLTag): void => {
             if (tag.blockingTriggers !== undefined) {

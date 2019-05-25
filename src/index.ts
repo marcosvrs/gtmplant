@@ -13,7 +13,7 @@ import { IGTMWorkspace } from './Interface/GTM/IGTMWorkspace';
 const AVAILABLE_PLANTUML_EXTENSIONS: string[] = ['svg', 'png', 'txt'];
 
 commander
-    .version('0.1.1')
+    .version('0.1.2')
     .option('-i, --input <path>', 'Define the path of the Typescript file')
     .option('-o, --output <path>', 'Define the path of the output file. If not defined, it\'ll output on the STDOUT')
     .option('-T, --tags', 'Convert tags')
@@ -60,9 +60,7 @@ function requestImageFile(output: string, input: string, extension: string): voi
         path: `/plantuml/${extension}/${encode(input)}`
     }, (res: http.IncomingMessage): void => {
         // tslint:disable-next-line non-literal-fs-path
-        const fileStream: fs.WriteStream = fs.createWriteStream(output);
-        res.setEncoding('binary');
-        res.pipe(fileStream);
+        res.pipe(fs.createWriteStream(output));
         res.on('error', (err: Error): void => {
             throw err;
         });

@@ -1,0 +1,30 @@
+@startuml
+title Zopim Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA Event - Zopim Chat Interaction" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - zopimChatAction
+    .. Firing Triggers ..
+    Custom - zopimChat
+}
+class "cHTML - Zopim Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - DOM Ready
+}
+class "Custom - zopimChat" as 16<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - DOM Ready" as 15<DOM_READY> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "dlv - zopimChatAction" as 21<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 16
+01 --> 15
+02 --> 21
+@enduml

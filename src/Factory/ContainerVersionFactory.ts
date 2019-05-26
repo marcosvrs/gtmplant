@@ -24,11 +24,11 @@ export class ContainerVersionFactory {
             name: container.container.name,
             type: '',
             variables: [
-                ...this.createVariables(container.variable),
-                ...this.createBuiltInVariables(container.builtInVariable)
+                ...container.variable === undefined ? [] : this.createVariables(container.variable),
+                ...container.builtInVariable === undefined ? [] : this.createBuiltInVariables(container.builtInVariable)
             ],
-            triggers: this.createTriggers(container.trigger),
-            tags: this.createTags(container.tag)
+            triggers: container.trigger === undefined ? container.trigger : this.createTriggers(container.trigger),
+            tags: container.tag === undefined ? container.tag : this.createTags(container.tag)
         };
     }
 

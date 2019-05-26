@@ -7,15 +7,12 @@ import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
  */
 export class ContainerHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
-        if (container.variables.length > 0) {
-            return [
-                '@startuml',
-                ...this.toPlantUML(container),
-                ...super.handle(container),
-                '@enduml'
-            ];
-        }
-        return super.handle(container);
+        return [
+            '@startuml',
+            ...this.toPlantUML(container),
+            ...super.handle(container),
+            '@enduml'
+        ];
     }
 
     protected toPlantUML(...container: IPlantUMLContainer[]): string[] {

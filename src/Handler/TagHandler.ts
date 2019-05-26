@@ -10,7 +10,7 @@ import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
  */
 export class TagHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
-        if (container.tags.length > 0) {
+        if (container.tags !== undefined && container.tags.length > 0) {
             return [
                 ...this.toPlantUML(...container.tags),
                 ...super.handle(container)

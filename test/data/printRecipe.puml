@@ -1,0 +1,28 @@
+@startuml
+title Print Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Print Page" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    Page Path
+    .. Firing Triggers ..
+    Custom - printPage
+}
+class "cHTML - Print Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    All Pages
+}
+class "Custom - printPage" as 16<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 16
+01 --> 2147479553
+02 --> "Page Path"
+@enduml

@@ -7,17 +7,17 @@ import { IGTMBuiltInVariable } from "./IGTMBuiltInVariable";
 import { IGTMZone } from "./IGTMZone";
 
 export interface IGTMContainerVersion {
-    path: string;
+    path?: string;
     accountId: string;
     containerId: string;
     containerVersionId: string;
     container: IGTMContainer;
-    tag: IGTMTag[];
-    trigger: IGTMTrigger[];
-    variable: IGTMVariable[];
-    folder: IGTMFolder[];
-    builtInVariable: IGTMBuiltInVariable[];
+    tag?: IGTMTag[];
+    trigger?: IGTMTrigger[];
+    variable?: IGTMVariable[];
+    folder?: IGTMFolder[];
+    builtInVariable?: IGTMBuiltInVariable[];
     fingerprint: string;
-    tagManagerUrl: string;
-    zone: IGTMZone[];
+    tagManagerUrl?: string;
+    zone?: IGTMZone[];
 }

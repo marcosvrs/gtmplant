@@ -1,0 +1,36 @@
+@startuml
+title Mixcloud recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Mixcloud Interaction" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - mixcloudEvent.key
+    dlv - mixcloudEvent.name
+    dlv - mixcloudEvent.progress
+    .. Firing Triggers ..
+    Custom - Mixcloud Interaction
+}
+class "cHTML - Mixcloud Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - DOM Ready
+}
+class "Custom - Mixcloud Interaction" as 16<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - DOM Ready" as 15<DOM_READY> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "dlv - mixcloudEvent.key" as 22<v> << (V, green) >>
+class "dlv - mixcloudEvent.name" as 21<v> << (V, green) >>
+class "dlv - mixcloudEvent.progress" as 23<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 16
+01 --> 15
+02 --> 22
+02 --> 21
+02 --> 23
+@enduml

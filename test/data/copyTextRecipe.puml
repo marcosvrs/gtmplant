@@ -1,0 +1,32 @@
+@startuml
+title Copy Text Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Copied Text To Clipboard" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - clipboardText
+    Page Path
+    .. Firing Triggers ..
+    Custom - Text Copied
+}
+class "cHTML - Copy Text Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - DOM ready
+}
+class "Custom - Text Copied" as 17<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - DOM ready" as 16<DOM_READY> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "dlv - clipboardText" as 21<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 17
+01 --> 16
+02 --> 21
+02 --> "Page Path"
+@enduml

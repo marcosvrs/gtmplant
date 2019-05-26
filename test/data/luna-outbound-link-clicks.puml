@@ -1,0 +1,39 @@
+@startuml
+title Outbound Link Clicks
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Outbound Link Click" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    Click Hostname
+    Click URL
+    Debug Mode
+    .. Firing Triggers ..
+    Link Click - Outbound Link
+}
+class "Link Click - Outbound Link" as 17<LINK_CLICK> << (T, red) >> {
+    .. Variables ..
+    JS - Is Outbound Click URL
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Click Hostname" as 25<aev> << (V, green) >>
+class "JS - Is Outbound Click URL" as 26<jsm> << (V, green) >> {
+    .. Variables ..
+    Click Hostname
+    Page Domain Name
+}
+class "Page Domain Name" as 24<jsm> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Click URL"<CLICK_URL> << (V, green) >>
+class "Debug Mode"<DEBUG_MODE> << (V, green) >>
+02 --> 17
+17 --> 26
+02 --> 25
+02 --> "Click URL"
+02 --> "Debug Mode"
+26 --> 25
+26 --> 24
+@enduml

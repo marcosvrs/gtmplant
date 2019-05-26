@@ -1,6 +1,6 @@
 {
   "name": "gtmplant",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "GTM to PlantUML",
   "files": [
     "dist"
@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/marcosvrs/gtmplant#readme",
   "dependencies": {
+    "ajv": "^6.10.0",
     "commander": "^2.20.0",
     "plantuml-encoder": "^1.2.5"
   },

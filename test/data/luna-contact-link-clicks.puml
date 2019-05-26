@@ -1,0 +1,36 @@
+@startuml
+title Contact Link Clicks
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Contact Link Clicks" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    Click URL - No Protocol
+    Lookup - Link Type
+    Debug Mode
+    .. Firing Triggers ..
+    Link Click - 'tel' Or 'mailto' Protocol
+}
+class "Link Click - 'tel' Or 'mailto' Protocol" as 17<LINK_CLICK> << (T, red) >> {
+    .. Variables ..
+    Click Protocol
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Click Protocol" as 24<aev> << (V, green) >>
+class "Click URL - No Protocol" as 25<jsm> << (V, green) >>
+class "Lookup - Link Type" as 26<smm> << (V, green) >> {
+    .. Variables ..
+    Click Protocol
+}
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Click URL"<CLICK_URL> << (V, green) >>
+class "Debug Mode"<DEBUG_MODE> << (V, green) >>
+02 --> 17
+17 --> 24
+02 --> 25
+02 --> 26
+02 --> "Debug Mode"
+26 --> 24
+@enduml

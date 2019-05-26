@@ -1,0 +1,163 @@
+@startuml
+title GDPR Cookie Consent Notification Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA Event - Cookie Consent Data For The Record" as 06<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - consentData for the record
+    .. Firing Triggers ..
+    Custom - Consent Data For The Record
+    .. Blocking Triggers ..
+    Blocking - Total Optout
+}
+class "cHTML - Cookie Consent" as 02<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - DOM ready
+}
+class "cHTML - Push To Data Layer - Consent Data For The Record" as 05<html> << (T, orange) >> {
+    .. Variables ..
+    Cookie - Actual Cookie Consent
+    Custom JS - Performance and Analytics Tracking Allowed
+    .. Firing Triggers ..
+    Custom - Optanon Consent Updated
+}
+class "cHTML - Push To Data Layer - Consent Updated" as 04<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Custom - Cookie Notification Closed
+    Click - Cookie Preference Center - Save Settings
+}
+class "cHTML - Set Cookie - Actual Cookie Consent Active Groups" as 01<html> << (T, orange) >> {
+    .. Variables ..
+    dlv - Active Consent Groups
+    .. Firing Triggers ..
+    Custom - Optanon Consent Updated
+}
+class "Blocking - Analytics Tracking is Not Allowed" as 115<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Performance and Analytics Tracking Allowed
+}
+class "Blocking - Functional Cookies are Not Allowed" as 114<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Functional Cookies Allowed
+}
+class "Blocking - Marketing Cookies are Not Allowed" as 113<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Marketing Cookies Allowed
+}
+class "Blocking - Total Optout" as 125<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Functional Cookies Allowed
+    Custom JS - Marketing Cookies Allowed
+    Custom JS - Performance and Analytics Tracking Allowed
+}
+class "Click - Cookie Preference Center - Save Settings" as 117<CLICK> << (T, red) >> {
+    .. Variables ..
+    Click Element
+}
+class "Custom - Consent Data For The Record" as 126<CUSTOM_EVENT> << (T, red) >>
+class "Custom - Cookie Notification Closed" as 19<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    dlv - optanonAction
+}
+class "Custom - Optanon Consent Updated" as 116<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - All Pages - Analytics Tracking Allowed" as 112<PAGEVIEW> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Performance and Analytics Tracking Allowed
+}
+class "Pageview - All Pages - Functional Cookies Allowed" as 18<PAGEVIEW> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Functional Cookies Allowed
+}
+class "Pageview - All Pages - Marketing Cookies Allowed" as 17<PAGEVIEW> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Marketing Cookies Allowed
+}
+class "Pageview - DOM Ready - Analytics Tracking Allowed" as 110<DOM_READY> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Performance and Analytics Tracking Allowed
+}
+class "Pageview - DOM Ready - Functional Cookies Allowed" as 119<DOM_READY> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Functional Cookies Allowed
+}
+class "Pageview - DOM Ready - Marketing Cookies Allowed" as 111<DOM_READY> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Marketing Cookies Allowed
+}
+class "Pageview - DOM ready" as 118<DOM_READY> << (T, red) >>
+class "Pageview - Window Loaded - Analytics Tracking Allowed" as 122<WINDOW_LOADED> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Performance and Analytics Tracking Allowed
+}
+class "Pageview - Window Loaded - Functional Cookies Allowed" as 123<WINDOW_LOADED> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Functional Cookies Allowed
+}
+class "Pageview - Window Loaded - Marketing Cookies Allowed" as 124<WINDOW_LOADED> << (T, red) >> {
+    .. Variables ..
+    Custom JS - Marketing Cookies Allowed
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Cookie - Actual Cookie Consent" as 25<k> << (V, green) >>
+class "Custom JS - Functional Cookies Allowed" as 23<jsm> << (V, green) >> {
+    .. Variables ..
+    Cookie - Actual Cookie Consent
+    dlv - Active Consent Groups
+}
+class "Custom JS - Marketing Cookies Allowed" as 24<jsm> << (V, green) >> {
+    .. Variables ..
+    Cookie - Actual Cookie Consent
+    dlv - Active Consent Groups
+}
+class "Custom JS - Performance and Analytics Tracking Allowed" as 26<jsm> << (V, green) >> {
+    .. Variables ..
+    Cookie - Actual Cookie Consent
+    dlv - Active Consent Groups
+}
+class "dlv - Active Consent Groups" as 22<v> << (V, green) >>
+class "dlv - consentData for the record" as 27<v> << (V, green) >>
+class "dlv - optanonAction" as 21<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+class "Click Element"<CLICK_ELEMENT> << (V, green) >>
+06 --> 125
+06 --> 126
+02 --> 118
+05 --> 116
+04 --> 19
+04 --> 117
+01 --> 116
+115 --> 26
+114 --> 23
+113 --> 24
+125 --> 23
+125 --> 24
+125 --> 26
+117 --> "Click Element"
+19 --> 21
+112 --> 26
+18 --> 23
+17 --> 24
+110 --> 26
+119 --> 23
+111 --> 24
+122 --> 26
+123 --> 23
+124 --> 24
+06 --> 27
+05 --> 25
+05 --> 26
+01 --> 22
+23 --> 25
+23 --> 22
+24 --> 25
+24 --> 22
+26 --> 25
+26 --> 22
+@enduml

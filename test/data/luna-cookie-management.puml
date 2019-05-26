@@ -1,0 +1,29 @@
+@startuml
+title Cookie Management
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "CU - Cookie Remover - LunaMetrics Plugin" as 03<html> << (T, orange) >> {
+    .. Variables ..
+    DLV - attributes - v1
+    .. Firing Triggers ..
+    Event - Remove Cookie
+}
+class "CU - Cookie Setter - LunaMetrics Plugin" as 04<html> << (T, orange) >> {
+    .. Variables ..
+    DLV - attributes - v1
+    .. Firing Triggers ..
+    Event - Set Cookie
+}
+class "Event - Remove Cookie" as 18<CUSTOM_EVENT> << (T, red) >>
+class "Event - Set Cookie" as 19<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "DLV - attributes - v1" as 211<v> << (V, green) >>
+class "Container ID"<CONTAINER_ID> << (V, green) >>
+03 --> 18
+04 --> 19
+03 --> 211
+04 --> 211
+@enduml

@@ -10,7 +10,7 @@ import { IPlantUMLTrigger } from "../Interface/IPlantUMLTrigger";
  */
 export class TriggerVariableUsageHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
-        if (container.triggers.length > 0) {
+        if (container.triggers !== undefined && container.triggers.length > 0) {
             return [
                 ...this.toPlantUML(...container.triggers),
                 ...super.handle(container)

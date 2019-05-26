@@ -1,0 +1,41 @@
+@startuml
+title JW Player Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Video Interaction" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - eventAction
+    dlv - eventCategory
+    dlv - eventLabel
+    .. Firing Triggers ..
+    Custom - Video Interaction
+}
+class "cHTML - JW Player Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - JW Player is Present
+}
+class "Custom - Video Interaction" as 17<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - JW Player is Present" as 15<WINDOW_LOADED> << (T, red) >> {
+    .. Variables ..
+    Javascript - jwplayer
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Javascript - jwplayer" as 21<j> << (V, green) >>
+class "dlv - eventAction" as 26<v> << (V, green) >>
+class "dlv - eventCategory" as 25<v> << (V, green) >>
+class "dlv - eventLabel" as 27<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 17
+01 --> 15
+15 --> 21
+02 --> 26
+02 --> 25
+02 --> 27
+@enduml

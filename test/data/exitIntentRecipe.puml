@@ -1,0 +1,20 @@
+@startuml
+title Exit Intent Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "cHTML - Exit Intent Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    All Pages
+}
+class "Custom - exit_intent" as 15<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+01 --> 2147479553
+@enduml

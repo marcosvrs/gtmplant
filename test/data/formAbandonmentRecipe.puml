@@ -1,0 +1,34 @@
+@startuml
+title Form Abandonment Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Form Abandonment" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - eventAction
+    dlv - eventCategory
+    Page URL
+    .. Firing Triggers ..
+    Custom - Form Abandonment
+}
+class "cHTML - Form Abandonment Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    All Pages
+}
+class "Custom - Form Abandonment" as 15<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "dlv - eventAction" as 22<v> << (V, green) >>
+class "dlv - eventCategory" as 21<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 15
+01 --> 2147479553
+02 --> 22
+02 --> 21
+02 --> "Page URL"
+@enduml

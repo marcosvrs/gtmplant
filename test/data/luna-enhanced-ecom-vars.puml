@@ -1,0 +1,81 @@
+@startuml
+title Demo Container
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "Pageview - Purchase" as 1436<PAGEVIEW> << (T, red) >> {
+    .. Variables ..
+    JS - Is Purchase
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "DLV - ecommerce - v1" as 2211<v> << (V, green) >>
+class "JS - Currency Code" as 2213<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Ecommerce Step Data" as 2214<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Ecommerce Touchpoint Name" as 2215<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Impressions" as 2216<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Is Purchase" as 2212<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Product SKU List" as 2218<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Impressions
+    JS - Touchpoint Products
+}
+class "JS - Purchase Revenue Total" as 2220<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+    JS - Total Product Value
+}
+class "JS - Purchase Shipping Amount" as 2221<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Purchase Tax Amount" as 2222<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Purchase Transaction ID" as 2223<jsm> << (V, green) >> {
+    .. Variables ..
+    DLV - ecommerce - v1
+}
+class "JS - Total Product Value" as 2219<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Impressions
+    JS - Touchpoint Products
+}
+class "JS - Touchpoint Products" as 2217<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Ecommerce Step Data
+}
+1436 --> 2212
+2213 --> 2211
+2214 --> 2211
+2215 --> 2211
+2216 --> 2211
+2212 --> 2211
+2218 --> 2216
+2218 --> 2217
+2220 --> 2211
+2220 --> 2219
+2221 --> 2211
+2222 --> 2211
+2223 --> 2211
+2219 --> 2216
+2219 --> 2217
+2217 --> 2214
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+title Engagement Timer
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "CU - Engagement Timer - LunaMetrics Plugin" as 05<html> << (T, orange) >> {
+    .. Variables ..
+    Const - Engagement Timer - Max Time On Page
+    Const - Engagement Timer - Min Time On Page
+    Const - Engagement Timer - Time Before Considered Idle
+    Const - Engagement Timer - Tracking Interval
+    .. Firing Triggers ..
+    All Pages
+}
+class "GA - Event - Engaged Time" as 06<ua> << (T, orange) >> {
+    .. Variables ..
+    DLV - Engagement Timer Counter
+    Page URL
+    .. Firing Triggers ..
+    Event - engagementTimer
+}
+class "Event - engagementTimer" as 110<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Const - Engagement Timer - Max Time On Page" as 211<c> << (V, green) >>
+class "Const - Engagement Timer - Min Time On Page" as 212<c> << (V, green) >>
+class "Const - Engagement Timer - Time Before Considered Idle" as 213<c> << (V, green) >>
+class "Const - Engagement Timer - Tracking Interval" as 214<c> << (V, green) >>
+class "DLV - Engagement Timer Counter" as 215<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+05 --> 2147479553
+06 --> 110
+05 --> 211
+05 --> 212
+05 --> 213
+05 --> 214
+06 --> 215
+06 --> "Page URL"
+@enduml

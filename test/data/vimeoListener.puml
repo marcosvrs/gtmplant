@@ -1,0 +1,39 @@
+@startuml
+title Vimeo Recipe Lunametrics Modified
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Video Interaction" as 04<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - eventAction
+    dlv - eventCategory
+    dlv - eventLabel
+    Debug Mode
+    .. Firing Triggers ..
+    Event - Video Interaction
+}
+class "cHTML - Vimeo Listener" as 03<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - Vimeo Player is Present
+}
+class "Event - Video Interaction" as 110<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - Vimeo Player is Present" as 111<DOM_READY> << (T, red) >> {
+    .. Variables ..
+    Custom Javascript - Is Vimeo Present
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Custom Javascript - Is Vimeo Present" as 27<jsm> << (V, green) >>
+class "dlv - eventAction" as 25<v> << (V, green) >>
+class "dlv - eventCategory" as 24<v> << (V, green) >>
+class "dlv - eventLabel" as 26<v> << (V, green) >>
+class "Debug Mode"<DEBUG_MODE> << (V, green) >>
+04 --> 110
+03 --> 111
+111 --> 27
+04 --> 25
+04 --> 24
+04 --> 26
+04 --> "Debug Mode"
+@enduml

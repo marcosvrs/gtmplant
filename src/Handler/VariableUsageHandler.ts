@@ -9,7 +9,7 @@ import { RIGHT_USAGE_SYMBOL } from "../GTMPlantConfig";
  */
 export class VariableUsageHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
-        if (container.triggers.length > 0) {
+        if (container.variables !== undefined && container.variables.length > 0) {
             return [
                 ...this.toPlantUML(...container.variables),
                 ...super.handle(container)

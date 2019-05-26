@@ -1,0 +1,51 @@
+@startuml
+title Pinterest Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Social - Social Interaction" as 01<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - socialAction
+    dlv - socialNetwork
+    dlv - socialTarget
+    .. Firing Triggers ..
+    Custom - Social Interaction
+}
+class "cHTML - Pinterest Follow to Data Layer" as 02<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Click - Pinterest Follow Button
+}
+class "cHTML - Pinterest Save to Data Layer" as 03<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Click - Pinterest Save Button
+}
+class "Click - Pinterest Follow Button" as 15<CLICK> << (T, red) >> {
+    .. Variables ..
+    Click Classes
+}
+class "Click - Pinterest Save Button" as 16<CLICK> << (T, red) >> {
+    .. Variables ..
+    Click Classes
+}
+class "Custom - Social Interaction" as 17<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "dlv - socialAction" as 21<v> << (V, green) >>
+class "dlv - socialNetwork" as 22<v> << (V, green) >>
+class "dlv - socialTarget" as 23<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+class "Click Classes"<CLICK_CLASSES> << (V, green) >>
+01 --> 17
+02 --> 15
+03 --> 16
+15 --> "Click Classes"
+16 --> "Click Classes"
+01 --> 21
+01 --> 22
+01 --> 23
+@enduml

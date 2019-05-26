@@ -1,0 +1,26 @@
+@startuml
+title jQuery AJAX Listener
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "CU - AJAX Listener - LunaMetrics Plugin" as 02<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    All Pages
+}
+class "DLV - attributes.contentType" as 214<v> << (V, green) >>
+class "DLV - attributes.fragment" as 215<v> << (V, green) >>
+class "DLV - attributes.headers" as 216<v> << (V, green) >>
+class "DLV - attributes.hostname" as 217<v> << (V, green) >>
+class "DLV - attributes.pathname" as 218<v> << (V, green) >>
+class "DLV - attributes.protocol" as 219<v> << (V, green) >>
+class "DLV - attributes.queryParameters" as 220<v> << (V, green) >>
+class "DLV - attributes.response" as 221<v> << (V, green) >>
+class "DLV - attributes.statusCode" as 222<v> << (V, green) >>
+class "DLV - attributes.statusText" as 223<v> << (V, green) >>
+class "DLV - attributes.timestamp" as 224<v> << (V, green) >>
+class "DLV - attributes.type" as 225<v> << (V, green) >>
+class "DLV - attributes.url" as 226<v> << (V, green) >>
+02 --> 2147479553
+@enduml

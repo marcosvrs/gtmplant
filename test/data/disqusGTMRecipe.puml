@@ -1,0 +1,32 @@
+@startuml
+title Disqus recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA Event - DISQUS Comment" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    Page URL
+    .. Firing Triggers ..
+    Custom - disqus_comment
+}
+class "cHTML - DISQUS Listener" as 01<html> << (T, orange) >> {
+    .. Variables ..
+    Page URL
+    .. Firing Triggers ..
+    Pageview - DOM Ready
+}
+class "Custom - disqus_comment" as 16<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - DOM Ready" as 15<DOM_READY> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+02 --> 16
+01 --> 15
+02 --> "Page URL"
+01 --> "Page URL"
+@enduml

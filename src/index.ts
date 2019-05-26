@@ -2,6 +2,7 @@
 
 // tslint:disable:no-console
 
+import ajv from 'ajv';
 import commander from 'commander';
 import fs from 'fs';
 import http from 'http';
@@ -9,11 +10,12 @@ import path from 'path';
 import { encode } from 'plantuml-encoder';
 import { convertToPlant } from './convertToPlant';
 import { IGTMWorkspace } from './Interface/GTM/IGTMWorkspace';
+import { validateSchema } from './validate_schema';
 
 const AVAILABLE_PLANTUML_EXTENSIONS: string[] = ['svg', 'png', 'txt'];
 
 commander
-    .version('0.1.3')
+    .version('0.1.4')
     .option('-i, --input <path>', 'Define the path of the Typescript file')
     .option('-o, --output <path>', 'Define the path of the output file. If not defined, it\'ll output on the STDOUT')
     .option('-T, --tags', 'Convert tags')
@@ -27,8 +29,20 @@ function bootstrap(commander: commander.CommanderStatic): void {
         return console.error('Missing input file');
     }
 
+    const ajvInstance: ajv.Ajv = new ajv({
+        allErrors: true,
+        strictDefaults: true
+    });
+    const validate: ajv.ValidateFunction = ajvInstance.compile(validateSchema);
+
     // tslint:disable-next-line non-literal-fs-path
     const inputData: string = fs.readFileSync(<string>commander.input, 'utf8');
+    
+    if (!validate(JSON.parse(inputData))) {
+        console.log(commander.input, validate.errors);
+        return console.error('Invalid JSON Schema');
+    }
+
     const gtmContainer: IGTMWorkspace = JSON.parse(inputData);
     const plantUMLDocument: string = convertToPlant(gtmContainer, {
         tags: <boolean>commander.tags,

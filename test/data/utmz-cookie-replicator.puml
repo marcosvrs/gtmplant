@@ -1,0 +1,53 @@
+@startuml
+title UTMZ Cookie Replicator
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "CU - __utmz Cookie Replicator" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    All Pages
+}
+class "CK - __utmz" as 26<k> << (V, green) >>
+class "CK - __utmzz" as 25<k> << (V, green) >>
+class "CK - __utmzzses" as 22<k> << (V, green) >>
+class "JS - Extract __utmzz Cookie Values" as 27<jsm> << (V, green) >> {
+    .. Variables ..
+    CK - __utmzz
+}
+class "JS - GA Campaign" as 210<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Extract __utmzz Cookie Values
+}
+class "JS - GA Content" as 211<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Extract __utmzz Cookie Values
+}
+class "JS - GA Keyword" as 212<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Extract __utmzz Cookie Values
+}
+class "JS - GA Medium" as 29<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Extract __utmzz Cookie Values
+}
+class "JS - GA Source" as 28<jsm> << (V, green) >> {
+    .. Variables ..
+    JS - Extract __utmzz Cookie Values
+}
+class "JS - Page Domain" as 21<jsm> << (V, green) >>
+class "JS - Referrer Domain" as 213<jsm> << (V, green) >>
+class "Page Fragment" as 24<u> << (V, green) >>
+class "Page Query String" as 23<u> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+01 --> 2147479553
+27 --> 25
+210 --> 27
+211 --> 27
+212 --> 27
+29 --> 27
+28 --> 27
+@enduml

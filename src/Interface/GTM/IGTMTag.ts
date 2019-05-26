@@ -6,9 +6,9 @@ export interface IGTMTag {
     tagId: string;
     name: string;
     type: string;
-    parameter?: IGTMParameter[];
+    parameter: IGTMParameter[];
     fingerprint: string;
     firingTriggerId?: string[];
     blockingTriggerId?: string[];
-    tagFiringOption: string;
+    tagFiringOption?: string;
 }

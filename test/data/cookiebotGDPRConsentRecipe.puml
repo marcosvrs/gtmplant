@@ -1,0 +1,60 @@
+@startuml
+title Demo 6 GDPR
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "cHTML - Cookie Bot" as 01<html> << (T, orange) >> {
+    .. Variables ..
+    Regex - Marketing Cookies Allowed
+    Regex - Preferences Cookies Allowed
+    Regex - Statistics Cookies Allowed
+    .. Firing Triggers ..
+    All Pages
+}
+class "Blocking - Marketing Cookies Are Not Allowed" as 18<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Regex - Marketing Cookies Allowed
+}
+class "Blocking - Preference Cookies Are Not Allowed" as 19<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Regex - Preferences Cookies Allowed
+}
+class "Blocking - Statistics Cookies Are Not Allowed" as 110<CUSTOM_EVENT> << (T, red) >> {
+    .. Variables ..
+    Regex - Statistics Cookies Allowed
+}
+class "Custom - Visitor Gave a Consent for Marketing Cookies" as 113<CUSTOM_EVENT> << (T, red) >>
+class "Custom - Visitor Gave a Consent for Preferences Cookies" as 112<CUSTOM_EVENT> << (T, red) >>
+class "Custom - Visitor Gave a Consent for Statistics Cookies" as 111<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Cookie - CookieConsent" as 21<k> << (V, green) >>
+class "Regex - Marketing Cookies Allowed" as 22<remm> << (V, green) >> {
+    .. Variables ..
+    Cookie - CookieConsent
+}
+class "Regex - Preferences Cookies Allowed" as 24<remm> << (V, green) >> {
+    .. Variables ..
+    Cookie - CookieConsent
+}
+class "Regex - Statistics Cookies Allowed" as 23<remm> << (V, green) >> {
+    .. Variables ..
+    Cookie - CookieConsent
+}
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+01 --> 2147479553
+18 --> 22
+19 --> 24
+110 --> 23
+01 --> 22
+01 --> 24
+01 --> 23
+22 --> 21
+24 --> 21
+23 --> 21
+@enduml

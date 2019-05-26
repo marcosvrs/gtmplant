@@ -9,7 +9,7 @@ import { INDENTATION } from "../GTMPlantConfig";
  */
 export class VariableHandler extends AbstractHandler {
     public handle(container: IPlantUMLContainer): string[] {
-        if (container.variables.length > 0) {
+        if (container.variables !== undefined && container.variables.length > 0) {
             return [
                 ...this.toPlantUML(...container.variables),
                 ...super.handle(container)

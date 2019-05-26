@@ -1,0 +1,174 @@
+@startuml
+title gtm4wp container - WIP
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "UA Contact Form 7 Submit" as 07<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    cf7formid
+    Page Path
+    .. Firing Triggers ..
+    Contact Form 7 Submitted
+}
+class "UA Enhanced Ecommerce WOO" as 08<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    Event
+    .. Firing Triggers ..
+    Ecommerce events
+}
+class "UA Form element Enter - Leave" as 09<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    formName
+    inputName
+    Event
+    .. Firing Triggers ..
+    Form Element Enter
+    Form Element Leave
+}
+class "UA PageView Tag" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    .. Firing Triggers ..
+    All Pages
+}
+class "UA Reading Content Bottom" as 03<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    Reading - Time to Scroll
+    .. Firing Triggers ..
+    Reading - Content Bottom
+}
+class "UA Reading Page Bottom" as 04<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    Reading - Time to Scroll
+    .. Firing Triggers ..
+    Reading - Page Bottom
+}
+class "UA Reading Start - nonint" as 05<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    Reading - Time to Scroll
+    .. Firing Triggers ..
+    Reading - Start Reading
+}
+class "UA Video events" as 06<ua> << (T, orange) >> {
+    .. Variables ..
+    GA config - with ecommerce
+    mediaCurrentTime
+    mediaData
+    mediaPlayerState
+    mediaType
+    .. Firing Triggers ..
+    Media Player State Change
+}
+class "Contact Form 7 Submitted" as 112<CUSTOM_EVENT> << (T, red) >>
+class "Ecommerce events" as 113<CUSTOM_EVENT> << (T, red) >>
+class "Form Element Enter" as 115<CUSTOM_EVENT> << (T, red) >>
+class "Form Element Leave" as 116<CUSTOM_EVENT> << (T, red) >>
+class "Media Player Ready" as 15<CUSTOM_EVENT> << (T, red) >>
+class "Media Player State Change" as 16<CUSTOM_EVENT> << (T, red) >>
+class "Reading - Article Loaded" as 17<CUSTOM_EVENT> << (T, red) >>
+class "Reading - Content Bottom" as 18<CUSTOM_EVENT> << (T, red) >>
+class "Reading - Page Bottom" as 19<CUSTOM_EVENT> << (T, red) >>
+class "Reading - Start Reading" as 110<CUSTOM_EVENT> << (T, red) >>
+class "Social Action" as 117<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "GA config - with ecommerce" as 21<gas> << (V, green) >>
+class "Reading - Time to Scroll" as 22<v> << (V, green) >>
+class "browserEngineName" as 236<v> << (V, green) >>
+class "browserEngineVersion" as 237<v> << (V, green) >>
+class "browserName" as 234<v> << (V, green) >>
+class "browserVersion" as 235<v> << (V, green) >>
+class "cf7formid" as 212<v> << (V, green) >>
+class "deviceManufacturer" as 241<v> << (V, green) >>
+class "deviceModel" as 242<v> << (V, green) >>
+class "deviceType" as 240<v> << (V, green) >>
+class "ecomm_pagetype" as 225<v> << (V, green) >>
+class "formClass" as 252<v> << (V, green) >>
+class "formID" as 253<v> << (V, green) >>
+class "formName" as 254<v> << (V, green) >>
+class "google_tag_params" as 233<v> << (V, green) >>
+class "inputClass" as 255<v> << (V, green) >>
+class "inputID" as 256<v> << (V, green) >>
+class "inputName" as 257<v> << (V, green) >>
+class "mediaCurrentTime" as 23<v> << (V, green) >>
+class "mediaData" as 24<v> << (V, green) >>
+class "mediaData.id" as 213<v> << (V, green) >>
+class "mediaData.title" as 214<v> << (V, green) >>
+class "mediaPlayerState" as 25<v> << (V, green) >>
+class "mediaType" as 26<v> << (V, green) >>
+class "osName" as 238<v> << (V, green) >>
+class "osVersion" as 239<v> << (V, green) >>
+class "pageAttributes" as 229<v> << (V, green) >>
+class "pageCategory" as 216<v> << (V, green) >>
+class "pagePostAuthor" as 27<v> << (V, green) >>
+class "pagePostAuthorID" as 217<v> << (V, green) >>
+class "pagePostDate" as 218<v> << (V, green) >>
+class "pagePostDateDay" as 221<v> << (V, green) >>
+class "pagePostDateMonth" as 220<v> << (V, green) >>
+class "pagePostDateYear" as 219<v> << (V, green) >>
+class "pagePostType" as 28<v> << (V, green) >>
+class "pagePostType2" as 29<v> << (V, green) >>
+class "pageTitle" as 215<v> << (V, green) >>
+class "postCountOnPage" as 222<v> << (V, green) >>
+class "postCountTotal" as 223<v> << (V, green) >>
+class "postID" as 224<v> << (V, green) >>
+class "siteID" as 250<v> << (V, green) >>
+class "siteName" as 251<v> << (V, green) >>
+class "siteSearchFrom" as 227<v> << (V, green) >>
+class "siteSearchResults" as 228<v> << (V, green) >>
+class "siteSearchTerm" as 226<v> << (V, green) >>
+class "visitorEmail" as 230<v> << (V, green) >>
+class "visitorId" as 232<v> << (V, green) >>
+class "visitorLoginState" as 210<v> << (V, green) >>
+class "visitorRegistrationDate" as 231<v> << (V, green) >>
+class "visitorType" as 211<v> << (V, green) >>
+class "weatherCategory" as 243<v> << (V, green) >>
+class "weatherDataStatus" as 249<v> << (V, green) >>
+class "weatherDescription" as 244<v> << (V, green) >>
+class "weatherPressure" as 246<v> << (V, green) >>
+class "weatherTemp" as 245<v> << (V, green) >>
+class "weatherWindDeg" as 248<v> << (V, green) >>
+class "weatherWindSpeed" as 247<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+class "Page Hostname"<PAGE_HOSTNAME> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Referrer"<REFERRER> << (V, green) >>
+class "Event"<EVENT> << (V, green) >>
+07 --> 112
+08 --> 113
+09 --> 115
+09 --> 116
+02 --> 2147479553
+03 --> 18
+04 --> 19
+05 --> 110
+06 --> 16
+07 --> 21
+07 --> 212
+07 --> "Page Path"
+08 --> 21
+08 --> "Event"
+09 --> 21
+09 --> 254
+09 --> 257
+09 --> "Event"
+02 --> 21
+03 --> 21
+03 --> 22
+04 --> 21
+04 --> 22
+05 --> 21
+05 --> 22
+06 --> 21
+06 --> 23
+06 --> 24
+06 --> 25
+06 --> 26
+@enduml

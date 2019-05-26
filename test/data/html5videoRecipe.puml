@@ -1,0 +1,37 @@
+@startuml
+title HTML5 Video Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Video Interaction" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - eventAction
+    dlv - eventCategory
+    dlv - eventLabel
+    .. Firing Triggers ..
+    Custom - Video Interaction
+}
+class "cHTML - HTML5 Video Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    Pageview - HTML5 Video Player is Present
+}
+class "Custom - Video Interaction" as 17<CUSTOM_EVENT> << (T, red) >>
+class "Pageview - HTML5 Video Player is Present" as 15<DOM_READY> << (T, red) >> {
+    .. Variables ..
+    Custom Javascript - Is HTML5 Video Present
+}
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Custom Javascript - Is HTML5 Video Present" as 21<jsm> << (V, green) >>
+class "dlv - eventAction" as 23<v> << (V, green) >>
+class "dlv - eventCategory" as 22<v> << (V, green) >>
+class "dlv - eventLabel" as 24<v> << (V, green) >>
+class "Page URL"<PAGE_URL> << (V, green) >>
+02 --> 17
+01 --> 15
+15 --> 21
+02 --> 23
+02 --> 22
+02 --> 24
+@enduml

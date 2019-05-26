@@ -1,0 +1,27 @@
+@startuml
+title Page Translation Recipe
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA Event - Page Translated" as 02<ua> << (T, orange) >> {
+    .. Variables ..
+    dlv - translationLanguage
+    dlv - translationService
+    .. Firing Triggers ..
+    Custom - pageTranslated
+}
+class "cHTML - Page Translation Listener" as 01<html> << (T, orange) >> {
+    .. Firing Triggers ..
+    All Pages
+}
+class "Custom - pageTranslated" as 15<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "dlv - translationLanguage" as 21<v> << (V, green) >>
+class "dlv - translationService" as 22<v> << (V, green) >>
+02 --> 15
+01 --> 2147479553
+02 --> 21
+02 --> 22
+@enduml

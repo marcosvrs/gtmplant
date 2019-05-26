@@ -1,0 +1,34 @@
+@startuml
+title Scroll Tracking
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "CU - Scroll Tracking - LunaMetrics Plugin" as 08<html> << (T, orange) >> {
+    .. Variables ..
+    Page Path
+    .. Firing Triggers ..
+    All Pages
+}
+class "GA - Event - Scroll Tracking" as 09<ua> << (T, orange) >> {
+    .. Variables ..
+    DLV - attributes.distance
+    DLV - attributes.label
+    Debug Mode
+    .. Firing Triggers ..
+    Event - Scroll Tracking
+}
+class "Event - Scroll Tracking" as 17<CUSTOM_EVENT> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "DLV - attributes.distance" as 25<v> << (V, green) >>
+class "DLV - attributes.label" as 26<v> << (V, green) >>
+class "Page Path"<PAGE_PATH> << (V, green) >>
+class "Debug Mode"<DEBUG_MODE> << (V, green) >>
+08 --> 2147479553
+09 --> 17
+08 --> "Page Path"
+09 --> 25
+09 --> 26
+09 --> "Debug Mode"
+@enduml

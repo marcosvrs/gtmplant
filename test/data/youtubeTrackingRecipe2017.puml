@@ -1,0 +1,27 @@
+@startuml
+title Youtube Recipe 2017
+legend right
+<color:orange>T</color> - Tag
+<color:red>T</color> - Trigger
+<color:green>V</color> - Variable
+end legend
+class "GA - Event - Video Interaction" as 01<ua> << (T, orange) >> {
+    .. Variables ..
+    Custom Javascript - Get Video Action
+    Video Provider
+    Video Title
+    .. Firing Triggers ..
+    Youtube - Video Interaction
+}
+class "Youtube - Video Interaction" as 15<YOU_TUBE_VIDEO> << (T, red) >>
+class "All Pages" as 2147479553<PAGEVIEW> << (T, red) >>
+class "Custom Javascript - Get Video Action" as 25<jsm> << (V, green) >>
+class "Video Provider"<VIDEO_PROVIDER> << (V, green) >>
+class "Video Title"<VIDEO_TITLE> << (V, green) >>
+class "Video Percent"<VIDEO_PERCENT> << (V, green) >>
+class "Video Status"<VIDEO_STATUS> << (V, green) >>
+01 --> 15
+01 --> 25
+01 --> "Video Provider"
+01 --> "Video Title"
+@enduml

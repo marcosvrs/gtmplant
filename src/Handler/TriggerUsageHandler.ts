@@ -22,11 +22,11 @@ export class TriggerUsageHandler extends AbstractHandler {
     protected toPlantUML(...tags: IPlantUMLTag[]): string[] {
         const usages: string[] = [];
         tags.forEach((tag: IPlantUMLTag): void => {
-            if (tag.blockingTriggers !== undefined) {
+            if (tag.blockingTriggers !== undefined && tag.blockingTriggers.length > 0) {
                 usages.push(...tag.blockingTriggers.map(
                     (trigger: IPlantUMLTrigger): string => `${tag.id} ${RIGHT_USAGE_SYMBOL} ${trigger.id}`));
             }
-            if (tag.firingTriggers !== undefined) {
+            if (tag.firingTriggers !== undefined && tag.firingTriggers.length > 0) {
                 usages.push(...tag.firingTriggers.map(
                     (trigger: IPlantUMLTrigger): string => `${tag.id} ${RIGHT_USAGE_SYMBOL} ${trigger.id}`));
             }

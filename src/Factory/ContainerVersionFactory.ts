@@ -19,18 +19,23 @@ export class ContainerVersionFactory {
     protected variablePlantByName: IDict<IPlantUMLComposite> = {};
 
     public create(container: IGTMContainerVersion): IPlantUMLContainer {
+        const variables: IPlantUMLComposite[] = [
+            ...container.variable === undefined ? [] :
+                this.createVariables(container.variable),
+            ...container.builtInVariable === undefined ? [] :
+                this.createBuiltInVariables(container.builtInVariable),
+        ];
+        const triggers: IPlantUMLComposite[] | undefined = container.trigger === undefined ? container.trigger :
+            this.createTriggers(container.trigger);
+        const tags: IPlantUMLTag[] | undefined = container.tag === undefined ? container.tag :
+            this.createTags(container.tag);
         return {
             id: container.container.containerId,
             name: container.container.name,
-            tags: container.tag === undefined ? container.tag : this.createTags(container.tag),
-            triggers: container.trigger === undefined ? container.trigger : this.createTriggers(container.trigger),
+            tags,
+            triggers,
             type: "",
-            variables: [
-                ...container.variable === undefined ? [] :
-                    this.createVariables(container.variable),
-                ...container.builtInVariable === undefined ? [] :
-                    this.createBuiltInVariables(container.builtInVariable),
-            ],
+            variables,
         };
     }
 
@@ -67,7 +72,9 @@ export class ContainerVersionFactory {
                         (parameter.list !== undefined && (parameter.list.some(
                             (list: IGTMList): boolean => list.map.some(
                                 (map: IGTMParameter): boolean => map.value !== undefined &&
-                                    map.value.indexOf(`{{${variableName}}}`) >= 0)))),
+                                    map.value.indexOf(`{{${variableName}}}`) >= 0,
+                            ),
+                        ))),
                 )) {
                     if (currentVariable.variables === undefined) {
                         currentVariable.variables = [];
@@ -86,6 +93,7 @@ export class ContainerVersionFactory {
                 name: trigger.name,
                 type: trigger.type,
             };
+            this.triggerPlantById[trigger.triggerId] = currentTrigger;
             if (Object.keys(this.variablePlantByName).length === 0) {
                 return currentTrigger;
             }
@@ -93,14 +101,14 @@ export class ContainerVersionFactory {
                 if (trigger.filter !== undefined && trigger.filter.some(
                     (filter: IGTMFilter): boolean => filter.parameter.some(
                         (parameter: IGTMParameter): boolean => parameter.value !== undefined &&
-                            parameter.value.indexOf(`{{${variableName}}}`) >= 0),
+                            parameter.value.indexOf(`{{${variableName}}}`) >= 0,
+                    ),
                 )) {
                     if (currentTrigger.variables === undefined) {
                         currentTrigger.variables = [];
                     }
                     currentTrigger.variables.push(this.variablePlantByName[variableName]);
                 }
-                this.triggerPlantById[trigger.triggerId] = currentTrigger;
             });
             return currentTrigger;
         });
@@ -115,7 +123,7 @@ export class ContainerVersionFactory {
                 name: tag.name,
                 type: tag.type,
             };
-            if (tag.firingTriggerId !== undefined) {
+            if (tag.firingTriggerId !== undefined && tag.firingTriggerId.length > 0) {
                 tag.firingTriggerId.forEach((triggerId: string): void => {
                     if (currentTag.firingTriggers === undefined) {
                         currentTag.firingTriggers = [];
@@ -123,7 +131,7 @@ export class ContainerVersionFactory {
                     currentTag.firingTriggers.push(this.triggerPlantById[triggerId]);
                 });
             }
-            if (tag.blockingTriggerId !== undefined) {
+            if (tag.blockingTriggerId !== undefined && tag.blockingTriggerId.length > 0) {
                 tag.blockingTriggerId.forEach((triggerId: string): void => {
                     if (currentTag.blockingTriggers === undefined) {
                         currentTag.blockingTriggers = [];
@@ -143,7 +151,9 @@ export class ContainerVersionFactory {
                             (parameter.list.some(
                                 (list: IGTMList): boolean => list.map.some(
                                     (map: IGTMParameter): boolean => map.value !== undefined &&
-                                        map.value.indexOf(`{{${variableName}}}`) >= 0)))),
+                                        map.value.indexOf(`{{${variableName}}}`) >= 0,
+                                ),
+                            ))),
                 )) {
                     if (currentTag.variables === undefined) {
                         currentTag.variables = [];

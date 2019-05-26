@@ -7,6 +7,6 @@ export interface IGTMTrigger {
     name: string;
     type: string;
     customEventFilter?: IGTMFilter[];
-    filter?:  IGTMFilter[];
+    filter?: IGTMFilter[];
     fingerprint: string;
 }

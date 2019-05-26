@@ -1,15 +1,15 @@
 import os from "os";
-import { IGTMWorkspace } from "./Interface/GTM/IGTMWorkspace";
 import { ContainerVersionFactory } from "./Factory/ContainerVersionFactory";
-import { IPlantUMLContainer } from "./Interface/IPlantUMLContainer";
-import { ICommandOptions } from "./Interface/ICommandOptions";
 import { HandlerFactory } from "./Factory/HandlerFactory";
+import { IGTMWorkspace } from "./Interface/GTM/IGTMWorkspace";
+import { ICommandOptions } from "./Interface/ICommandOptions";
+import { IPlantUMLContainer } from "./Interface/IPlantUMLContainer";
 
 export function convertToPlant(gtmJSON: IGTMWorkspace, options: ICommandOptions = {
     tags: true,
     triggers: true,
+    usages: true,
     variables: true,
-    usages: true
 }): string {
     const containerPlantUML: IPlantUMLContainer = (new ContainerVersionFactory()).create(gtmJSON.containerVersion);
     switch (options) {

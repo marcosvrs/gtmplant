@@ -1,5 +1,5 @@
-import { IGTMChildContainer } from "./IGTMChildContainer";
 import { IGTMBoundary } from "./IGTMBoundary";
+import { IGTMChildContainer } from "./IGTMChildContainer";
 
 export interface IGTMZone {
     accountId: string;

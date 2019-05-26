@@ -1,8 +1,8 @@
-import { AbstractHandler } from "./AbstractHandler";
-import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
-import { IPlantUMLTag } from "../Interface/IPlantUMLTag";
 import { INDENTATION } from "../GTMPlantConfig";
 import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
+import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
+import { IPlantUMLTag } from "../Interface/IPlantUMLTag";
+import { AbstractHandler } from "./AbstractHandler";
 
 /**
  * All Concrete Handlers either handle a request or pass it to the next handler
@@ -13,7 +13,7 @@ export class TagHandler extends AbstractHandler {
         if (container.tags !== undefined && container.tags.length > 0) {
             return [
                 ...this.toPlantUML(...container.tags),
-                ...super.handle(container)
+                ...super.handle(container),
             ];
         }
         return super.handle(container);
@@ -23,7 +23,8 @@ export class TagHandler extends AbstractHandler {
     protected toPlantUML(...tags: IPlantUMLTag[]): string[] {
         const document: string[] = [];
         tags.forEach((tag: IPlantUMLTag): void => {
-            const tagPlantUMLObjectDeclaration: string = `class "${tag.name}" as ${tag.id}<${tag.type}> << (T, orange) >>`;
+            const tagPlantUMLObjectDeclaration: string =
+                `class "${tag.name}" as ${tag.id}<${tag.type}> << (T, orange) >>`;
             if ((tag.variables === undefined || tag.variables.length === 0) &&
                 (tag.firingTriggers === undefined || tag.firingTriggers.length === 0) &&
                 (tag.blockingTriggers === undefined || tag.blockingTriggers.length === 0)) {
@@ -33,26 +34,26 @@ export class TagHandler extends AbstractHandler {
             document.push(`${tagPlantUMLObjectDeclaration} {`);
             if (tag.variables !== undefined && tag.variables.length > 0) {
                 document.push(
-                    INDENTATION + '.. Variables ..',
-                    ...tag.variables
-                        .map((variable: IPlantUMLComposite): string => INDENTATION + variable.name)
-                )
+                    INDENTATION + ".. Variables ..",
+                    ...tag.variables.map(
+                        (variable: IPlantUMLComposite): string => INDENTATION + variable.name),
+                );
             }
             if (tag.firingTriggers !== undefined && tag.firingTriggers.length > 0) {
                 document.push(
-                    INDENTATION + '.. Firing Triggers ..',
-                    ...tag.firingTriggers
-                        .map((firingTrigger: IPlantUMLComposite): string => INDENTATION + firingTrigger.name)
+                    INDENTATION + ".. Firing Triggers ..",
+                    ...tag.firingTriggers.map(
+                        (firingTrigger: IPlantUMLComposite): string => INDENTATION + firingTrigger.name),
                 );
             }
             if (tag.blockingTriggers !== undefined && tag.blockingTriggers.length > 0) {
                 document.push(
-                    INDENTATION + '.. Blocking Triggers ..',
-                    ...tag.blockingTriggers
-                        .map((blockingTrigger: IPlantUMLComposite): string => INDENTATION + blockingTrigger.name)
+                    INDENTATION + ".. Blocking Triggers ..",
+                    ...tag.blockingTriggers.map(
+                        (blockingTrigger: IPlantUMLComposite): string => INDENTATION + blockingTrigger.name),
                 );
             }
-            document.push('}');
+            document.push("}");
         });
         return document;
     }

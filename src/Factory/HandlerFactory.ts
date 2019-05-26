@@ -1,12 +1,12 @@
-import { IHandler } from "../Interface/IHandler";
-import { TagHandler } from "../Handler/TagHandler";
-import { VariableHandler } from "../Handler/VariableHandler";
-import { TriggerHandler } from "../Handler/TriggerHandler";
 import { ContainerHandler } from "../Handler/ContainerHandler";
-import { TriggerUsageHandler } from "../Handler/TriggerUsageHandler";
+import { TagHandler } from "../Handler/TagHandler";
 import { TagVariableUsageHandler } from "../Handler/TagVariableUsageHandler";
+import { TriggerHandler } from "../Handler/TriggerHandler";
+import { TriggerUsageHandler } from "../Handler/TriggerUsageHandler";
 import { TriggerVariableUsageHandler } from "../Handler/TriggerVariableUsageHandler";
+import { VariableHandler } from "../Handler/VariableHandler";
 import { VariableUsageHandler } from "../Handler/VariableUsageHandler";
+import { IHandler } from "../Interface/IHandler";
 
 export namespace HandlerFactory {
     export function createOnlyTagHandler(): IHandler {

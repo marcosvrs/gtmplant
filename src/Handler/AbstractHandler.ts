@@ -1,6 +1,6 @@
 import { IHandler } from "../Interface/IHandler";
-import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
 import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
+import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
 
 /**
  * The default chaining behavior can be implemented inside a base handler class.

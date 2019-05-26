@@ -1,7 +1,7 @@
-import { AbstractHandler } from "./AbstractHandler";
-import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
-import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
 import { RIGHT_USAGE_SYMBOL } from "../GTMPlantConfig";
+import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
+import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
+import { AbstractHandler } from "./AbstractHandler";
 
 /**
  * All Concrete Handlers either handle a request or pass it to the next handler
@@ -12,7 +12,7 @@ export class VariableUsageHandler extends AbstractHandler {
         if (container.variables !== undefined && container.variables.length > 0) {
             return [
                 ...this.toPlantUML(...container.variables),
-                ...super.handle(container)
+                ...super.handle(container),
             ];
         }
         return super.handle(container);
@@ -24,7 +24,9 @@ export class VariableUsageHandler extends AbstractHandler {
             if (variable.variables === undefined || variable.variables.length === 0) {
                 return;
             }
-            usages.push(...variable.variables.map((subVariable: IPlantUMLComposite): string => `${variable.id} ${RIGHT_USAGE_SYMBOL} ${subVariable.id}`));
+            usages.push(...variable.variables.map(
+                (subVariable: IPlantUMLComposite): string =>
+                    `${variable.id} ${RIGHT_USAGE_SYMBOL} ${subVariable.id}`));
         });
         return usages;
     }

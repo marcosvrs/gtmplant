@@ -1,3 +1,5 @@
+import { ALL_PAGES_TRIGGER, ID_PREFIX } from "../GTMPlantConfig";
+import { IGTMBuiltInVariable } from "../Interface/GTM/IGTMBuiltInVariable";
 import { IGTMContainerVersion } from "../Interface/GTM/IGTMContainerVersion";
 import { IGTMFilter } from "../Interface/GTM/IGTMFilter";
 import { IGTMList } from "../Interface/GTM/IGTMList";
@@ -5,16 +7,14 @@ import { IGTMParameter } from "../Interface/GTM/IGTMParameter";
 import { IGTMTag } from "../Interface/GTM/IGTMTag";
 import { IGTMTrigger } from "../Interface/GTM/IGTMTrigger";
 import { IGTMVariable } from "../Interface/GTM/IGTMVariable";
-import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
-import { IPlantUMLTag } from "../Interface/IPlantUMLTag";
-import { ALL_PAGES_TRIGGER, ID_PREFIX } from "../GTMPlantConfig";
-import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
 import { IDict } from "../Interface/IDict";
-import { IGTMBuiltInVariable } from "../Interface/GTM/IGTMBuiltInVariable";
+import { IPlantUMLComposite } from "../Interface/IPlantUMLComposite";
+import { IPlantUMLContainer } from "../Interface/IPlantUMLContainer";
+import { IPlantUMLTag } from "../Interface/IPlantUMLTag";
 
 export class ContainerVersionFactory {
     protected triggerPlantById: IDict<IPlantUMLComposite> = {
-        [ALL_PAGES_TRIGGER.id]: ALL_PAGES_TRIGGER
+        [ALL_PAGES_TRIGGER.id]: ALL_PAGES_TRIGGER,
     };
     protected variablePlantByName: IDict<IPlantUMLComposite> = {};
 
@@ -22,13 +22,15 @@ export class ContainerVersionFactory {
         return {
             id: container.container.containerId,
             name: container.container.name,
-            type: '',
-            variables: [
-                ...container.variable === undefined ? [] : this.createVariables(container.variable),
-                ...container.builtInVariable === undefined ? [] : this.createBuiltInVariables(container.builtInVariable)
-            ],
+            tags: container.tag === undefined ? container.tag : this.createTags(container.tag),
             triggers: container.trigger === undefined ? container.trigger : this.createTriggers(container.trigger),
-            tags: container.tag === undefined ? container.tag : this.createTags(container.tag)
+            type: "",
+            variables: [
+                ...container.variable === undefined ? [] :
+                    this.createVariables(container.variable),
+                ...container.builtInVariable === undefined ? [] :
+                    this.createBuiltInVariables(container.builtInVariable),
+            ],
         };
     }
 
@@ -37,7 +39,7 @@ export class ContainerVersionFactory {
             const currentBuiltInVariable: IPlantUMLComposite = {
                 id: `"${builtInVariable.name}"`,
                 name: builtInVariable.name,
-                type: builtInVariable.type
+                type: builtInVariable.type,
             };
             this.variablePlantByName[builtInVariable.name] = currentBuiltInVariable;
             return currentBuiltInVariable;
@@ -49,7 +51,7 @@ export class ContainerVersionFactory {
             this.variablePlantByName[variable.name] = {
                 id: ID_PREFIX.VARIABLE + variable.variableId,
                 name: variable.name,
-                type: variable.type
+                type: variable.type,
             };
         });
 
@@ -62,7 +64,10 @@ export class ContainerVersionFactory {
                 if (variable.parameter !== undefined && variable.parameter.some(
                     (parameter: IGTMParameter): boolean =>
                         (parameter.value !== undefined && parameter.value.indexOf(`{{${variableName}}}`) >= 0) ||
-                        (parameter.list !== undefined && (parameter.list.some((list: IGTMList): boolean => list.map.some((map: IGTMParameter): boolean => map.value !== undefined && map.value.indexOf(`{{${variableName}}}`) >= 0))))
+                        (parameter.list !== undefined && (parameter.list.some(
+                            (list: IGTMList): boolean => list.map.some(
+                                (map: IGTMParameter): boolean => map.value !== undefined &&
+                                    map.value.indexOf(`{{${variableName}}}`) >= 0)))),
                 )) {
                     if (currentVariable.variables === undefined) {
                         currentVariable.variables = [];
@@ -79,14 +84,16 @@ export class ContainerVersionFactory {
             const currentTrigger: IPlantUMLComposite = {
                 id: ID_PREFIX.TRIGGER + trigger.triggerId,
                 name: trigger.name,
-                type: trigger.type
+                type: trigger.type,
             };
-            if (Object.keys(this.variablePlantByName).length = 0) {
+            if (Object.keys(this.variablePlantByName).length === 0) {
                 return currentTrigger;
             }
             Object.keys(this.variablePlantByName).forEach((variableName: string): void => {
                 if (trigger.filter !== undefined && trigger.filter.some(
-                    (filter: IGTMFilter): boolean => filter.parameter.some((parameter: IGTMParameter): boolean => parameter.value !== undefined && parameter.value.indexOf(`{{${variableName}}}`) >= 0)
+                    (filter: IGTMFilter): boolean => filter.parameter.some(
+                        (parameter: IGTMParameter): boolean => parameter.value !== undefined &&
+                            parameter.value.indexOf(`{{${variableName}}}`) >= 0),
                 )) {
                     if (currentTrigger.variables === undefined) {
                         currentTrigger.variables = [];
@@ -106,7 +113,7 @@ export class ContainerVersionFactory {
             const currentTag: IPlantUMLTag = {
                 id: ID_PREFIX.TAG + tag.tagId,
                 name: tag.name,
-                type: tag.type
+                type: tag.type,
             };
             if (tag.firingTriggerId !== undefined) {
                 tag.firingTriggerId.forEach((triggerId: string): void => {
@@ -124,14 +131,19 @@ export class ContainerVersionFactory {
                     currentTag.blockingTriggers.push(this.triggerPlantById[triggerId]);
                 });
             }
-            if (Object.keys(this.variablePlantByName).length = 0) {
+            if (Object.keys(this.variablePlantByName).length === 0) {
                 return currentTag;
             }
             Object.keys(this.variablePlantByName).forEach((variableName: string): void => {
                 if (tag.parameter !== undefined && tag.parameter.some(
                     (parameter: IGTMParameter): boolean =>
-                        (parameter.value !== undefined && parameter.value.indexOf(`{{${variableName}}}`) >= 0) ||
-                        (parameter.list !== undefined && (parameter.list.some((list: IGTMList): boolean => list.map.some((map: IGTMParameter): boolean => map.value !== undefined && map.value.indexOf(`{{${variableName}}}`) >= 0))))
+                        (parameter.value !== undefined &&
+                            parameter.value.indexOf(`{{${variableName}}}`) >= 0) ||
+                        (parameter.list !== undefined &&
+                            (parameter.list.some(
+                                (list: IGTMList): boolean => list.map.some(
+                                    (map: IGTMParameter): boolean => map.value !== undefined &&
+                                        map.value.indexOf(`{{${variableName}}}`) >= 0)))),
                 )) {
                     if (currentTag.variables === undefined) {
                         currentTag.variables = [];

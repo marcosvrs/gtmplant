@@ -1,890 +1,891 @@
+// tslint:disable:no-http-string max-line-length object-literal-sort-keys
 export const validateSchema: object = {
-    "definitions": {},
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://example.com/root.json",
-    "type": "object",
-    "title": "Google Tag Manager Container Schema",
-    "required": [
+    definitions: {},
+    $schema: "http://json-schema.org/draft-07/schema#",
+    $id: "http://example.com/root.json",
+    type: "object",
+    title: "Google Tag Manager Container Schema",
+    required: [
         "exportFormatVersion",
         "exportTime",
-        "containerVersion"
+        "containerVersion",
     ],
-    "properties": {
-        "exportFormatVersion": {
-            "$id": "#/properties/exportFormatVersion",
-            "type": "integer",
-            "title": "The Exportformatversion Schema",
-            "default": 0,
-            "examples": [
-                2
+    properties: {
+        exportFormatVersion: {
+            $id: "#/properties/exportFormatVersion",
+            type: "integer",
+            title: "The Exportformatversion Schema",
+            default: 0,
+            examples: [
+                2,
             ],
-            "pattern": "2"
+            pattern: "2",
         },
-        "exportTime": {
-            "$id": "#/properties/exportTime",
-            "type": "string",
-            "title": "The Exporttime Schema",
-            "default": "",
-            "examples": [
-                "2018-02-15 09:45:11"
+        exportTime: {
+            $id: "#/properties/exportTime",
+            type: "string",
+            title: "The Exporttime Schema",
+            default: "",
+            examples: [
+                "2018-02-15 09:45:11",
             ],
-            "pattern": "^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$"
+            pattern: "^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$",
         },
-        "containerVersion": {
-            "$id": "#/properties/containerVersion",
-            "type": "object",
-            "title": "The Containerversion Schema",
-            "required": [
+        containerVersion: {
+            $id: "#/properties/containerVersion",
+            type: "object",
+            title: "The Containerversion Schema",
+            required: [
                 "accountId",
                 "containerId",
                 "containerVersionId",
                 "container",
-                "fingerprint"
+                "fingerprint",
             ],
-            "properties": {
-                "path": {
-                    "$id": "#/properties/containerVersion/properties/path",
-                    "type": "string",
-                    "title": "The Path Schema",
-                    "default": "",
-                    "examples": [
-                        "accounts/124588580/containers/6899612/versions/2"
+            properties: {
+                path: {
+                    $id: "#/properties/containerVersion/properties/path",
+                    type: "string",
+                    title: "The Path Schema",
+                    default: "",
+                    examples: [
+                        "accounts/124588580/containers/6899612/versions/2",
                     ],
-                    "pattern": "^(.*)$"
+                    pattern: "^(.*)$",
                 },
-                "accountId": {
-                    "$id": "#/properties/containerVersion/properties/accountId",
-                    "type": "string",
-                    "title": "The Accountid Schema",
-                    "default": "",
-                    "examples": [
-                        "124588580"
+                accountId: {
+                    $id: "#/properties/containerVersion/properties/accountId",
+                    type: "string",
+                    title: "The Accountid Schema",
+                    default: "",
+                    examples: [
+                        "124588580",
                     ],
-                    "pattern": "^\\d+$"
+                    pattern: "^\\d+$",
                 },
-                "containerId": {
-                    "$id": "#/properties/containerVersion/properties/containerId",
-                    "type": "string",
-                    "title": "The Containerid Schema",
-                    "default": "",
-                    "examples": [
-                        "6899612"
+                containerId: {
+                    $id: "#/properties/containerVersion/properties/containerId",
+                    type: "string",
+                    title: "The Containerid Schema",
+                    default: "",
+                    examples: [
+                        "6899612",
                     ],
-                    "pattern": "^\\d+$"
+                    pattern: "^\\d+$",
                 },
-                "containerVersionId": {
-                    "$id": "#/properties/containerVersion/properties/containerVersionId",
-                    "type": "string",
-                    "title": "The Containerversionid Schema",
-                    "default": "",
-                    "examples": [
-                        "2"
+                containerVersionId: {
+                    $id: "#/properties/containerVersion/properties/containerVersionId",
+                    type: "string",
+                    title: "The Containerversionid Schema",
+                    default: "",
+                    examples: [
+                        "2",
                     ],
-                    "pattern": "^\\d$"
+                    pattern: "^\\d$",
                 },
-                "name": {
-                    "$id": "#/properties/containerVersion/properties/name",
-                    "type": "string",
-                    "title": "The Name Schema",
-                    "default": "",
-                    "examples": [
-                        "Version 1.0"
+                name: {
+                    $id: "#/properties/containerVersion/properties/name",
+                    type: "string",
+                    title: "The Name Schema",
+                    default: "",
+                    examples: [
+                        "Version 1.0",
                     ],
-                    "pattern": "^Version \\d\\.\\d$"
+                    pattern: "^Version \\d\\.\\d$",
                 },
-                "description": {
-                    "$id": "#/properties/containerVersion/properties/description",
-                    "type": "string",
-                    "title": "The Description Schema",
-                    "default": "",
-                    "examples": [
-                        "1st release"
+                description: {
+                    $id: "#/properties/containerVersion/properties/description",
+                    type: "string",
+                    title: "The Description Schema",
+                    default: "",
+                    examples: [
+                        "1st release",
                     ],
-                    "pattern": "^(.*)$"
+                    pattern: "^(.*)$",
                 },
-                "container": {
-                    "$id": "#/properties/containerVersion/properties/container",
-                    "type": "object",
-                    "title": "The Container Schema",
-                    "required": [
+                container: {
+                    $id: "#/properties/containerVersion/properties/container",
+                    type: "object",
+                    title: "The Container Schema",
+                    required: [
                         "accountId",
                         "containerId",
                         "name",
                         "publicId",
                         "usageContext",
-                        "fingerprint"
+                        "fingerprint",
                     ],
-                    "properties": {
-                        "path": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/path",
-                            "type": "string",
-                            "title": "The Path Schema",
-                            "default": "",
-                            "examples": [
-                                "accounts/124588580/containers/6899612"
+                    properties: {
+                        path: {
+                            $id: "#/properties/containerVersion/properties/container/properties/path",
+                            type: "string",
+                            title: "The Path Schema",
+                            default: "",
+                            examples: [
+                                "accounts/124588580/containers/6899612",
                             ],
-                            "pattern": "^(.*)$"
+                            pattern: "^(.*)$",
                         },
-                        "accountId": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/accountId",
-                            "type": "string",
-                            "title": "The Accountid Schema",
-                            "default": "",
-                            "examples": [
-                                "124588580"
+                        accountId: {
+                            $id: "#/properties/containerVersion/properties/container/properties/accountId",
+                            type: "string",
+                            title: "The Accountid Schema",
+                            default: "",
+                            examples: [
+                                "124588580",
                             ],
-                            "pattern": "^\\d+$"
+                            pattern: "^\\d+$",
                         },
-                        "containerId": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/containerId",
-                            "type": "string",
-                            "title": "The Containerid Schema",
-                            "default": "",
-                            "examples": [
-                                "6899612"
+                        containerId: {
+                            $id: "#/properties/containerVersion/properties/container/properties/containerId",
+                            type: "string",
+                            title: "The Containerid Schema",
+                            default: "",
+                            examples: [
+                                "6899612",
                             ],
-                            "pattern": "^\\d+$"
+                            pattern: "^\\d+$",
                         },
-                        "name": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/name",
-                            "type": "string",
-                            "title": "The Name Schema",
-                            "default": "",
-                            "examples": [
-                                "gtm4wp container - WIP"
+                        name: {
+                            $id: "#/properties/containerVersion/properties/container/properties/name",
+                            type: "string",
+                            title: "The Name Schema",
+                            default: "",
+                            examples: [
+                                "gtm4wp container - WIP",
                             ],
-                            "pattern": "^(.*)$"
+                            pattern: "^(.*)$",
                         },
-                        "publicId": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/publicId",
-                            "type": "string",
-                            "title": "The Publicid Schema",
-                            "default": "",
-                            "examples": [
-                                "GTM-WRMHSB8"
+                        publicId: {
+                            $id: "#/properties/containerVersion/properties/container/properties/publicId",
+                            type: "string",
+                            title: "The Publicid Schema",
+                            default: "",
+                            examples: [
+                                "GTM-WRMHSB8",
                             ],
-                            "pattern": "^GTM\\-[\\w\\d]+$"
+                            pattern: "^GTM\\-[\\w\\d]+$",
                         },
-                        "usageContext": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/usageContext",
-                            "type": "array",
-                            "title": "The Usagecontext Schema",
-                            "items": {
-                                "$id": "#/properties/containerVersion/properties/container/properties/usageContext/items",
-                                "type": "string",
-                                "title": "The Items Schema",
-                                "default": "",
-                                "examples": [
-                                    "WEB"
+                        usageContext: {
+                            $id: "#/properties/containerVersion/properties/container/properties/usageContext",
+                            type: "array",
+                            title: "The Usagecontext Schema",
+                            items: {
+                                $id: "#/properties/containerVersion/properties/container/properties/usageContext/items",
+                                type: "string",
+                                title: "The Items Schema",
+                                default: "",
+                                examples: [
+                                    "WEB",
                                 ],
-                                "pattern": "^\\w+$"
-                            }
+                                pattern: "^\\w+$",
+                            },
                         },
-                        "fingerprint": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/fingerprint",
-                            "type": "string",
-                            "title": "The Fingerprint Schema",
-                            "default": "",
-                            "examples": [
-                                "1518687838097"
+                        fingerprint: {
+                            $id: "#/properties/containerVersion/properties/container/properties/fingerprint",
+                            type: "string",
+                            title: "The Fingerprint Schema",
+                            default: "",
+                            examples: [
+                                "1518687838097",
                             ],
-                            "pattern": "^\\d+$"
+                            pattern: "^\\d+$",
                         },
-                        "tagManagerUrl": {
-                            "$id": "#/properties/containerVersion/properties/container/properties/tagManagerUrl",
-                            "type": "string",
-                            "title": "The Tagmanagerurl Schema",
-                            "default": "",
-                            "examples": [
-                                "https://tagmanager.google.com/#/container/accounts/124588580/containers/6899612/workspaces?apiLink=container"
+                        tagManagerUrl: {
+                            $id: "#/properties/containerVersion/properties/container/properties/tagManagerUrl",
+                            type: "string",
+                            title: "The Tagmanagerurl Schema",
+                            default: "",
+                            examples: [
+                                "https://tagmanager.google.com/#/container/accounts/124588580/containers/6899612/workspaces?apiLink=container",
                             ],
-                            "pattern": "^(.*)$"
-                        }
-                    }
+                            pattern: "^(.*)$",
+                        },
+                    },
                 },
-                "tag": {
-                    "$id": "#/properties/containerVersion/properties/tag",
-                    "type": "array",
-                    "title": "The Tag Schema",
-                    "items": {
-                        "$id": "#/properties/containerVersion/properties/tag/items",
-                        "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
+                tag: {
+                    $id: "#/properties/containerVersion/properties/tag",
+                    type: "array",
+                    title: "The Tag Schema",
+                    items: {
+                        $id: "#/properties/containerVersion/properties/tag/items",
+                        type: "object",
+                        title: "The Items Schema",
+                        required: [
                             "accountId",
                             "containerId",
                             "tagId",
                             "name",
                             "type",
                             "parameter",
-                            "fingerprint"
+                            "fingerprint",
                         ],
-                        "properties": {
-                            "accountId": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/accountId",
-                                "type": "string",
-                                "title": "The Accountid Schema",
-                                "default": "",
-                                "examples": [
-                                    "124588580"
+                        properties: {
+                            accountId: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/accountId",
+                                type: "string",
+                                title: "The Accountid Schema",
+                                default: "",
+                                examples: [
+                                    "124588580",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "containerId": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/containerId",
-                                "type": "string",
-                                "title": "The Containerid Schema",
-                                "default": "",
-                                "examples": [
-                                    "6899612"
+                            containerId: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/containerId",
+                                type: "string",
+                                title: "The Containerid Schema",
+                                default: "",
+                                examples: [
+                                    "6899612",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "tagId": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/tagId",
-                                "type": "string",
-                                "title": "The Tagid Schema",
-                                "default": "",
-                                "examples": [
-                                    "7"
+                            tagId: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/tagId",
+                                type: "string",
+                                title: "The Tagid Schema",
+                                default: "",
+                                examples: [
+                                    "7",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "name": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/name",
-                                "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "UA Contact Form 7 Submit"
+                            name: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/name",
+                                type: "string",
+                                title: "The Name Schema",
+                                default: "",
+                                examples: [
+                                    "UA Contact Form 7 Submit",
                                 ],
-                                "pattern": "^(.*)$"
+                                pattern: "^(.*)$",
                             },
-                            "type": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/type",
-                                "type": "string",
-                                "title": "The Type Schema",
-                                "default": "",
-                                "examples": [
-                                    "ua"
+                            type: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/type",
+                                type: "string",
+                                title: "The Type Schema",
+                                default: "",
+                                examples: [
+                                    "ua",
                                 ],
-                                "pattern": "^\\w+$"
+                                pattern: "^\\w+$",
                             },
-                            "parameter": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/parameter",
-                                "type": "array",
-                                "title": "The Parameter Schema",
-                                "items": {
-                                    "$id": "#/properties/containerVersion/properties/tag/items/properties/parameter/items",
-                                    "type": "object",
-                                    "title": "The Items Schema",
-                                    "required": [
+                            parameter: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/parameter",
+                                type: "array",
+                                title: "The Parameter Schema",
+                                items: {
+                                    $id: "#/properties/containerVersion/properties/tag/items/properties/parameter/items",
+                                    type: "object",
+                                    title: "The Items Schema",
+                                    required: [
                                         "type",
-                                        "key"
+                                        "key",
                                     ],
-                                    "properties": {
-                                        "type": {
-                                            "$id": "#/properties/containerVersion/properties/tag/items/properties/parameter/items/properties/type",
-                                            "type": "string",
-                                            "title": "The Type Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "BOOLEAN"
+                                    properties: {
+                                        type: {
+                                            $id: "#/properties/containerVersion/properties/tag/items/properties/parameter/items/properties/type",
+                                            type: "string",
+                                            title: "The Type Schema",
+                                            default: "",
+                                            examples: [
+                                                "BOOLEAN",
                                             ],
-                                            "pattern": "^\\w+$"
+                                            pattern: "^\\w+$",
                                         },
-                                        "key": {
-                                            "$id": "#/properties/containerVersion/properties/tag/items/properties/parameter/items/properties/key",
-                                            "type": "string",
-                                            "title": "The Key Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "nonInteraction"
+                                        key: {
+                                            $id: "#/properties/containerVersion/properties/tag/items/properties/parameter/items/properties/key",
+                                            type: "string",
+                                            title: "The Key Schema",
+                                            default: "",
+                                            examples: [
+                                                "nonInteraction",
                                             ],
-                                            "pattern": "^\\w+$"
+                                            pattern: "^\\w+$",
                                         },
-                                        "value": {
-                                            "$id": "#/properties/containerVersion/properties/tag/items/properties/parameter/items/properties/value",
-                                            "type": "string",
-                                            "title": "The Value Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "false"
+                                        value: {
+                                            $id: "#/properties/containerVersion/properties/tag/items/properties/parameter/items/properties/value",
+                                            type: "string",
+                                            title: "The Value Schema",
+                                            default: "",
+                                            examples: [
+                                                "false",
                                             ],
-                                            "pattern": "(.*)"
-                                        }
-                                    }
-                                }
+                                            pattern: "(.*)",
+                                        },
+                                    },
+                                },
                             },
-                            "fingerprint": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/fingerprint",
-                                "type": "string",
-                                "title": "The Fingerprint Schema",
-                                "default": "",
-                                "examples": [
-                                    "1518683189823"
+                            fingerprint: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/fingerprint",
+                                type: "string",
+                                title: "The Fingerprint Schema",
+                                default: "",
+                                examples: [
+                                    "1518683189823",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "firingTriggerId": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/firingTriggerId",
-                                "type": "array",
-                                "title": "The Firingtriggerid Schema",
-                                "items": {
-                                    "$id": "#/properties/containerVersion/properties/tag/items/properties/firingTriggerId/items",
-                                    "type": "string",
-                                    "title": "The Items Schema",
-                                    "default": "",
-                                    "examples": [
-                                        "12"
+                            firingTriggerId: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/firingTriggerId",
+                                type: "array",
+                                title: "The Firingtriggerid Schema",
+                                items: {
+                                    $id: "#/properties/containerVersion/properties/tag/items/properties/firingTriggerId/items",
+                                    type: "string",
+                                    title: "The Items Schema",
+                                    default: "",
+                                    examples: [
+                                        "12",
                                     ],
-                                    "pattern": "^\\d+$"
-                                }
+                                    pattern: "^\\d+$",
+                                },
                             },
-                            "parentFolderId": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/parentFolderId",
-                                "type": "string",
-                                "title": "The Parentfolderid Schema",
-                                "default": "",
-                                "examples": [
-                                    "14"
+                            parentFolderId: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/parentFolderId",
+                                type: "string",
+                                title: "The Parentfolderid Schema",
+                                default: "",
+                                examples: [
+                                    "14",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "tagFiringOption": {
-                                "$id": "#/properties/containerVersion/properties/tag/items/properties/tagFiringOption",
-                                "type": "string",
-                                "title": "The Tagfiringoption Schema",
-                                "default": "",
-                                "examples": [
-                                    "ONCE_PER_EVENT"
+                            tagFiringOption: {
+                                $id: "#/properties/containerVersion/properties/tag/items/properties/tagFiringOption",
+                                type: "string",
+                                title: "The Tagfiringoption Schema",
+                                default: "",
+                                examples: [
+                                    "ONCE_PER_EVENT",
                                 ],
-                                "pattern": "^\\w+$"
-                            }
-                        }
-                    }
+                                pattern: "^\\w+$",
+                            },
+                        },
+                    },
                 },
-                "trigger": {
-                    "$id": "#/properties/containerVersion/properties/trigger",
-                    "type": "array",
-                    "title": "The Trigger Schema",
-                    "items": {
-                        "$id": "#/properties/containerVersion/properties/trigger/items",
-                        "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
+                trigger: {
+                    $id: "#/properties/containerVersion/properties/trigger",
+                    type: "array",
+                    title: "The Trigger Schema",
+                    items: {
+                        $id: "#/properties/containerVersion/properties/trigger/items",
+                        type: "object",
+                        title: "The Items Schema",
+                        required: [
                             "accountId",
                             "containerId",
                             "triggerId",
                             "name",
                             "type",
-                            "fingerprint"
+                            "fingerprint",
                         ],
-                        "properties": {
-                            "accountId": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/accountId",
-                                "type": "string",
-                                "title": "The Accountid Schema",
-                                "default": "",
-                                "examples": [
-                                    "124588580"
+                        properties: {
+                            accountId: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/accountId",
+                                type: "string",
+                                title: "The Accountid Schema",
+                                default: "",
+                                examples: [
+                                    "124588580",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "containerId": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/containerId",
-                                "type": "string",
-                                "title": "The Containerid Schema",
-                                "default": "",
-                                "examples": [
-                                    "6899612"
+                            containerId: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/containerId",
+                                type: "string",
+                                title: "The Containerid Schema",
+                                default: "",
+                                examples: [
+                                    "6899612",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "triggerId": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/triggerId",
-                                "type": "string",
-                                "title": "The Triggerid Schema",
-                                "default": "",
-                                "examples": [
-                                    "12"
+                            triggerId: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/triggerId",
+                                type: "string",
+                                title: "The Triggerid Schema",
+                                default: "",
+                                examples: [
+                                    "12",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "name": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/name",
-                                "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "Contact Form 7 Submitted"
+                            name: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/name",
+                                type: "string",
+                                title: "The Name Schema",
+                                default: "",
+                                examples: [
+                                    "Contact Form 7 Submitted",
                                 ],
-                                "pattern": "^(.*)$"
+                                pattern: "^(.*)$",
                             },
-                            "type": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/type",
-                                "type": "string",
-                                "title": "The Type Schema",
-                                "default": "",
-                                "examples": [
-                                    "CUSTOM_EVENT"
+                            type: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/type",
+                                type: "string",
+                                title: "The Type Schema",
+                                default: "",
+                                examples: [
+                                    "CUSTOM_EVENT",
                                 ],
-                                "pattern": "^\\w+$"
+                                pattern: "^\\w+$",
                             },
-                            "customEventFilter": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter",
-                                "type": "array",
-                                "title": "The Customeventfilter Schema",
-                                "items": {
-                                    "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items",
-                                    "type": "object",
-                                    "title": "The Items Schema",
-                                    "required": [
+                            customEventFilter: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter",
+                                type: "array",
+                                title: "The Customeventfilter Schema",
+                                items: {
+                                    $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items",
+                                    type: "object",
+                                    title: "The Items Schema",
+                                    required: [
                                         "type",
-                                        "parameter"
+                                        "parameter",
                                     ],
-                                    "properties": {
-                                        "type": {
-                                            "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/type",
-                                            "type": "string",
-                                            "title": "The Type Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "EQUALS"
+                                    properties: {
+                                        type: {
+                                            $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/type",
+                                            type: "string",
+                                            title: "The Type Schema",
+                                            default: "",
+                                            examples: [
+                                                "EQUALS",
                                             ],
-                                            "pattern": "^\\w+$"
+                                            pattern: "^\\w+$",
                                         },
-                                        "parameter": {
-                                            "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter",
-                                            "type": "array",
-                                            "title": "The Parameter Schema",
-                                            "items": {
-                                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items",
-                                                "type": "object",
-                                                "title": "The Items Schema",
-                                                "required": [
+                                        parameter: {
+                                            $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter",
+                                            type: "array",
+                                            title: "The Parameter Schema",
+                                            items: {
+                                                $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items",
+                                                type: "object",
+                                                title: "The Items Schema",
+                                                required: [
                                                     "type",
                                                     "key",
-                                                    "value"
+                                                    "value",
                                                 ],
-                                                "properties": {
-                                                    "type": {
-                                                        "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items/properties/type",
-                                                        "type": "string",
-                                                        "title": "The Type Schema",
-                                                        "default": "",
-                                                        "examples": [
-                                                            "TEMPLATE"
+                                                properties: {
+                                                    type: {
+                                                        $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items/properties/type",
+                                                        type: "string",
+                                                        title: "The Type Schema",
+                                                        default: "",
+                                                        examples: [
+                                                            "TEMPLATE",
                                                         ],
-                                                        "pattern": "^\\w+$"
+                                                        pattern: "^\\w+$",
                                                     },
-                                                    "key": {
-                                                        "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items/properties/key",
-                                                        "type": "string",
-                                                        "title": "The Key Schema",
-                                                        "default": "",
-                                                        "examples": [
-                                                            "arg0"
+                                                    key: {
+                                                        $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items/properties/key",
+                                                        type: "string",
+                                                        title: "The Key Schema",
+                                                        default: "",
+                                                        examples: [
+                                                            "arg0",
                                                         ],
-                                                        "pattern": "^[\\w\\d]+$"
+                                                        pattern: "^[\\w\\d]+$",
                                                     },
-                                                    "value": {
-                                                        "$id": "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items/properties/value",
-                                                        "type": "string",
-                                                        "title": "The Value Schema",
-                                                        "default": "",
-                                                        "examples": [
-                                                            "{{_event}}"
+                                                    value: {
+                                                        $id: "#/properties/containerVersion/properties/trigger/items/properties/customEventFilter/items/properties/parameter/items/properties/value",
+                                                        type: "string",
+                                                        title: "The Value Schema",
+                                                        default: "",
+                                                        examples: [
+                                                            "{{_event}}",
                                                         ],
-                                                        "pattern": "^(.*)$"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "filter": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter",
-                                "type": "array",
-                                "title": "The Filter Schema",
-                                "items": {
-                                    "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items",
-                                    "type": "object",
-                                    "title": "The Items Schema",
-                                    "required": [
-                                        "type",
-                                        "parameter"
-                                    ],
-                                    "properties": {
-                                        "type": {
-                                            "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/type",
-                                            "type": "string",
-                                            "title": "The Type Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "GREATER_OR_EQUALS"
-                                            ],
-                                            "pattern": "^\\w+$"
+                                                        pattern: "^(.*)$",
+                                                    },
+                                                },
+                                            },
                                         },
-                                        "parameter": {
-                                            "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter",
-                                            "type": "array",
-                                            "title": "The Parameter Schema",
-                                            "items": {
-                                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items",
-                                                "type": "object",
-                                                "title": "The Items Schema",
-                                                "required": [
+                                    },
+                                },
+                            },
+                            filter: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/filter",
+                                type: "array",
+                                title: "The Filter Schema",
+                                items: {
+                                    $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items",
+                                    type: "object",
+                                    title: "The Items Schema",
+                                    required: [
+                                        "type",
+                                        "parameter",
+                                    ],
+                                    properties: {
+                                        type: {
+                                            $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/type",
+                                            type: "string",
+                                            title: "The Type Schema",
+                                            default: "",
+                                            examples: [
+                                                "GREATER_OR_EQUALS",
+                                            ],
+                                            pattern: "^\\w+$",
+                                        },
+                                        parameter: {
+                                            $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter",
+                                            type: "array",
+                                            title: "The Parameter Schema",
+                                            items: {
+                                                $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items",
+                                                type: "object",
+                                                title: "The Items Schema",
+                                                required: [
                                                     "type",
                                                     "key",
-                                                    "value"
+                                                    "value",
                                                 ],
-                                                "properties": {
-                                                    "type": {
-                                                        "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items/properties/type",
-                                                        "type": "string",
-                                                        "title": "The Type Schema",
-                                                        "default": "",
-                                                        "examples": [
-                                                            "TEMPLATE"
+                                                properties: {
+                                                    type: {
+                                                        $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items/properties/type",
+                                                        type: "string",
+                                                        title: "The Type Schema",
+                                                        default: "",
+                                                        examples: [
+                                                            "TEMPLATE",
                                                         ],
-                                                        "pattern": "^\\w+$"
+                                                        pattern: "^\\w+$",
                                                     },
-                                                    "key": {
-                                                        "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items/properties/key",
-                                                        "type": "string",
-                                                        "title": "The Key Schema",
-                                                        "default": "",
-                                                        "examples": [
-                                                            "arg0"
+                                                    key: {
+                                                        $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items/properties/key",
+                                                        type: "string",
+                                                        title: "The Key Schema",
+                                                        default: "",
+                                                        examples: [
+                                                            "arg0",
                                                         ],
-                                                        "pattern": "^[\\w\\d]+$"
+                                                        pattern: "^[\\w\\d]+$",
                                                     },
-                                                    "value": {
-                                                        "$id": "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items/properties/value",
-                                                        "type": "string",
-                                                        "title": "The Value Schema",
-                                                        "default": "",
-                                                        "examples": [
-                                                            "{{Cookie - pageviewCount}}"
+                                                    value: {
+                                                        $id: "#/properties/containerVersion/properties/trigger/items/properties/filter/items/properties/parameter/items/properties/value",
+                                                        type: "string",
+                                                        title: "The Value Schema",
+                                                        default: "",
+                                                        examples: [
+                                                            "{{Cookie - pageviewCount}}",
                                                         ],
-                                                        "pattern": "^(.*)$"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                                        pattern: "^(.*)$",
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
                             },
-                            "fingerprint": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/fingerprint",
-                                "type": "string",
-                                "title": "The Fingerprint Schema",
-                                "default": "",
-                                "examples": [
-                                    "1518683189825"
+                            fingerprint: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/fingerprint",
+                                type: "string",
+                                title: "The Fingerprint Schema",
+                                default: "",
+                                examples: [
+                                    "1518683189825",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "parentFolderId": {
-                                "$id": "#/properties/containerVersion/properties/trigger/items/properties/parentFolderId",
-                                "type": "string",
-                                "title": "The Parentfolderid Schema",
-                                "default": "",
-                                "examples": [
-                                    "14"
+                            parentFolderId: {
+                                $id: "#/properties/containerVersion/properties/trigger/items/properties/parentFolderId",
+                                type: "string",
+                                title: "The Parentfolderid Schema",
+                                default: "",
+                                examples: [
+                                    "14",
                                 ],
-                                "pattern": "^\\d+$"
-                            }
-                        }
-                    }
+                                pattern: "^\\d+$",
+                            },
+                        },
+                    },
                 },
-                "variable": {
-                    "$id": "#/properties/containerVersion/properties/variable",
-                    "type": "array",
-                    "title": "The Variable Schema",
-                    "items": {
-                        "$id": "#/properties/containerVersion/properties/variable/items",
-                        "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
+                variable: {
+                    $id: "#/properties/containerVersion/properties/variable",
+                    type: "array",
+                    title: "The Variable Schema",
+                    items: {
+                        $id: "#/properties/containerVersion/properties/variable/items",
+                        type: "object",
+                        title: "The Items Schema",
+                        required: [
                             "accountId",
                             "containerId",
                             "variableId",
                             "name",
                             "type",
                             "parameter",
-                            "fingerprint"
+                            "fingerprint",
                         ],
-                        "properties": {
-                            "accountId": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/accountId",
-                                "type": "string",
-                                "title": "The Accountid Schema",
-                                "default": "",
-                                "examples": [
-                                    "124588580"
+                        properties: {
+                            accountId: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/accountId",
+                                type: "string",
+                                title: "The Accountid Schema",
+                                default: "",
+                                examples: [
+                                    "124588580",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "containerId": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/containerId",
-                                "type": "string",
-                                "title": "The Containerid Schema",
-                                "default": "",
-                                "examples": [
-                                    "6899612"
+                            containerId: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/containerId",
+                                type: "string",
+                                title: "The Containerid Schema",
+                                default: "",
+                                examples: [
+                                    "6899612",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "variableId": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/variableId",
-                                "type": "string",
-                                "title": "The Variableid Schema",
-                                "default": "",
-                                "examples": [
-                                    "1"
+                            variableId: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/variableId",
+                                type: "string",
+                                title: "The Variableid Schema",
+                                default: "",
+                                examples: [
+                                    "1",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "name": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/name",
-                                "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "GA config - with ecommerce"
+                            name: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/name",
+                                type: "string",
+                                title: "The Name Schema",
+                                default: "",
+                                examples: [
+                                    "GA config - with ecommerce",
                                 ],
-                                "pattern": "^(.*)$"
+                                pattern: "^(.*)$",
                             },
-                            "type": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/type",
-                                "type": "string",
-                                "title": "The Type Schema",
-                                "default": "",
-                                "examples": [
-                                    "gas"
+                            type: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/type",
+                                type: "string",
+                                title: "The Type Schema",
+                                default: "",
+                                examples: [
+                                    "gas",
                                 ],
-                                "pattern": "^\\w+$"
+                                pattern: "^\\w+$",
                             },
-                            "parameter": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/parameter",
-                                "type": "array",
-                                "title": "The Parameter Schema",
-                                "items": {
-                                    "$id": "#/properties/containerVersion/properties/variable/items/properties/parameter/items",
-                                    "type": "object",
-                                    "title": "The Items Schema",
-                                    "required": [
+                            parameter: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/parameter",
+                                type: "array",
+                                title: "The Parameter Schema",
+                                items: {
+                                    $id: "#/properties/containerVersion/properties/variable/items/properties/parameter/items",
+                                    type: "object",
+                                    title: "The Items Schema",
+                                    required: [
                                         "type",
-                                        "key"
+                                        "key",
                                     ],
-                                    "properties": {
-                                        "type": {
-                                            "$id": "#/properties/containerVersion/properties/variable/items/properties/parameter/items/properties/type",
-                                            "type": "string",
-                                            "title": "The Type Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "TEMPLATE"
+                                    properties: {
+                                        type: {
+                                            $id: "#/properties/containerVersion/properties/variable/items/properties/parameter/items/properties/type",
+                                            type: "string",
+                                            title: "The Type Schema",
+                                            default: "",
+                                            examples: [
+                                                "TEMPLATE",
                                             ],
-                                            "pattern": "^\\w+$"
+                                            pattern: "^\\w+$",
                                         },
-                                        "key": {
-                                            "$id": "#/properties/containerVersion/properties/variable/items/properties/parameter/items/properties/key",
-                                            "type": "string",
-                                            "title": "The Key Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "cookieDomain"
+                                        key: {
+                                            $id: "#/properties/containerVersion/properties/variable/items/properties/parameter/items/properties/key",
+                                            type: "string",
+                                            title: "The Key Schema",
+                                            default: "",
+                                            examples: [
+                                                "cookieDomain",
                                             ],
-                                            "pattern": "^\\w+$"
+                                            pattern: "^\\w+$",
                                         },
-                                        "value": {
-                                            "$id": "#/properties/containerVersion/properties/variable/items/properties/parameter/items/properties/value",
-                                            "type": "string",
-                                            "title": "The Value Schema",
-                                            "default": "",
-                                            "examples": [
-                                                "auto"
+                                        value: {
+                                            $id: "#/properties/containerVersion/properties/variable/items/properties/parameter/items/properties/value",
+                                            type: "string",
+                                            title: "The Value Schema",
+                                            default: "",
+                                            examples: [
+                                                "auto",
                                             ],
-                                            "pattern": "(.*)"
-                                        }
-                                    }
-                                }
+                                            pattern: "(.*)",
+                                        },
+                                    },
+                                },
                             },
-                            "fingerprint": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/fingerprint",
-                                "type": "string",
-                                "title": "The Fingerprint Schema",
-                                "default": "",
-                                "examples": [
-                                    "1518683189825"
+                            fingerprint: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/fingerprint",
+                                type: "string",
+                                title: "The Fingerprint Schema",
+                                default: "",
+                                examples: [
+                                    "1518683189825",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "parentFolderId": {
-                                "$id": "#/properties/containerVersion/properties/variable/items/properties/parentFolderId",
-                                "type": "string",
-                                "title": "The Parentfolderid Schema",
-                                "default": "",
-                                "examples": [
-                                    "14"
+                            parentFolderId: {
+                                $id: "#/properties/containerVersion/properties/variable/items/properties/parentFolderId",
+                                type: "string",
+                                title: "The Parentfolderid Schema",
+                                default: "",
+                                examples: [
+                                    "14",
                                 ],
-                                "pattern": "^\\d+$"
-                            }
-                        }
-                    }
+                                pattern: "^\\d+$",
+                            },
+                        },
+                    },
                 },
-                "folder": {
-                    "$id": "#/properties/containerVersion/properties/folder",
-                    "type": "array",
-                    "title": "The Folder Schema",
-                    "items": {
-                        "$id": "#/properties/containerVersion/properties/folder/items",
-                        "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
+                folder: {
+                    $id: "#/properties/containerVersion/properties/folder",
+                    type: "array",
+                    title: "The Folder Schema",
+                    items: {
+                        $id: "#/properties/containerVersion/properties/folder/items",
+                        type: "object",
+                        title: "The Items Schema",
+                        required: [
                             "accountId",
                             "containerId",
                             "folderId",
                             "name",
-                            "fingerprint"
+                            "fingerprint",
                         ],
-                        "properties": {
-                            "accountId": {
-                                "$id": "#/properties/containerVersion/properties/folder/items/properties/accountId",
-                                "type": "string",
-                                "title": "The Accountid Schema",
-                                "default": "",
-                                "examples": [
-                                    "124588580"
+                        properties: {
+                            accountId: {
+                                $id: "#/properties/containerVersion/properties/folder/items/properties/accountId",
+                                type: "string",
+                                title: "The Accountid Schema",
+                                default: "",
+                                examples: [
+                                    "124588580",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "containerId": {
-                                "$id": "#/properties/containerVersion/properties/folder/items/properties/containerId",
-                                "type": "string",
-                                "title": "The Containerid Schema",
-                                "default": "",
-                                "examples": [
-                                    "6899612"
+                            containerId: {
+                                $id: "#/properties/containerVersion/properties/folder/items/properties/containerId",
+                                type: "string",
+                                title: "The Containerid Schema",
+                                default: "",
+                                examples: [
+                                    "6899612",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "folderId": {
-                                "$id": "#/properties/containerVersion/properties/folder/items/properties/folderId",
-                                "type": "string",
-                                "title": "The Folderid Schema",
-                                "default": "",
-                                "examples": [
-                                    "14"
+                            folderId: {
+                                $id: "#/properties/containerVersion/properties/folder/items/properties/folderId",
+                                type: "string",
+                                title: "The Folderid Schema",
+                                default: "",
+                                examples: [
+                                    "14",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "name": {
-                                "$id": "#/properties/containerVersion/properties/folder/items/properties/name",
-                                "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "GTM4WP"
+                            name: {
+                                $id: "#/properties/containerVersion/properties/folder/items/properties/name",
+                                type: "string",
+                                title: "The Name Schema",
+                                default: "",
+                                examples: [
+                                    "GTM4WP",
                                 ],
-                                "pattern": "^(.*)$"
+                                pattern: "^(.*)$",
                             },
-                            "fingerprint": {
-                                "$id": "#/properties/containerVersion/properties/folder/items/properties/fingerprint",
-                                "type": "string",
-                                "title": "The Fingerprint Schema",
-                                "default": "",
-                                "examples": [
-                                    "1518683180054"
+                            fingerprint: {
+                                $id: "#/properties/containerVersion/properties/folder/items/properties/fingerprint",
+                                type: "string",
+                                title: "The Fingerprint Schema",
+                                default: "",
+                                examples: [
+                                    "1518683180054",
                                 ],
-                                "pattern": "^\\d+$"
-                            }
-                        }
-                    }
+                                pattern: "^\\d+$",
+                            },
+                        },
+                    },
                 },
-                "builtInVariable": {
-                    "$id": "#/properties/containerVersion/properties/builtInVariable",
-                    "type": "array",
-                    "title": "The Builtinvariable Schema",
-                    "items": {
-                        "$id": "#/properties/containerVersion/properties/builtInVariable/items",
-                        "type": "object",
-                        "title": "The Items Schema",
-                        "required": [
+                builtInVariable: {
+                    $id: "#/properties/containerVersion/properties/builtInVariable",
+                    type: "array",
+                    title: "The Builtinvariable Schema",
+                    items: {
+                        $id: "#/properties/containerVersion/properties/builtInVariable/items",
+                        type: "object",
+                        title: "The Items Schema",
+                        required: [
                             "accountId",
                             "containerId",
                             "type",
-                            "name"
+                            "name",
                         ],
-                        "properties": {
-                            "accountId": {
-                                "$id": "#/properties/containerVersion/properties/builtInVariable/items/properties/accountId",
-                                "type": "string",
-                                "title": "The Accountid Schema",
-                                "default": "",
-                                "examples": [
-                                    "124588580"
+                        properties: {
+                            accountId: {
+                                $id: "#/properties/containerVersion/properties/builtInVariable/items/properties/accountId",
+                                type: "string",
+                                title: "The Accountid Schema",
+                                default: "",
+                                examples: [
+                                    "124588580",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "containerId": {
-                                "$id": "#/properties/containerVersion/properties/builtInVariable/items/properties/containerId",
-                                "type": "string",
-                                "title": "The Containerid Schema",
-                                "default": "",
-                                "examples": [
-                                    "6899612"
+                            containerId: {
+                                $id: "#/properties/containerVersion/properties/builtInVariable/items/properties/containerId",
+                                type: "string",
+                                title: "The Containerid Schema",
+                                default: "",
+                                examples: [
+                                    "6899612",
                                 ],
-                                "pattern": "^\\d+$"
+                                pattern: "^\\d+$",
                             },
-                            "type": {
-                                "$id": "#/properties/containerVersion/properties/builtInVariable/items/properties/type",
-                                "type": "string",
-                                "title": "The Type Schema",
-                                "default": "",
-                                "examples": [
-                                    "PAGE_URL"
+                            type: {
+                                $id: "#/properties/containerVersion/properties/builtInVariable/items/properties/type",
+                                type: "string",
+                                title: "The Type Schema",
+                                default: "",
+                                examples: [
+                                    "PAGE_URL",
                                 ],
-                                "pattern": "^\\w+$"
+                                pattern: "^\\w+$",
                             },
-                            "name": {
-                                "$id": "#/properties/containerVersion/properties/builtInVariable/items/properties/name",
-                                "type": "string",
-                                "title": "The Name Schema",
-                                "default": "",
-                                "examples": [
-                                    "Page URL"
+                            name: {
+                                $id: "#/properties/containerVersion/properties/builtInVariable/items/properties/name",
+                                type: "string",
+                                title: "The Name Schema",
+                                default: "",
+                                examples: [
+                                    "Page URL",
                                 ],
-                                "pattern": "^(.*)$"
-                            }
-                        }
-                    }
+                                pattern: "^(.*)$",
+                            },
+                        },
+                    },
                 },
-                "fingerprint": {
-                    "$id": "#/properties/containerVersion/properties/fingerprint",
-                    "type": "string",
-                    "title": "The Fingerprint Schema",
-                    "default": "",
-                    "examples": [
-                        "1518687892025"
+                fingerprint: {
+                    $id: "#/properties/containerVersion/properties/fingerprint",
+                    type: "string",
+                    title: "The Fingerprint Schema",
+                    default: "",
+                    examples: [
+                        "1518687892025",
                     ],
-                    "pattern": "^\\d+$"
+                    pattern: "^\\d+$",
                 },
-                "tagManagerUrl": {
-                    "$id": "#/properties/containerVersion/properties/tagManagerUrl",
-                    "type": "string",
-                    "title": "The Tagmanagerurl Schema",
-                    "default": "",
-                    "examples": [
-                        "https://tagmanager.google.com/#/versions/accounts/124588580/containers/6899612/versions/2?apiLink=version"
+                tagManagerUrl: {
+                    $id: "#/properties/containerVersion/properties/tagManagerUrl",
+                    type: "string",
+                    title: "The Tagmanagerurl Schema",
+                    default: "",
+                    examples: [
+                        "https://tagmanager.google.com/#/versions/accounts/124588580/containers/6899612/versions/2?apiLink=version",
                     ],
-                    "pattern": "^(.*)$"
-                }
-            }
-        }
-    }
+                    pattern: "^(.*)$",
+                },
+            },
+        },
+    },
 };

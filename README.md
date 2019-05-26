@@ -50,7 +50,7 @@ Will output all Tags, Triggers, Variables and the usage between them.
 ### -R, --triggers
     Convert triggers
 
-### -V, --variables
+### -A, --variables
     Convert variables
 
 ### -U, --usages

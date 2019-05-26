@@ -15,12 +15,12 @@ import { validateSchema } from "./validate_schema";
 const AVAILABLE_PLANTUML_EXTENSIONS: string[] = ["svg", "png", "txt"];
 
 commander
-    .version("0.1.4")
+    .version("0.1.5")
     .option("-i, --input <path>", "Define the path of the Typescript file")
     .option("-o, --output <path>", "Define the path of the output file. If not defined, it'll output on the STDOUT")
     .option("-T, --tags", "Convert tags")
     .option("-R, --triggers", "Convert triggers")
-    .option("-V, --variables", "Convert variables")
+    .option("-A, --variables", "Convert variables")
     .option("-U, --usages", "Generate usages")
     .parse(process.argv);
 
@@ -45,10 +45,10 @@ function bootstrap(commanderStatic: commander.CommanderStatic): void {
 
     const gtmContainer: IGTMWorkspace = JSON.parse(inputData);
     const plantUMLDocument: string = convertToPlant(gtmContainer, {
-        tags: <boolean>commanderStatic.tags,
-        triggers: <boolean>commanderStatic.triggers,
-        usages: <boolean>commanderStatic.usages,
-        variables: <boolean>commanderStatic.variables,
+        tags: !!commanderStatic.tags,
+        triggers: !!commanderStatic.triggers,
+        usages: !!commanderStatic.usages,
+        variables: !!commanderStatic.variables,
     });
 
     if (commanderStatic.output === undefined) {
@@ -60,11 +60,11 @@ function bootstrap(commanderStatic: commander.CommanderStatic): void {
 
     if (AVAILABLE_PLANTUML_EXTENSIONS.includes(extension)) {
         requestImageFile(<string>commanderStatic.output, plantUMLDocument, extension);
-        return console.log("File saved");
+    } else {
+        // tslint:disable-next-line non-literal-fs-path
+        fs.writeFileSync(<string>commanderStatic.output, plantUMLDocument);
     }
 
-    // tslint:disable-next-line non-literal-fs-path
-    fs.writeFileSync(<string>commanderStatic.output, plantUMLDocument);
     console.log("File saved");
 }
 
